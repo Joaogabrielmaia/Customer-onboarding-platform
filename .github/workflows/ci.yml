@@ -1,0 +1,73 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  quality:
+    name: Lint, tipos, testes e build
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: trilha
+          POSTGRES_PASSWORD: trilha
+          POSTGRES_DB: trilha
+        ports:
+          - 5433:5432
+        options: >-
+          --health-cmd "pg_isready -U trilha"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+
+    env:
+      # Credenciais do banco descartável do próprio job; não são segredos.
+      DATABASE_URL: postgresql://trilha:trilha@localhost:5433/trilha?schema=public
+      AUTH_SECRET: segredo-apenas-para-ci-sem-valor-real-0123456789
+      APP_URL: http://localhost:3100
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Checagem de tipos
+        run: npm run typecheck
+
+      - name: Testes unitários
+        run: npm run test:unit
+
+      - name: Testes de integração (PostgreSQL real)
+        run: npm run test:integration
+
+      - name: Build
+        run: npm run build
+
+      - name: Instalar o Chromium do Playwright
+        run: npx playwright install --with-deps chromium
+
+      - name: Testes E2E
+        run: npx playwright test
+
+      - name: Guardar relatório e rastros em caso de falha
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-test-results
+          path: test-results/
+          retention-days: 7
