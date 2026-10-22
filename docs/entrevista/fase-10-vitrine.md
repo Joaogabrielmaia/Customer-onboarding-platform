@@ -12,3 +12,6 @@ Porque número sem origem não aguenta a primeira pergunta. Cito 156 testes pass
 
 ### 3. Como você garantiu que o passo a passo do README funciona?
 Conferi cada comando contra o código e, ao fazer isso, encontrei um defeito: o `.env.example` trazia uma variável vazia que quebrava a migration. Reproduzi o erro, corrigi e depois validei seguindo os passos em um clone limpo do repositório. Documentar sem executar é a forma mais fácil de publicar instruções que não funcionam.
+
+### 4. Por que você assume que usou IA e simulou os clientes com ela?
+Porque é verdade e porque mostra uma habilidade. Usei o Claude como assistente de desenvolvimento e como ator nas reuniões do discovery, interpretando fundador, líder, implantador, suporte e cliente a partir do meu briefing. O que fica comigo é definir o problema, decidir, revisar e testar o que ela produz, e isso está documentado nos ADRs, nos requisitos e nos defeitos que encontrei. Dizer claramente o que foi simulado evita que alguém tome o cenário por experiência com clientes reais, e me deixa à vontade para explicar o processo em entrevista.

@@ -5,7 +5,7 @@
 Participantes: Ricardo Almeida (fundador), Camila Tavares (líder de implantação) e eu
 Relacionados: [Wireframes](01-wireframes.md) · [Change-log](03-change-log.md) · [Escopo](../02-definicao/05-priorizacao-e-escopo.md)
 
-> Reunião simulada (roteirizada por mim para este caso de portfólio). Pessoas e empresa fictícias.
+> Reunião simulada com o Claude (Anthropic) no papel dos stakeholders, a partir do meu briefing. Pessoas e empresa fictícias.
 
 ## Transcrição (trechos principais)
 

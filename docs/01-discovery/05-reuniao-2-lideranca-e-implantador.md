@@ -5,7 +5,7 @@
 Participantes: Camila Tavares (líder de implantação), Diego Ferreira (implantador) e eu
 Relacionados: [Reunião 1](04-reuniao-1-kickoff-fundador.md) · [Reunião 3](06-reuniao-3-suporte-e-cliente.md) · [Processo AS-IS](07-processo-as-is.md)
 
-> Reunião simulada (roteirizada por mim para este caso de portfólio). Pessoas e empresa fictícias.
+> Reunião simulada com o Claude (Anthropic) no papel dos stakeholders, a partir do meu briefing. Pessoas e empresa fictícias.
 
 ## Transcrição (trechos principais)
 

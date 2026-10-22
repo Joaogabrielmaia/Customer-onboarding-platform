@@ -5,9 +5,9 @@
 Participantes: Camila Tavares (líder de implantação) e eu
 Relacionados: [Histórias e critérios](../02-definicao/04-historias-de-usuario.md) · [Resultado da execução](02-resultado-da-ultima-execucao.md) · [Limitações](03-limitacoes-conhecidas.md)
 
-> Reunião simulada (roteirizada por mim para este caso de portfólio). Pessoas e empresa fictícias.
+> Reunião simulada com o Claude (Anthropic) no papel dos stakeholders, a partir do meu briefing. Pessoas e empresa fictícias.
 >
-> **O que é real e o que é roteiro:** a conversa com a Camila é roteirizada. Os **resultados dos critérios e os problemas abaixo são reais**: eu executei cada critério no sistema (por teste automatizado ou pela exploração manual descrita) e os defeitos D3 e D4 foram de fato encontrados e corrigidos. Nenhum defeito foi inventado para dar drama ao UAT.
+> **O que é real e o que é roteiro:** a conversa com a Camila foi simulada com o Claude. Os **resultados dos critérios e os problemas abaixo são reais**: eu executei cada critério no sistema (por teste automatizado ou pela exploração manual descrita) e os defeitos D3 e D4 foram de fato encontrados e corrigidos. Nenhum defeito foi inventado para dar drama ao UAT.
 
 ## Transcrição (trechos)
 

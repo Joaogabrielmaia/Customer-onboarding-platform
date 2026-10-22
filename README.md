@@ -2,8 +2,6 @@
 
 Plataforma web que uma software house usa para conduzir a implantação do seu sistema nos clientes: etapas, prazos, responsáveis, progresso e um painel que mostra o que está atrasado. O cliente acompanha por um link, sem cadastro.
 
-> A Rota Fácil Software e seus clientes são o cenário que modelei para desenvolver o projeto. As reuniões em `docs/` são roteirizadas por mim e estão marcadas como tal.
-
 ![Painel da Trilha com atrasos em destaque](docs/screenshots/02-painel.png)
 
 ## Resumo
@@ -13,6 +11,10 @@ Plataforma web que uma software house usa para conduzir a implantação do seu s
 - **Para quem:** fundador e líder (painel), implantadores e suporte (tarefas, comentários, histórico) e o cliente (portal).
 - **Stack:** Next.js 16 (App Router) + TypeScript, Tailwind CSS 4, Prisma 7 + PostgreSQL, Zod, Vitest e Playwright.
 - **Status:** v1.1.0 funcionando; guia de publicação (Vercel + Neon) pronto em `docs/06-deploy-e-go-live/deploy.md`.
+
+## Como foi feito (e onde usei IA)
+
+A Rota Fácil Software e seus clientes são o cenário que modelei para desenvolver o projeto. **Usei o Claude (Anthropic) de duas formas:** como assistente de desenvolvimento ao longo da construção e como ator nas reuniões, interpretando fundador, líder, implantador, suporte e cliente a partir do meu briefing. Por isso as reuniões em `docs/` estão marcadas como simuladas, e os números de ganho aparecem só como hipótese. O que é verificável é o código, as decisões, os testes e o resultado de cada execução. Usar IA com critério, definindo o problema, revisando e testando o que ela produz, é uma habilidade que faz parte do meu trabalho.
 
 ## Como o projeto foi conduzido
 
@@ -26,7 +28,7 @@ flowchart LR
 | Etapa | O que fiz | Onde |
 |---|---|---|
 | 0. Sobre o projeto | Cenário, ordem de leitura | [`00-sobre-o-projeto`](docs/00-sobre-o-projeto/README.md) |
-| 1. Discovery | Brainstorm e escolha; empresa do cenário; personas; 3 reuniões roteirizadas; processo AS-IS; problemas priorizados | [`01-discovery`](docs/01-discovery/) |
+| 1. Discovery | Brainstorm e escolha; empresa do cenário; personas; 3 reuniões simuladas com IA; processo AS-IS; problemas priorizados | [`01-discovery`](docs/01-discovery/) |
 | 2. Definição | Visão, RF/RNF/RN, histórias com Dado/Quando/Então, MoSCoW, backlog em 3 sprints, riscos, rastreabilidade | [`02-definicao`](docs/02-definicao/) |
 | 3. Arquitetura | 9 ADRs, modelo de dados, contexto e componentes, segurança e privacidade, custo | [`03-arquitetura`](docs/03-arquitetura/) |
 | 4. Protótipo | Wireframes, reunião 4 e change-log (inclui uma **recusa justificada**) | [`04-prototipo`](docs/04-prototipo/) |
@@ -108,15 +110,20 @@ Pré-requisitos: Node.js 24 (a versão com que desenvolvi e testei) e Docker.
 
 ```bash
 git clone <url-do-repositório> && cd <pasta>
-npm install                 # também gera o cliente Prisma (postinstall)
-cp .env.example .env        # os valores padrão já servem para o ambiente local
-docker compose up -d        # PostgreSQL local na porta 5433
-npx prisma migrate deploy   # cria as tabelas
-npm run db:seed             # dados de exemplo
-npm run dev                 # http://localhost:3000
+npm install
+cp .env.example .env     # os valores padrão já servem para o ambiente local
+npm run setup            # sobe o PostgreSQL (Docker), aplica as migrations e carrega os dados de exemplo
+npm run dev              # http://localhost:3000
 ```
 
-O seed cria usuários de desenvolvimento (e-mails em `@rotafacil.example`); as senhas estão em `src/server/seed-data.ts`.
+Contas criadas pelo seed (só para desenvolvimento local):
+
+| Papel | E-mail | Senha |
+|---|---|---|
+| Administrador | `admin@rotafacil.example` | `Admin-Trilha-2026` |
+| Implantador | `implantador@rotafacil.example` | `Usuario-Trilha-2026` |
+
+Outros usuários do seed: `fundador@` (admin), `larissa@` e `suporte@` (implantadores), todos em `@rotafacil.example`. O link do cliente é gerado dentro de uma implantação (botão "Gerar link do cliente"). Sem Docker, aponte `DATABASE_URL` para qualquer PostgreSQL e rode `npx prisma migrate deploy && npm run db:seed`.
 
 ## Como testar
 

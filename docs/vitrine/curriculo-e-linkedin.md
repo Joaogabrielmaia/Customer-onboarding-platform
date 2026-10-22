@@ -4,19 +4,22 @@
 **Data:** 2026-10-22 · **Status:** rascunho
 Relacionados: [README](../../README.md) · [Apresentação do projeto](apresentacao-do-projeto.md)
 
-## 3 bullets para o currículo
+## Bullets para o currículo
 
 Seção *Projetos*. Título: **Trilha: plataforma de acompanhamento de implantação de clientes (projeto pessoal)**
 
 - Conduzi o projeto de ponta a ponta: discovery, requisitos rastreáveis (RF/RNF/RN), 9 ADRs, protótipo, construção em 3 sprints, UAT, plano de go-live, runbook e uma evolução pós-lançamento (v1.1.0).
 - Desenvolvi a aplicação em **Next.js, TypeScript, PostgreSQL e Prisma**: modelos de implantação com prazos relativos, painel de atrasos, portal do cliente por link com token (expiração e revogação), autorização no servidor e auditoria transacional.
+- Usei **IA (Claude) como assistente de desenvolvimento** e para simular os stakeholders do discovery, definindo o problema, revisando e testando o que ela produzia.
 - Cobri o código com **156 testes automatizados** (unitários, integração contra PostgreSQL real e E2E com Playwright, incluindo verificação de acessibilidade com axe) e documentei os defeitos que encontrei e as limitações conhecidas.
 
-Se faltar espaço, use o primeiro e o terceiro.
+Se faltar espaço, use o primeiro e o último.
 
 ## Post para o LinkedIn
 
 > Terminei a **Trilha**, um projeto pessoal que me tomou bastante tempo, e queria compartilhar o que mais aprendi.
+>
+> Um detalhe que faz parte da história: usei o **Claude (Anthropic)** como assistente de desenvolvimento e também para simular os stakeholders do discovery (fundador, líder, implantador, suporte e cliente). Eu defini o problema, revisei as decisões e testei o resultado. Para mim, saber trabalhar com IA com critério é uma habilidade.
 >
 > A ideia: uma software house pequena conduz implantações em planilha e WhatsApp, descobre atraso tarde e perde o que combinou com o cliente. A Trilha cria a implantação a partir de um modelo, calcula os prazos, mostra o que está atrasado e dá ao cliente um link de leitura, sem cadastro.
 >

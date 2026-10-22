@@ -7,6 +7,11 @@ services:
       POSTGRES_USER: trilha
       POSTGRES_PASSWORD: trilha
       POSTGRES_DB: trilha
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U trilha -d trilha"]
+      interval: 2s
+      timeout: 3s
+      retries: 20
     ports:
       - "5433:5432"
     volumes:

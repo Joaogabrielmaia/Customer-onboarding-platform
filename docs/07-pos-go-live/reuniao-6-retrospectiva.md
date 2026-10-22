@@ -5,9 +5,9 @@
 Participantes: Ricardo Almeida (fundador), Camila Tavares (líder de implantação), Diego Ferreira (implantador-piloto) e eu
 Relacionados: [Plano de rollout](../06-deploy-e-go-live/01-plano-de-rollout.md) · [Indicadores](indicadores.md) · [Roadmap](roadmap.md) · [Changelog](../../CHANGELOG.md)
 
-> Reunião simulada (roteirizada por mim para este caso de portfólio). Pessoas e empresa fictícias.
+> Reunião simulada com o Claude (Anthropic) no papel dos stakeholders, a partir do meu briefing. Pessoas e empresa fictícias.
 >
-> **Aviso importante:** não houve piloto real. O feedback abaixo é **roteirizado** a partir do que o sistema de fato faz e dos limites que conheço. Ninguém mediu economia de tempo nem redução de atrasos, e não digo que mediu.
+> **Aviso importante:** não houve piloto real. O feedback abaixo foi **simulado com o Claude** no papel dos participantes, a partir do que o sistema de fato faz e dos limites que conheço. Ninguém mediu economia de tempo nem redução de atrasos, e não digo que mediu.
 
 ## Formato
 
