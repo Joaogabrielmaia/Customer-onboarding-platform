@@ -62,6 +62,9 @@ Legenda: **U** = unitário, **I** = integração dos serviços, **E** = E2E (arq
 | TC-33 | E | `templates-and-portal.spec.ts` | Mensagem pronta com o link (RF-19) |
 | TC-34 | E | `responsive.spec.ts` | Sem rolagem horizontal em 390 px |
 | TC-35 | E | `accessibility.spec.ts` | axe em 6 telas |
+| TC-36 | U / I | `csv.test.ts`, `reports.test.ts` | CSV: escape, injeção de fórmula, conteúdo e filtros (v1.1) |
+| TC-37 | I | `reports.test.ts` | Relatório sem comentários nem histórico; permissão e erro |
+| TC-38 | E | `export-csv.spec.ts` | Download real, BOM, filtros da tela e 401 sem sessão |
 
 ## Requisito → história → teste → tela
 
@@ -86,6 +89,7 @@ Legenda: **U** = unitário, **I** = integração dos serviços, **E** = E2E (arq
 | RF-17 | RN-18 | US-03 | TC-28 | T10 |
 | RF-18 | – | US-09 | TC-29 | T02, T12 |
 | RF-19 | – | US-12 | TC-33 | T08 |
+| RF-20 | – | (v1.1) | TC-36, TC-37, TC-38 | T08, T12 |
 | RNF-02 | RN-12 | todas | TC-03, TC-04 | – |
 | RNF-03 | RN-17 | US-01 | TC-30 | – |
 | RNF-04 | – | todas | TC-31 | – |

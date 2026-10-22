@@ -13,7 +13,7 @@ Relacionados: [Resultado da execução](02-resultado-da-ultima-execucao.md) · [
 | Sem recuperação de senha por e-mail | O admin redefine a senha |
 | Prazos não consideram feriados | Só fim de semana (RN-01) |
 | Sem dependência entre tarefas | Ajuste manual com motivo (CH-06) |
-| Sem exportação de relatório (até a v1.1) | Ver [pós go-live](../07-pos-go-live/) |
+| Exportação só em CSV; sem PDF | CSV abre no Excel e é simples de testar (v1.1.0) |
 | Um único fuso (America/Sao_Paulo) e um único idioma (pt-BR) | Cenário de uma empresa brasileira |
 | Sem política automática de retenção nem anonimização de contato | LGPD básica só no desenho |
 

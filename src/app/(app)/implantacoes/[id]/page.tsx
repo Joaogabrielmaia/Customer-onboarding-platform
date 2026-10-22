@@ -53,6 +53,8 @@ export default async function DeploymentPage({
           </>
         }
         actions={
+          <>
+            <a href={`/implantacoes/${id}/exportar`} className="rounded-md border border-slate-400 bg-white px-4 py-2 font-medium text-slate-900 hover:bg-slate-100">Exportar CSV</a>
           <Badge tone={d.status === "COMPLETED" ? "success" : d.lateness.teamLateCount > 0 ? "danger" : d.lateness.clientLateCount > 0 ? "warning" : "info"}>
             {d.status === "COMPLETED"
               ? `Concluída em ${formatBR(d.completedAt!)}`
@@ -62,6 +64,7 @@ export default async function DeploymentPage({
                   ? "Aguardando cliente"
                   : "No prazo"}
           </Badge>
+          </>
         }
       />
 
