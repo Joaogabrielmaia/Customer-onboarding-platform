@@ -83,7 +83,7 @@ export default async function DashboardPage({ searchParams }: { searchParams: Pr
             {dash.queueByImplementer.length === 0 ? (
               <p className="text-slate-700">Nenhuma pendência aberta.</p>
             ) : (
-              <div className="overflow-x-auto rounded-lg border border-slate-300 bg-white">
+              <div className="relative overflow-x-auto rounded-lg border border-slate-300 bg-white">
                 <table className="w-full text-left text-sm">
                   <caption className="sr-only">Tarefas abertas e atrasadas por implantador</caption>
                   <thead className="bg-slate-100 text-slate-900">

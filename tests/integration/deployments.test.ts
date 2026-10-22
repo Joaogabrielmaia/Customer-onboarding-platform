@@ -144,6 +144,14 @@ describe("tarefas, comentários e histórico", () => {
     });
   });
 
+  it("recusa o ajuste que não muda nada, em vez de dizer que salvou", async () => {
+    const task = find("Treinamento geral");
+    const current = await db.deploymentTask.findUniqueOrThrow({ where: { id: task.id } });
+    await expect(
+      updateTaskSchedule(s.diego, { taskId: task.id, dueDate: formatCivil(current.dueDate), assigneeId: current.assigneeId ?? undefined }),
+    ).rejects.toThrow("Nenhuma alteração para salvar");
+  });
+
   it("só o responsável pela implantação (ou o admin) ajusta prazo e responsável", async () => {
     const task = find("Treinamento geral");
     await expect(updateTaskSchedule(s.larissa, { taskId: task.id, assigneeId: s.larissa.id })).rejects.toBeInstanceOf(ForbiddenError);

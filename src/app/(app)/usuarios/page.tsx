@@ -17,7 +17,7 @@ export default async function UsersPage() {
       <PageHeader title="Usuários" description="Quem acessa a Trilha. Desativar impede o login na hora e mantém o histórico." />
 
       <div className="grid gap-6 lg:grid-cols-[2fr_1fr]">
-        <div className="overflow-x-auto rounded-lg border border-slate-300 bg-white">
+        <div className="relative overflow-x-auto rounded-lg border border-slate-300 bg-white">
           <table className="w-full text-left text-sm">
             <caption className="sr-only">Usuários internos</caption>
             <thead className="bg-slate-100">

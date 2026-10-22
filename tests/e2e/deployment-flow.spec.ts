@@ -51,6 +51,11 @@ test.describe.serial("implantação: da criação ao histórico", () => {
     await openDeployment(page, COMPANY);
     const item = task(page, "Parametrização fiscal básica");
     await item.getByText(/Detalhes e comentários/).click();
+    // Salvar sem mudar nada não pode parecer sucesso.
+    await item.getByRole("button", { name: "Salvar ajuste" }).click();
+    await expect(item.locator("p[role=alert]")).toContainText("Nenhuma alteração para salvar");
+    await expect(item.getByText("Ajuste salvo.")).toHaveCount(0);
+
     await item.getByLabel("Novo prazo").fill("2026-03-20");
     await item.getByRole("button", { name: "Salvar ajuste" }).click();
     await expect(item.getByText("Informe o motivo da alteração do prazo.").first()).toBeVisible();

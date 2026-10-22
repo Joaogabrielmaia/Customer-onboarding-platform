@@ -34,7 +34,7 @@ export default async function ClientsPage({ searchParams }: { searchParams: Prom
           {busca ? "Tente outro termo de busca." : "Cadastre o primeiro cliente para poder iniciar uma implantação."}
         </EmptyState>
       ) : (
-        <div className="overflow-x-auto rounded-lg border border-slate-300 bg-white">
+        <div className="relative overflow-x-auto rounded-lg border border-slate-300 bg-white">
           <table className="w-full text-left text-sm">
             <caption className="sr-only">Lista de clientes</caption>
             <thead className="bg-slate-100 text-slate-900">

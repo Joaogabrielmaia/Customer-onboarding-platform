@@ -155,6 +155,9 @@ export async function updateTaskSchedule(actor: Actor, raw: unknown) {
   if (input.dueDate === undefined && input.assigneeId === undefined) {
     throw new RuleError("Informe o novo prazo ou o novo responsável.");
   }
+  if (!dueChanged && !assigneeChanged) {
+    throw new RuleError("Nenhuma alteração para salvar: o prazo e o responsável são os mesmos.");
+  }
   if (dueChanged && !input.reason) throw new RuleError("Informe o motivo da alteração do prazo.");
 
   let newAssigneeName: string | null = null;
