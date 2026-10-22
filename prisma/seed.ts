@@ -6,8 +6,10 @@ import { listDeploymentSummaries } from "../src/server/services/dashboard";
 
 // Carrega os dados de demonstração (todos fictícios). ATENÇÃO: apaga os dados existentes.
 async function main() {
-  if (process.env.SEED_CONFIRM_RESET !== "yes" && process.env.NODE_ENV === "production") {
-    throw new Error("Defina SEED_CONFIRM_RESET=yes para apagar e recriar os dados de demonstração.");
+  // O seed APAGA tudo. Em qualquer banco que não seja local, exijo confirmação explícita.
+  const isLocal = /@(localhost|127.0.0.1)[:/]/.test(process.env.DATABASE_URL ?? "");
+  if (!isLocal && process.env.SEED_CONFIRM_RESET !== "yes") {
+    throw new Error("Este banco não é local. Defina SEED_CONFIRM_RESET=yes para apagar e recriar os dados de demonstração.");
   }
   const today = todayCivil();
   const { users } = await seedDemo(db, today);
