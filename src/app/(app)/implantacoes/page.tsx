@@ -37,7 +37,15 @@ export default async function DeploymentsPage({
 
   return (
     <>
-      <PageHeader title="Implantações" actions={<LinkButton href="/implantacoes/nova">Nova implantação</LinkButton>} />
+      <PageHeader
+        title="Implantações"
+        actions={
+          <>
+            <a href={`/implantacoes/exportar?${new URLSearchParams(Object.entries(params).filter((e): e is [string, string] => Boolean(e[1]))).toString()}`} className="rounded-md border border-slate-400 bg-white px-4 py-2 font-medium text-slate-900 hover:bg-slate-100">Exportar CSV</a>
+            <LinkButton href="/implantacoes/nova">Nova implantação</LinkButton>
+          </>
+        }
+      />
 
       <form method="get" className="mb-6 flex flex-wrap items-end gap-3">
         <div>
