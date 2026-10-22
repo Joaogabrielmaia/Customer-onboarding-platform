@@ -21,8 +21,6 @@ test-results/
 .env.*
 !.env.example
 
-# Vercel
-.vercel/
 
 # logs e sistema
 *.log

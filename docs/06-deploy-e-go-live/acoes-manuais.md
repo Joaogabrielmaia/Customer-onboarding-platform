@@ -14,26 +14,22 @@ Marque cada item ao concluir.
 - [ ] Abrir a aba *Actions* e conferir o **primeiro resultado real do CI**. **Se falhar, me diga**; o que eu registrei foi a execução local, não a do GitHub.
 - [ ] Depois do CI passar, trocar o selo do README (ver item F).
 
-## B. Banco de dados (Neon)
+## B. Render
 
-- [ ] Criar conta e projeto na Neon.
-- [ ] Copiar a string **com pooler** (`DATABASE_URL`) e a **sem pooler** (`DIRECT_URL`).
+- [ ] Criar conta na Render e conectar o GitHub.
+- [ ] **New → Blueprint**, escolher o repositório e aplicar (o `render.yaml` cria banco e serviço).
+- [ ] Informar `BOOTSTRAP_ADMIN_EMAIL` e `BOOTSTRAP_ADMIN_PASSWORD` (senha forte, 10+ caracteres).
+- [ ] Esperar o primeiro build e abrir `/api/health`.
 
-## C. Hospedagem (Vercel)
+## C. Dados
 
-- [ ] Criar conta e importar o repositório.
-- [ ] Cadastrar as variáveis: `DATABASE_URL`, `DIRECT_URL`, `AUTH_SECRET` (gere com `openssl rand -base64 32`), `APP_URL`.
-- [ ] Fazer o deploy (a migration roda sozinha no build).
-
-## D. Dados de exemplo
-
-- [ ] Rodar o seed contra a Neon (passo 3 do [deploy](deploy.md)).
-- [ ] Opcional: criar o segredo `SEED_DATABASE_URL` no GitHub para recarregar os dados toda semana.
+- [ ] Decidir: com dados de exemplo (`SEED_EXAMPLE_DATA=true`, padrão) ou só o administrador (`false`).
+- [ ] Lembrar que o banco gratuito da Render expira depois de algumas semanas (ver o [deploy](deploy.md)).
 
 ## E. Verificar no ar
 
 - [ ] `/api/health` devolve `ok`.
-- [ ] Login com as contas do seed funciona.
+- [ ] Login com o administrador que você definiu funciona.
 - [ ] Um link de cliente gerado na tela abre sem login.
 - [ ] Anotar o resultado real (e qualquer problema) para atualizar o README e o [runbook](../07-pos-go-live/runbook.md).
 

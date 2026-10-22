@@ -20,10 +20,10 @@ Para o hash de senha: `bcryptjs`, `argon2` (pacote nativo) ou `crypto.scrypt` do
 - **Senha:** `crypto.scrypt` do Node com N=2^15, r=8, p=3 e sal de 16 bytes, comparação com `timingSafeEqual`.
 
 ## Por quê
-Sessão no banco me dá logout e desativação imediatos e é pouco código que consigo explicar. O scrypt vem no Node (sem dependência nativa, sem risco de build na Vercel), é memória-intensivo e essa combinação de parâmetros consta entre as configurações equivalentes recomendadas pela OWASP.
+Sessão no banco me dá logout e desativação imediatos e é pouco código que consigo explicar. O scrypt vem no Node (sem dependência nativa, sem risco de build na hospedagem), é memória-intensivo e essa combinação de parâmetros consta entre as configurações equivalentes recomendadas pela OWASP.
 
 ## Trade-off
-- Uma consulta ao banco por requisição autenticada (aceitável no volume da demo).
+- Uma consulta ao banco por requisição autenticada (aceitável no volume previsto).
 - Implementar sessão à mão exige disciplina: cookie correto, expiração, token novo a cada login. O argon2id seria a primeira escolha da OWASP; abri mão dele para evitar dependência nativa.
 
 ## Quando eu mudaria

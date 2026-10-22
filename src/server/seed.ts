@@ -15,7 +15,11 @@ import {
 const HOUR_MS = 60 * 60 * 1000;
 const isWeekend = (d: Date) => d.getUTCDay() === 0 || d.getUTCDay() === 6;
 
-export async function seedDatabase(db: PrismaClient, today: Date) {
+export async function seedDatabase(
+  db: PrismaClient,
+  today: Date,
+  passwords: { admin: string; user: string } = { admin: SEED_ADMIN_PASSWORD, user: SEED_USER_PASSWORD },
+) {
   await db.auditLog.deleteMany();
   await db.comment.deleteMany();
   await db.portalLink.deleteMany();
@@ -32,8 +36,8 @@ export async function seedDatabase(db: PrismaClient, today: Date) {
 
   await db.setting.create({ data: { id: 1, overdueToleranceDays: 0, portalLinkDays: 60 } });
 
-  const adminHash = await hashPassword(SEED_ADMIN_PASSWORD);
-  const implementerHash = await hashPassword(SEED_USER_PASSWORD);
+  const adminHash = await hashPassword(passwords.admin);
+  const implementerHash = await hashPassword(passwords.user);
   const users: Record<string, string> = {};
   for (const u of seedUsers) {
     const created = await db.user.create({

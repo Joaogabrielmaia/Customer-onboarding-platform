@@ -10,7 +10,7 @@ Plataforma web que uma software house usa para conduzir a implantação do seu s
 - **Solução:** a Trilha cria a implantação a partir de um modelo, calcula os prazos a partir do kickoff, separa o atraso da equipe da espera do cliente e dá ao cliente um link de leitura, sem cadastro.
 - **Para quem:** fundador e líder (painel), implantadores e suporte (tarefas, comentários, histórico) e o cliente (portal).
 - **Stack:** Next.js 16 (App Router) + TypeScript, Tailwind CSS 4, Prisma 7 + PostgreSQL, Zod, Vitest e Playwright.
-- **Status:** v1.1.0 funcionando; guia de publicação (Vercel + Neon) pronto em `docs/06-deploy-e-go-live/deploy.md`.
+- **Status:** v1.1.0 funcionando; guia de publicação na Render pronto em `docs/06-deploy-e-go-live/deploy.md`.
 
 ## Como foi feito (e onde usei IA)
 
@@ -140,7 +140,7 @@ npm run screenshots          # regenera docs/screenshots
 
 ## Como publicar
 
-Passo a passo em [`docs/06-deploy-e-go-live/deploy.md`](docs/06-deploy-e-go-live/deploy.md) (Vercel + Neon) e a lista do que depende de contas minhas em [`acoes-manuais.md`](docs/06-deploy-e-go-live/acoes-manuais.md).
+Passo a passo em [`docs/06-deploy-e-go-live/deploy.md`](docs/06-deploy-e-go-live/deploy.md) (Render) e a lista do que depende de contas minhas em [`acoes-manuais.md`](docs/06-deploy-e-go-live/acoes-manuais.md).
 
 ## Qualidade
 

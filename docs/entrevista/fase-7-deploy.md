@@ -5,10 +5,10 @@
 Relacionados: [Deploy](../06-deploy-e-go-live/deploy.md) · [ADR-008](../03-arquitetura/adr/008-hospedagem.md)
 
 ### 1. Como as migrations chegam ao banco de produção?
-O `vercel.json` manda a Vercel usar `npm run vercel-build`, que roda `prisma migrate deploy`, `prisma generate` e `next build`. Assim cada deploy aplica as migrations pendentes antes de subir o app. Uso duas strings: `DATABASE_URL` com pooler para o app e `DIRECT_URL` sem pooler para as migrations, porque migrations não devem passar por pooler de transação. Se uma migration falhar, o build falha e a versão anterior continua no ar.
+O comando de start na Render (`npm run start:render`) roda `prisma migrate deploy`, depois um bootstrap e só então `next start`. Assim cada subida aplica as migrations pendentes antes de atender requisições. Uso `render.yaml` (Blueprint) para criar o banco e o serviço juntos e ligar a `DATABASE_URL` automaticamente. Se a migration falhar, o serviço não sobe e a versão anterior continua no ar.
 
-### 2. Por que o seed não roda sozinho no deploy?
-Porque o seed apaga tudo. Rodar a cada deploy apagaria dados e é perigoso. Por isso é um comando manual e, em qualquer banco que não seja local, exige `SEED_CONFIRM_RESET=yes`; testei que ele recusa sem isso. Como as datas do seed são relativas a hoje, a demo envelhece, então deixei um workflow agendado opcional que recarrega os dados toda semana, desde que exista um segredo configurado.
+### 2. Como o primeiro usuário é criado sem terminal?
+O plano gratuito da Render não tem shell, então escrevi um bootstrap que roda a cada subida e só age se o banco não tiver nenhum usuário: cria o administrador a partir de variáveis de ambiente ou carrega os dados de exemplo. Em reinícios ele não faz nada, então nunca apaga dados. Testei os casos: banco vazio, banco já com usuários e senha curta.
 
-### 3. Quais os limites de publicar com plano gratuito?
-O banco gratuito suspende por inatividade, então a primeira visita pode demorar. O plano Hobby da Vercel é para uso não comercial: serve para começar, mas uso comercial da Rota Fácil exigiria plano pago, o que ultrapassa o teto de R$ 100/mês do fundador no cenário. Registrei isso no ADR e na estimativa de custo como um ponto a renegociar, e não como detalhe escondido.
+### 3. Quais os limites do plano gratuito?
+O serviço web dorme sem acesso e a primeira visita seguinte demora; o banco gratuito expira depois de algumas semanas, então para manter o ambiente é preciso um plano pago. Uso comercial pela Rota Fácil também exigiria plano pago, o que ultrapassa o teto de R$ 100/mês do fundador no cenário. Registrei isso no ADR e na estimativa de custo.

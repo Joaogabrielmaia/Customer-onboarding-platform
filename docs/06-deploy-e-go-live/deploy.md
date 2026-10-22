@@ -1,81 +1,68 @@
-# Deploy (Vercel + Neon)
+# Deploy na Render
 
-**Objetivo:** passo a passo para publicar a Trilha, do zero.
-**Data:** 2026-10-22 · **Status:** guia pronto; a publicação depende das minhas contas (ver [ações manuais](acoes-manuais.md)).
-Relacionados: [ADR-008](../03-arquitetura/adr/008-hospedagem.md) · [Custo](../03-arquitetura/custo-hospedagem.md) · [Runbook](../07-pos-go-live/)
+**Objetivo:** passo a passo para publicar a Trilha na Render, do zero.
+**Data:** 2026-10-22 · **Status:** pronto para publicar (a publicação depende da minha conta; ver [ações manuais](acoes-manuais.md))
+Relacionados: [ADR-008](../03-arquitetura/adr/008-hospedagem.md) · [Custo](../03-arquitetura/custo-hospedagem.md) · [Runbook](../07-pos-go-live/runbook.md)
 
 ```mermaid
 flowchart LR
-    GH[GitHub<br/>repositório] -->|push na main| V[Vercel<br/>build + deploy]
-    V -->|npm run vercel-build| M[prisma migrate deploy]
-    M --> N[(Neon<br/>PostgreSQL)]
-    V --> APP[App no ar<br/>/api/health]
-    APP --> N
-    DEV[Seu computador] -->|npm run db:seed<br/>SEED_CONFIRM_RESET=yes| N
+    GH[GitHub<br/>repositório] -->|Blueprint render.yaml| R[Render]
+    R --> DB[(PostgreSQL<br/>trilha-db)]
+    R --> W[Web service trilha]
+    W -->|a cada subida| M[prisma migrate deploy]
+    M --> B[bootstrap:<br/>cria o 1º admin ou carrega dados de exemplo]
+    B --> A[next start<br/>/api/health]
 ```
 
-## Pré-requisitos
+## O que o `render.yaml` já faz
 
-- Repositório no GitHub com o código (ver [ações manuais](acoes-manuais.md)).
-- Conta gratuita na Vercel e na Neon.
+- Cria o banco PostgreSQL `trilha-db` e o serviço web `trilha`.
+- Liga o serviço ao banco (`DATABASE_URL`) e gera o `AUTH_SECRET`.
+- Build: `npm ci --include=dev && npm run build`.
+- A cada subida (`npm run start:render`): aplica as migrations, roda o bootstrap e inicia o app. O healthcheck é `/api/health`.
+- **Bootstrap:** só age quando o banco não tem nenhum usuário. Cria o primeiro administrador (ou carrega os dados de exemplo) e nunca apaga nada em reinícios. Isso existe porque o plano gratuito da Render não tem terminal.
 
-## 1. Criar o banco na Neon
+## Passo a passo
 
-1. Crie um projeto (nome sugerido: `trilha`) e escolha a região mais próxima do app. A Vercel está configurada em `gru1` (São Paulo); na Neon, escolha **AWS São Paulo** se disponível.
-2. Em **Connection details**, copie duas connection strings:
-   - **com pooler** (host com `-pooler`): será a `DATABASE_URL`;
-   - **sem pooler** (conexão direta): será a `DIRECT_URL`, usada só pelas migrations.
-3. Ambas devem terminar com `sslmode=require`.
+1. **Envie o código ao GitHub** (ver [ações manuais](acoes-manuais.md)).
+2. Na Render: **New → Blueprint**, escolha o repositório e confirme. A Render lê o `render.yaml`.
+3. Ela pede dois valores marcados como segredo:
 
-## 2. Criar o projeto na Vercel
+| Variável | O que colocar |
+|---|---|
+| `BOOTSTRAP_ADMIN_EMAIL` | o e-mail do primeiro administrador |
+| `BOOTSTRAP_ADMIN_PASSWORD` | uma senha forte, com 10 ou mais caracteres |
 
-1. **Add New → Project** e importe o repositório. O framework (Next.js) é detectado; o `vercel.json` já define o comando de build (`npm run vercel-build`) e a região.
-2. Antes de implantar, em **Environment Variables**, cadastre (para Production):
+4. **Apply.** Aguarde o primeiro build (alguns minutos).
+5. Abra `https://<seu-serviço>.onrender.com/api/health`. Esperado: `{"status":"ok","database":"ok",...}`.
+6. Abra a página inicial e entre com o e-mail e a senha que você definiu.
 
-| Variável | Valor | Observação |
+### Com dados de exemplo ou sem?
+
+O `render.yaml` define `SEED_EXAMPLE_DATA=true`: no primeiro start, com o banco vazio, o app carrega 8 clientes, 3 modelos e 7 implantações, e **todos os usuários do seed usam a senha de `BOOTSTRAP_ADMIN_PASSWORD`**. Os e-mails ficam em `src/server/seed-data.ts` (por exemplo `admin@rotafacil.example`, e não o e-mail que você digitou).
+
+Para publicar **sem** dados de exemplo, mude `SEED_EXAMPLE_DATA` para `"false"` no painel da Render antes do primeiro start: o app cria só o administrador com o e-mail e a senha informados.
+
+## Variáveis de ambiente
+
+| Variável | Origem | Uso |
 |---|---|---|
-| `DATABASE_URL` | string **com pooler** da Neon | Obrigatória |
-| `DIRECT_URL` | string **sem pooler** da Neon | Obrigatória para as migrations |
-| `AUTH_SECRET` | resultado de `openssl rand -base64 32` | Reservada; defina um valor próprio |
-| `APP_URL` | `https://<seu-projeto>.vercel.app` | Usada para montar o link do cliente. Se ficar vazia, uso o domínio de produção da Vercel |
+| `DATABASE_URL` | Automática (banco da Render) | Conexão do app |
+| `AUTH_SECRET` | Gerada pela Render | Reservada para assinar valores sensíveis |
+| `NODE_VERSION` | `render.yaml` (24) | Versão do Node |
+| `BOOTSTRAP_ADMIN_EMAIL` / `BOOTSTRAP_ADMIN_PASSWORD` | Você informa | Primeiro acesso |
+| `SEED_EXAMPLE_DATA` | `render.yaml` | `true` carrega dados de exemplo no primeiro start |
+| `APP_URL` | Opcional | Base do link do cliente. Se vazia, usa o endereço público da Render (`RENDER_EXTERNAL_URL`) |
 
-3. **Deploy.** O build roda `prisma migrate deploy` (cria as tabelas), `prisma generate` e `next build`.
+## Limitações do plano gratuito (confira o plano vigente na Render)
 
-## 3. Carregar os dados de exemplo
+- O serviço web **dorme depois de um tempo sem acesso**; a primeira visita seguinte demora (cerca de um minuto).
+- O banco PostgreSQL gratuito tem **prazo de validade**: depois de algumas semanas ele expira e precisa ser recriado ou migrado para um plano pago. Quando recriar, o bootstrap reconstrói tudo no primeiro start. Se for manter o ambiente, use um plano pago do banco.
+- Sem terminal no plano gratuito: por isso o bootstrap.
 
-O seed é um passo manual, porque **apaga tudo** do banco. Do seu computador, na pasta do projeto:
+## Depois de publicar
 
-```bash
-# Windows (PowerShell)
-$env:DATABASE_URL = "<string COM pooler ou direta da Neon>"
-$env:SEED_CONFIRM_RESET = "yes"
-npm run db:seed
-```
-
-```bash
-# macOS / Linux
-DATABASE_URL="<string da Neon>" SEED_CONFIRM_RESET=yes npm run db:seed
-```
-
-O comando recusa rodar em banco que não seja local sem `SEED_CONFIRM_RESET=yes`, para evitar apagar um banco por engano. A saída lista as implantações criadas (no prazo, atrasadas, aguardando cliente e concluídas).
-
-> As datas do seed são relativas ao dia em que ele roda: se o ambiente ficar parado por dias, rode de novo (ou use o workflow agendado abaixo), senão as tarefas vão envelhecendo e tudo aparece atrasado.
-
-## 4. Verificar
-
-1. Abra `https://<seu-projeto>.vercel.app/api/health`. Esperado: `{"status":"ok","database":"ok",...}`.
-2. Abra a página inicial e entre com uma das contas do seed (ver `src/server/seed-data.ts`).
-3. Gere um link de cliente em uma implantação e confirme que abre sem login.
-4. Se a primeira visita demorar alguns segundos, é o banco gratuito acordando (limitação conhecida).
-
-## Opcional: recarregar os dados de exemplo toda semana
-
-O workflow `.github/workflows/reseed.yml` recria os dados toda segunda-feira. Ele **só roda se** você criar o segredo `SEED_DATABASE_URL` em *Settings → Secrets and variables → Actions* com a string do banco de demonstração. Sem o segredo, ele não faz nada. Também pode ser disparado à mão na aba *Actions*.
-
-## Migrations: como reverter
-
-Ver o [runbook](../07-pos-go-live/runbook.md). Resumo: o Prisma não faz rollback automático; reverter é escrever uma nova migration que desfaz a anterior e aplicá-la.
-
-## O que este guia não cobre
-
-Domínio próprio, backup automático, monitoramento externo e plano pago. Ficam para depois; estão no [roadmap](../07-pos-go-live/).
+- **Recarregar dados de exemplo:** o seed apaga tudo. Com o banco da Render acessível de fora, rode no seu computador: `DATABASE_URL="<url externa do banco>" SEED_CONFIRM_RESET=yes npm run db:seed`. O comando recusa rodar em banco que não seja local sem essa confirmação.
+- **Esqueci a senha do administrador:** com a URL externa do banco, `DATABASE_URL="<url externa>" npm run admin:reset-password -- <email> <nova-senha>`.
+- **Reverter um deploy:** na Render, abra o serviço, aba *Events*, e faça o *rollback* para o deploy anterior.
+- Mais detalhes no [runbook](../07-pos-go-live/runbook.md).

@@ -44,7 +44,7 @@ Volto atrás se ocorrer qualquer um:
 ```mermaid
 flowchart TD
     P[Problema grave] --> Q{Qual a natureza?}
-    Q -->|Código novo com defeito| A[Vercel: promover o deploy anterior<br/>Instant Rollback]
+    Q -->|Código novo com defeito| A[Render: voltar ao deploy anterior<br/>Instant Rollback]
     Q -->|Migration com defeito| B[Nova migration que desfaz<br/>ou restaurar backup]
     Q -->|Dados corrompidos| C[Restaurar backup do banco<br/>para o ponto anterior]
     Q -->|Link vazado| D[Revogar o link na tela<br/>da implantação]
@@ -53,7 +53,7 @@ flowchart TD
 
 | Situação | Ação | Quem | Perda esperada |
 |---|---|---|---|
-| Deploy com bug | Na Vercel, promover o deploy anterior (volta em segundos) | Quem fez o deploy | Nenhuma de dados |
+| Deploy com bug | Na Render, fazer rollback para o deploy anterior (aba Events) | Quem fez o deploy | Nenhuma de dados |
 | Migration com defeito | Aplicar migration corretiva; se destrutiva, restaurar backup | Responsável técnico | Possível perda desde o último backup |
 | Dados corrompidos | Restaurar backup do provedor | Responsável técnico | Alterações desde o backup |
 | Link de cliente vazado | Revogar o link; gerar outro | Implantador ou admin | Nenhuma |

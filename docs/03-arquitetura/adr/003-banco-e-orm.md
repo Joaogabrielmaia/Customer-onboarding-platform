@@ -9,19 +9,19 @@ Os dados são relacionais (clientes, modelos, implantações, tarefas, comentár
 ## Alternativas
 | Opção | Pró | Contra |
 |---|---|---|
-| **PostgreSQL + Prisma** | Relacional, transações, tipos `DATE` e `enum`; Prisma dá tipos e migrations versionadas; plano gratuito em Neon/Supabase | Prisma adiciona uma camada e um passo de geração de cliente |
+| **PostgreSQL + Prisma** | Relacional, transações, tipos `DATE` e `enum`; Prisma dá tipos e migrations versionadas; plano gratuito em vários provedores | Prisma adiciona uma camada e um passo de geração de cliente |
 | PostgreSQL + Drizzle/Kysely | SQL mais explícito, mais leve | Menos familiar para mim; menos conforto nas migrations |
-| SQLite | Simples, zero infraestrutura | Não combina com serverless na Vercel (disco efêmero) e diverge da produção |
+| SQLite | Simples, zero infraestrutura | Disco do serviço web é efêmero e diverge da produção |
 | MongoDB | Flexível | O domínio é relacional; auditoria e relatórios ficariam mais difíceis |
 
 ## Decisão
-PostgreSQL (local via Docker, produção em Neon) com Prisma ORM e migrations versionadas no repositório.
+PostgreSQL (local via Docker, produção na Render) com Prisma ORM e migrations versionadas no repositório.
 
 ## Por quê
 Tipos fortes de ponta a ponta, migrations revisáveis e a mesma engine em desenvolvimento, CI e produção (RK-10).
 
 ## Trade-off
-Queries complexas de relatório ficam menos transparentes que SQL puro. Se precisar, uso `$queryRaw` pontual. Também aceito o peso do cliente gerado em ambiente serverless.
+Queries complexas de relatório ficam menos transparentes que SQL puro. Se precisar, uso `$queryRaw` pontual. Também aceito o passo extra de gerar o cliente a cada build.
 
 ## Quando eu mudaria
 Se a performance de relatórios virasse problema real, adicionaria visões SQL ou trocaria para uma ferramenta mais próxima do SQL.

@@ -8,8 +8,8 @@ Relacionados: [ADR-008](adr/008-hospedagem.md) · [Visão](../02-definicao/01-vi
 
 | Cenário | Componentes | Custo mensal estimado |
 |---|---|---|
-| **Plano gratuito (como está hoje)** | Vercel Hobby + Neon plano gratuito + GitHub | **R$ 0** |
-| Uso real, equipe pequena | Vercel Pro (por usuário/mês, em dólar) + banco Neon pago de entrada | Da ordem de **US$ 20 a US$ 45** (aprox. R$ 110 a R$ 250, conforme o câmbio) |
+| **Plano gratuito (como está hoje)** | Render (serviço web e PostgreSQL gratuitos) + GitHub | **R$ 0**, com o serviço dormindo sem acesso e o banco expirando depois de algumas semanas |
+| Uso real, equipe pequena | Render: serviço web pago de entrada + PostgreSQL pago | Da ordem de **US$ 15 a US$ 30** (aprox. R$ 85 a R$ 170, conforme o câmbio); conferir a página de preços |
 | Uso real alternativo | Um host de containers pequeno + Postgres gerenciado básico | Da ordem de **US$ 10 a US$ 30** |
 
 ## Leitura

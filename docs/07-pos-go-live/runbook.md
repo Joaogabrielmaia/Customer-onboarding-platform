@@ -4,7 +4,7 @@
 **Data:** 2026-10-22 · **Status:** concluído 
 Relacionados: [Deploy](../06-deploy-e-go-live/deploy.md) · [Rollback](../06-deploy-e-go-live/02-checklist-go-live-e-rollback.md) · [Limitações](../05-qualidade/03-limitacoes-conhecidas.md)
 
-> Este runbook usa só o que o projeto tem hoje (healthcheck, logs em JSON, Prisma, Vercel e Neon). Onde dependo de recursos do provedor, digo para **conferir o plano vigente**, porque limites e preços mudam.
+> Este runbook usa só o que o projeto tem hoje (healthcheck, logs em JSON, Prisma e Render). Onde dependo de recursos do provedor, digo para **conferir o plano vigente**, porque limites e preços mudam.
 
 ## 1. Quem faz o quê
 
@@ -22,16 +22,16 @@ flowchart TD
     A[Alguém reporta um problema] --> B[Abrir /api/health]
     B -->|503 ou não abre| C[Banco ou app fora]
     B -->|200 ok| D[Reproduzir com o relato]
-    C --> C1[Ver status da Vercel e da Neon]
+    C --> C1[Ver o painel da Render (serviço e banco)]
     C1 --> C2[Banco suspenso? primeira visita acorda]
-    C2 --> C3[Ver logs da Vercel: healthcheck_database_failed]
+    C2 --> C3[Ver os logs na Render: healthcheck_database_failed]
     D --> D1[Ver logs: unexpected_error e access_denied]
     D1 --> D2[Consultar o Histórico da implantação]
     D2 --> E[Corrigir ou contornar e registrar]
 ```
 
 1. **Healthcheck:** `GET /api/health` devolve `{"status":"ok","database":"ok"}` (200) ou `degraded` (503). Se der 503, o app está no ar mas o banco não responde.
-2. **Logs:** a Vercel mostra os logs de execução. Cada linha é um JSON com `event`. Os principais: `login_failed`, `login_ok`, `access_denied`, `unexpected_error` e `healthcheck_database_failed`. Os logs **não têm senha, token nem e-mail**.
+2. **Logs:** a Render mostra os logs do serviço. Cada linha é um JSON com `event`. Os principais: `login_failed`, `login_ok`, `access_denied`, `unexpected_error` e `healthcheck_database_failed`. Os logs **não têm senha, token nem e-mail**.
 3. **Histórico da implantação:** a aba *Histórico* mostra quem mudou prazo, status ou responsável, útil para "quem mexeu nisso?".
 4. **Reproduzir** com a conta e a implantação do relato (ver permissões: só o responsável altera).
 
@@ -61,7 +61,7 @@ O comando redefine a senha, reativa o usuário se estiver desativado e encerra a
 ## 4. Backup e restauração
 
 - **O que preciso proteger:** o banco PostgreSQL. O código está no Git.
-- **Como:** o backup é uma função do provedor do banco. **Confira no plano vigente da Neon** o que está incluído (retenção, restauração para um ponto no tempo). No plano gratuito a janela é limitada; para uso real eu contrataria um plano com retenção adequada.
+- **Como:** o backup é uma função do provedor do banco. **Confira no plano vigente da Render** o que está incluído (retenção, restauração para um ponto no tempo). No plano gratuito a janela é limitada; para uso real eu contrataria um plano com retenção adequada.
 - **Cópia manual adicional:** `pg_dump` com a string direta (`DIRECT_URL`), por exemplo antes de uma migration arriscada:
 
 ```bash

@@ -8,10 +8,10 @@ Relacionados: [ADR-009](adr/009-camada-de-servicos.md) · [Modelo de dados](mode
 
 ```mermaid
 flowchart LR
-    Admin([Admin<br/>fundador, líder]) -->|navegador| T[Trilha<br/>Next.js na Vercel]
+    Admin([Admin<br/>fundador, líder]) -->|navegador| T[Trilha<br/>Next.js na Render]
     Impl([Implantador<br/>e suporte]) -->|navegador| T
     Cli([Cliente<br/>link com token]) -->|celular, leitura| T
-    T -->|SQL via Prisma| DB[(PostgreSQL<br/>Neon)]
+    T -->|SQL via Prisma| DB[(PostgreSQL<br/>Render)]
     T -.fora do escopo.-> W[WhatsApp / e-mail]
     T -.fora do escopo.-> E[CRM / ERP]
 ```
