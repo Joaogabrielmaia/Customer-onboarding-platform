@@ -1,0 +1,39 @@
+# dependências
+node_modules/
+.pnpm-store/
+
+# Next.js / build
+.next/
+out/
+build/
+dist/
+*.tsbuildinfo
+next-env.d.ts
+
+# testes
+coverage/
+playwright-report/
+test-results/
+.vitest/
+
+# variáveis de ambiente (nunca versionar segredos)
+.env
+.env.*
+!.env.example
+
+# Vercel
+.vercel/
+
+# logs e sistema
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+
+# editor
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# Claude Code (configuração local)
+.claude/settings.local.json
