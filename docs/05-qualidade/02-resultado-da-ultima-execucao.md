@@ -49,7 +49,19 @@ Na v1.1.0 não encontrei defeito novo: a injeção de fórmula em CSV foi tratad
 
 ## Verificação do passo a passo do README (clone limpo)
 
-Para garantir que o README funciona de verdade, clonei o repositório em uma pasta nova e segui os passos: `npm ci`, `cp .env.example .env`, migration e seed num banco novo, lint, tipos, testes unitários e build. O resultado está registrado na seção de verificação final do [CHANGELOG](../../CHANGELOG.md#verificação-do-clone-limpo).
+Para garantir que o README funciona de verdade, clonei o repositório (commit da v1.1.0 com a correção do D5) em uma pasta nova e segui os passos num **banco vazio**:
+
+| Passo | Resultado |
+|---|---|
+| `git ls-files` procurando `.env` versionado | nenhum |
+| `npm ci` (com `postinstall` gerando o cliente Prisma) | instalou |
+| `cp .env.example .env` e `prisma migrate deploy` | 1 migration aplicada |
+| `npm run db:seed` | 7 implantações: 2 no prazo, 1 aguardando cliente, 2 atrasadas, 2 concluídas |
+| `npm run lint` e `npm run typecheck` | sem erros |
+| `npm run test:unit` | 52 passaram |
+| `npm run build` | compilou |
+
+Não repeti integração e E2E no clone (o código é o mesmo e já passaram no diretório de trabalho).
 
 ## O que esta execução **não** prova
 
