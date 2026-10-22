@@ -19,7 +19,7 @@ Relacionados: [ADR-002](adr/002-autenticacao.md) · [ADR-006](adr/006-controle-d
 | CSRF | Server Actions do Next verificam a origem; cookie `sameSite=lax` | Comportamento do framework |
 | Token do cliente | 32 bytes aleatórios, só o SHA-256 no banco, expira, revoga, um link ativo por implantação, resposta idêntica para inválido/expirado/revogado (ADR-007) | Testes do portal |
 | Portal | Devolve apenas campos permitidos (RN-14); cabeçalhos `Referrer-Policy: no-referrer` e `noindex` | Teste de que comentários e tarefas internas não aparecem |
-| Cabeçalhos | `X-Content-Type-Options`, `X-Frame-Options` (ou `frame-ancestors`) e `Referrer-Policy` configurados | Inspeção manual |
+| Cabeçalhos | `X-Content-Type-Options`, `X-Frame-Options` e `Referrer-Policy` configurados em `next.config.ts` | Inspeção manual; no portal, `no-referrer` e `noindex` são checados no E2E |
 | Segredos | Só em variáveis de ambiente; `.env` no `.gitignore`; `.env.example` sem valores reais | Revisão do repositório |
 | Logs | Sem senha, token ou dados pessoais | Revisão de código |
 

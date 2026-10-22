@@ -9,12 +9,12 @@ Preciso que as regras de negócio sejam testáveis sem subir o Next, que autoriz
 ## Alternativas
 1. Lógica dentro das Server Actions e páginas. Rápido, difícil de testar.
 2. API REST completa (`/api/...`) consumida pela interface. Mais código, duas fronteiras.
-3. **Três camadas simples:** `domain` (funções puras), `services` (casos de uso com banco, autorização e auditoria) e `app` (páginas e Server Actions que só validam a entrada e chamam um serviço).
+3. **Três camadas simples:** `domain` (funções puras), `services` (casos de uso com banco, autorização e auditoria) e `app` (páginas e Server Actions que só autenticam, chamam um serviço e tratam o erro).
 
 ## Decisão
 Opção 3.
 - `src/domain`: prazo, atraso, progresso, permissões, token. Sem banco, sem Next.
-- `src/server/services`: uma função por caso de uso, recebendo o ator e a entrada já validada. Cada uma checa permissão, usa transação e audita.
+- `src/server/services`: uma função por caso de uso, recebendo o ator e a entrada bruta, que o próprio serviço valida. Cada uma checa permissão, usa transação e audita.
 - `src/app`: Server Actions finas (autentica, chama o serviço, trata o erro e revalida) e páginas. A **validação com Zod fica dentro de cada serviço** (`parseInput`), para que ninguém dependa de a interface ter validado. Route handlers só onde HTTP é a interface natural: healthcheck.
 
 ## Por quê
