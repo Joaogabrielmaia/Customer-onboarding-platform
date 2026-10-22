@@ -34,4 +34,4 @@ P1 a P7 do [discovery](../01-discovery/08-problemas-priorizados.md). Resumo: atr
 
 ## Fora do escopo desta visão
 
-Notificações, integrações, cobrança, multiempresa. Ver [escopo](05-priorizacao-e-escopo.md).
+Notificações, integrações, cobrança, multiempresa. (A exportação em CSV entrou na v1.1.0.) Ver [escopo](05-priorizacao-e-escopo.md).

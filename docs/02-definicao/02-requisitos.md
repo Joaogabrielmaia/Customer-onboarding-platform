@@ -29,6 +29,7 @@ Relacionados: [Regras de negócio](03-regras-de-negocio.md) · [Histórias](04-h
 | RF-17 | Gerenciar usuários internos (criar, desativar, definir papel) | Premissa | Should |
 | RF-18 | Filtrar o painel e a lista de implantações por status, implantador e cliente | R1-03, M4-02 | Must |
 | RF-19 | Mostrar, ao gerar o link do cliente, uma mensagem pronta com o link para copiar | M4-03 | Should |
+| RF-20 | Exportar o relatório de uma implantação e a lista de implantações em CSV (acrescentado na v1.1.0) | Reunião 5, CH-07, Reunião 6 | Could, **entregue na v1.1.0** |
 
 ## Requisitos não funcionais
 

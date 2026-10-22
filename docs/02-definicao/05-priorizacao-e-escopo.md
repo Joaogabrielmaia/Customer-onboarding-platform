@@ -10,7 +10,7 @@ Relacionados: [Requisitos](02-requisitos.md) · [Backlog](06-backlog-e-sprints.m
 |---|---|---|
 | **Must** | RF-01 a RF-16 | Sem eles o fluxo de ponta a ponta (modelo → implantação → painel → portal) não existe |
 | **Should** | RF-17 (gestão de usuários), RF-19 (mensagem pronta com o link) | Sem eles dá para operar com o seed, mas a demo fica menos convincente |
-| **Could** | Exportar relatório em CSV/PDF (candidato à v1.1), tema escuro | Úteis, sem impacto no problema principal |
+| **Could** | Exportar relatório em CSV (**entregue na v1.1.0**); PDF e tema escuro ficam para depois | Úteis, sem impacto no problema principal |
 | **Won't (agora)** | Ver abaixo | Custo, prazo ou complexidade |
 
 Observação: RF-18 (filtros) subiu para Must na validação do protótipo ([change-log](../04-prototipo/03-change-log.md)). RF-17 e RF-19 são o primeiro corte se apertar.
