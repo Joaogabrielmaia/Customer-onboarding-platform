@@ -4,6 +4,12 @@ Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e
 
 > Projeto de portfólio com caso simulado. As versões descrevem o que o código passou a fazer, não uso em produção com clientes.
 
+## [Não lançado]
+
+### Corrigido
+- `.env.example` trazia `DIRECT_URL=""` e a migration falhava com "Connection url is empty" para quem copiasse o arquivo (D5). Agora a linha vem comentada e o `prisma.config.ts` usa `||`.
+- Documentação: README, vitrine, retrospectiva final e verificação em clone limpo.
+
 ## [1.1.0] - 2026-10-22
 
 Evolução pós-lançamento definida na [retrospectiva do piloto](docs/07-pos-go-live/reuniao-6-retrospectiva.md).
