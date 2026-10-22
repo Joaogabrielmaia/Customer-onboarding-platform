@@ -1,7 +1,7 @@
 # Sobre este caso
 
 **Objetivo:** deixar claro o que é real e o que é simulado neste repositório, e indicar a ordem de leitura.
-**Data:** 2026-10-22 · **Status:** concluído (Fase 0)
+**Data:** 2026-10-22 · **Status:** atualizado ao final do projeto (v1.1.0)
 
 > **Caso simulado de portfólio. Empresa, pessoas e dados são fictícios.**
 
@@ -39,15 +39,16 @@ flowchart LR
 
 | Pasta | O que encontrar | Status |
 |---|---|---|
-| [`01-discovery`](../01-discovery/) | Brainstorm, empresa, personas, reuniões 1 a 3, AS-IS, problemas | a fazer (Fase 1) |
-| [`02-definicao`](../02-definicao/) | Visão, RF/RNF/RN, histórias, MoSCoW, backlog, rastreabilidade | a fazer (Fase 2) |
-| [`03-arquitetura`](../03-arquitetura/) | ADRs, modelo de dados, segurança, custo | a fazer (Fase 3) |
-| [`04-prototipo`](../04-prototipo/) | Wireframes, reunião 4, change-log | a fazer (Fase 4) |
-| [`05-qualidade`](../05-qualidade/) | Estratégia de testes, resultado real, UAT | a fazer (Fase 6) |
-| [`06-deploy-e-go-live`](../06-deploy-e-go-live/) | Deploy, rollout, treinamento, roteiro de vídeo | a fazer (Fases 7 e 8) |
-| [`07-pos-go-live`](../07-pos-go-live/) | Runbook, indicadores, retrospectiva, roadmap | a fazer (Fase 9) |
-| [`entrevista`](../entrevista/) | 3 perguntas e respostas por fase | a cada fase |
-| [`vitrine`](../vitrine/) | Textos para currículo, LinkedIn e pitch | a fazer (Fase 10) |
+| [`01-discovery`](../01-discovery/) | Brainstorm, empresa, personas, reuniões 1 a 3, AS-IS, problemas | concluído |
+| [`02-definicao`](../02-definicao/) | Visão, RF/RNF/RN, histórias, MoSCoW, backlog, rastreabilidade | concluído |
+| [`03-arquitetura`](../03-arquitetura/) | ADRs, modelo de dados, segurança, custo | concluído |
+| [`04-prototipo`](../04-prototipo/) | Wireframes, reunião 4, change-log | concluído |
+| [`05-qualidade`](../05-qualidade/) | Estratégia de testes, resultado real, UAT | concluído |
+| [`06-deploy-e-go-live`](../06-deploy-e-go-live/) | Deploy, rollout, treinamento, roteiro de vídeo | concluído (publicação depende de contas do autor) |
+| [`07-pos-go-live`](../07-pos-go-live/) | Runbook, indicadores, retrospectiva, roadmap | concluído |
+| [`entrevista`](../entrevista/) | 3 perguntas e respostas por fase | concluído |
+| [`screenshots`](../screenshots/) | Prints reais gerados com Playwright | concluído |
+| [`vitrine`](../vitrine/) | Textos para currículo, LinkedIn e pitch | concluído |
 
 ## Convenções dos documentos
 

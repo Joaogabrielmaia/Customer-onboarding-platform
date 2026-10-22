@@ -42,9 +42,14 @@ Nem tudo passou de primeira. O que aconteceu de fato:
 | D1 | Ids de campos repetidos (`id={name}`) nas telas com vários formulários iguais: rótulos apontando para o campo errado (acessibilidade) | Revisão do meu código antes de rodar o E2E | `useId()` em cada campo | O E2E do detalhe da implantação e o axe passam |
 | D2 | Banner de erro repetia a mensagem que já aparece no campo | Falha de seletor no E2E (duas ocorrências do mesmo texto) | O banner passa a dizer "Revise os campos destacados." quando há erro por campo | `dashboard-and-clients.spec.ts` |
 | D3 | `/clientes` com rolagem horizontal de 53 px em 390 px de largura. O `th` `sr-only` é `position:absolute` e escapava do `overflow-x-auto` | Exploração em tela de celular (UAT) | `relative` no contêiner da tabela (clientes, usuários e painel) | `responsive.spec.ts` |
+| D5 | `.env.example` trazia `DIRECT_URL=""`, e `"" ?? x` não cai no valor padrão: quem copiasse o arquivo teria a migration falhando com "Connection url is empty" | Conferindo os passos do README contra o código; reproduzi o erro antes de corrigir | `||` no `prisma.config.ts` e a linha comentada no `.env.example` | Validado por clone limpo (ver abaixo) |
 | D4 | Salvar um ajuste de prazo sem mudar nada respondia "Ajuste salvo." | Exploração de casos de borda (UAT) | O serviço recusa com "Nenhuma alteração para salvar" | `deployments.test.ts` e `deployment-flow.spec.ts` |
 
 Na v1.1.0 não encontrei defeito novo: a injeção de fórmula em CSV foi tratada **por desenho** (e testada), não corrigida depois.
+
+## Verificação do passo a passo do README (clone limpo)
+
+Para garantir que o README funciona de verdade, clonei o repositório em uma pasta nova e segui os passos: `npm ci`, `cp .env.example .env`, migration e seed num banco novo, lint, tipos, testes unitários e build. O resultado está registrado na seção de verificação final do [CHANGELOG](../../CHANGELOG.md#verificação-do-clone-limpo).
 
 ## O que esta execução **não** prova
 
