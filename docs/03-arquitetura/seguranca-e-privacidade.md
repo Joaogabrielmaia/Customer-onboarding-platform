@@ -13,7 +13,7 @@ Relacionados: [ADR-002](adr/002-autenticacao.md) · [ADR-006](adr/006-controle-d
 | Autorização | Verificada no **servidor**, em todo serviço, com `can()` (ADR-006); a interface só esconde opções | Testes de permissão e de acesso negado |
 | Autenticação | Sessão com token aleatório em cookie `httpOnly`, `sameSite=lax`, `secure` em produção; hash do token no banco; expiração; logout apaga a sessão | Testes de login e de sessão |
 | Senha | scrypt (N=2^15, r=8, p=3) com sal; mínimo de 10 caracteres; mensagem de erro única para e-mail ou senha incorretos | Teste unitário do hash |
-| Validação | Zod em toda Server Action, antes de chamar o serviço; serviços não confiam na interface | Testes com entradas inválidas |
+| Validação | Zod dentro de cada serviço (`parseInput`), então a regra vale mesmo para quem chamar o serviço sem passar pela tela | Testes com entradas inválidas |
 | Injeção | Acesso a dados só via Prisma (consultas parametrizadas); sem SQL montado com texto do usuário | Revisão de código |
 | XSS | React escapa por padrão; não uso `dangerouslySetInnerHTML`; comentários são texto puro | Revisão de código |
 | CSRF | Server Actions do Next verificam a origem; cookie `sameSite=lax` | Comportamento do framework |

@@ -15,7 +15,7 @@ Preciso que as regras de negócio sejam testáveis sem subir o Next, que autoriz
 Opção 3.
 - `src/domain`: prazo, atraso, progresso, permissões, token. Sem banco, sem Next.
 - `src/server/services`: uma função por caso de uso, recebendo o ator e a entrada já validada. Cada uma checa permissão, usa transação e audita.
-- `src/app`: Server Actions finas (Zod → serviço → revalidar) e páginas. Route handlers só onde HTTP é a interface natural: healthcheck.
+- `src/app`: Server Actions finas (autentica, chama o serviço, trata o erro e revalida) e páginas. A **validação com Zod fica dentro de cada serviço** (`parseInput`), para que ninguém dependa de a interface ter validado. Route handlers só onde HTTP é a interface natural: healthcheck.
 
 ## Por quê
 Os serviços são a "API" da aplicação: testo os casos de uso contra um PostgreSQL real, sem depender de HTTP. As regras puras têm testes unitários rápidos.

@@ -20,9 +20,10 @@ flowchart LR
 
 ```mermaid
 flowchart TB
+    %% Zod valida dentro dos serviços (ADR-009)
     subgraph app["src/app (Next.js)"]
         P[Páginas<br/>Server Components]
-        A[Server Actions<br/>Zod → serviço]
+        A[Server Actions<br/>finas]
         H[Route handler<br/>/api/health]
         PO[Portal /p/token]
     end
@@ -59,8 +60,8 @@ sequenceDiagram
     participant D as Domínio
     participant B as Banco
     U->>A: concluir tarefa (formulário)
-    A->>A: valida entrada (Zod)
     A->>S: updateTaskStatus(ator, entrada)
+    S->>S: valida a entrada (Zod)
     S->>D: can(ator, "task:update-status", recurso)
     D-->>S: permitido
     S->>B: início da transação
