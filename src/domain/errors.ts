@@ -14,3 +14,13 @@ export class RuleError extends DomainError {}
 
 /** Registro inexistente (ou que o ator não deve saber que existe). */
 export class NotFoundError extends DomainError {}
+
+/** Entrada inválida, com a mensagem de cada campo (RNF-04). */
+export class ValidationError extends DomainError {
+  constructor(
+    message: string,
+    public readonly fieldErrors: Record<string, string>,
+  ) {
+    super(message);
+  }
+}
