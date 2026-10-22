@@ -1,0 +1,15 @@
+# Banco local para desenvolvimento e testes. Credenciais apenas locais.
+services:
+  db:
+    image: postgres:16
+    container_name: trilha-db
+    environment:
+      POSTGRES_USER: trilha
+      POSTGRES_PASSWORD: trilha
+      POSTGRES_DB: trilha
+    ports:
+      - "5433:5432"
+    volumes:
+      - trilha-data:/var/lib/postgresql/data
+volumes:
+  trilha-data:
