@@ -7,13 +7,11 @@ import { parseInput, passwordResetSchema, userCreateSchema } from "../schemas";
 
 const publicFields = { id: true, name: true, email: true, role: true, active: true, createdAt: true } as const;
 
-/** Lista de usuários internos (US-03). Nunca devolve o hash da senha. */
 export async function listUsers(actor: Actor) {
   assertCan(actor, "user:manage");
   return db.user.findMany({ select: publicFields, orderBy: { name: "asc" } });
 }
 
-/** Usuários ativos, para escolher o implantador. Qualquer usuário interno pode ver. */
 export async function listAssignableUsers() {
   return db.user.findMany({
     where: { active: true },
@@ -40,7 +38,6 @@ export async function createUser(actor: Actor, raw: unknown) {
   });
 }
 
-/** RN-18: desativar impede o login e derruba as sessões abertas; o histórico fica. */
 export async function setUserActive(actor: Actor, userId: string, active: boolean) {
   assertCan(actor, "user:manage");
   if (userId === actor.id && !active) throw new RuleError("Você não pode desativar o próprio usuário.");
@@ -54,7 +51,6 @@ export async function setUserActive(actor: Actor, userId: string, active: boolea
   });
 }
 
-/** O admin redefine a senha (não há recuperação por e-mail no MVP). */
 export async function resetPassword(actor: Actor, raw: unknown) {
   assertCan(actor, "user:manage");
   const input = parseInput(passwordResetSchema, raw);

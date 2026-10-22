@@ -2,8 +2,6 @@ import { fileURLToPath } from "node:url";
 import { defineConfig } from "vitest/config";
 import { TEST_DATABASE_URL } from "./tests/integration/test-db";
 
-// Testes de integração dos serviços contra um PostgreSQL real (tests/integration).
-// Os arquivos rodam em sequência porque compartilham o mesmo banco de testes.
 export default defineConfig({
   resolve: { alias: { "@": fileURLToPath(new URL("./src", import.meta.url)) } },
   test: {

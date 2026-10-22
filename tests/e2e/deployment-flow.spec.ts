@@ -4,7 +4,6 @@ import { DIEGO, LARISSA, login, openDeployment } from "./helpers";
 const COMPANY = "Costa Lima Embalagens e Distribuição";
 const task = (page: Page, title: string) => page.getByRole("listitem").filter({ hasText: title }).first();
 
-// TC-11, TC-13, TC-14, TC-15, TC-16 (RF-06 a RF-10): o fluxo principal, de ponta a ponta.
 test.describe.serial("implantação: da criação ao histórico", () => {
   test("cria uma implantação a partir do modelo, com prévia das datas", async ({ page }) => {
     await login(page, DIEGO);
@@ -51,7 +50,6 @@ test.describe.serial("implantação: da criação ao histórico", () => {
     await openDeployment(page, COMPANY);
     const item = task(page, "Parametrização fiscal básica");
     await item.getByText(/Detalhes e comentários/).click();
-    // Salvar sem mudar nada não pode parecer sucesso.
     await item.getByRole("button", { name: "Salvar ajuste" }).click();
     await expect(item.locator("p[role=alert]")).toContainText("Nenhuma alteração para salvar");
     await expect(item.getByText("Ajuste salvo.")).toHaveCount(0);

@@ -1,7 +1,6 @@
 import { defineConfig, devices } from "@playwright/test";
 import { E2E_DATABASE_URL, E2E_PORT } from "./tests/e2e/e2e-env";
 
-// Gera os prints reais de docs/screenshots/ a partir do app rodando com os dados de demonstração.
 export default defineConfig({
   testDir: "./tests/screenshots",
   testMatch: /.*\.shot\.ts/,

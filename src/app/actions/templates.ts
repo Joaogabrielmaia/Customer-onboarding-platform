@@ -6,7 +6,6 @@ import { requireUser } from "@/lib/auth";
 import { attempt } from "@/lib/run-action";
 import { archiveTemplate, saveTemplate } from "@/server/services/templates";
 
-/** O editor de modelos envia a estrutura inteira como objeto (não é um formulário simples). */
 export async function saveTemplateAction(id: string | null, payload: unknown): Promise<ActionState & { id?: string }> {
   const user = await requireUser();
   let savedId = id ?? undefined;

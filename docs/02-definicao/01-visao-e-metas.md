@@ -22,7 +22,7 @@ P1 a P7 do [discovery](../01-discovery/08-problemas-priorizados.md). Resumo: atr
 
 ## Metas de sucesso (todas HIPÓTESES, nenhuma medida)
 
-> Não há medição porque o caso é simulado. São metas que eu definiria para acompanhar num piloto real.
+> Ainda não há medição. São metas que eu definiria para acompanhar num piloto real.
 
 | ID | Hipótese / meta | Como eu mediria num piloto real |
 |---|---|---|

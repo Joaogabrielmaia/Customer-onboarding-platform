@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: { default: "Trilha", template: "%s · Trilha" },
-  description: "Acompanhamento de implantação de clientes. Caso simulado de portfólio: empresa, pessoas e dados são fictícios.",
+  description: "Acompanhamento de implantação de clientes.",
 };
 
 export const viewport: Viewport = { width: "device-width", initialScale: 1 };

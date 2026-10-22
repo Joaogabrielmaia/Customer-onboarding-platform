@@ -1,7 +1,7 @@
 # Runbook de operação
 
 **Objetivo:** dizer como investigar problemas, fazer backup, reverter e quem faz o quê.
-**Data:** 2026-10-22 · **Status:** concluído (escrito para a demonstração; adaptar se houvesse uso real)
+**Data:** 2026-10-22 · **Status:** concluído 
 Relacionados: [Deploy](../06-deploy-e-go-live/deploy.md) · [Rollback](../06-deploy-e-go-live/02-checklist-go-live-e-rollback.md) · [Limitações](../05-qualidade/03-limitacoes-conhecidas.md)
 
 > Este runbook usa só o que o projeto tem hoje (healthcheck, logs em JSON, Prisma, Vercel e Neon). Onde dependo de recursos do provedor, digo para **conferir o plano vigente**, porque limites e preços mudam.
@@ -44,7 +44,7 @@ flowchart TD
 | Usuário não consegue entrar | Senha errada, usuário desativado ou sessão expirada | Admin confere em *Usuários* e redefine a senha |
 | O único admin perdeu o acesso | — | Ver "Redefinir senha pelo terminal" abaixo |
 | Cliente diz que o link não abre | Link expirado, revogado ou digitado errado | Gerar novo link na implantação |
-| Tudo aparece atrasado na demo | O seed envelheceu | Rodar o seed de novo |
+| Tudo aparece atrasado depois de dias parado | O seed envelheceu | Rodar o seed de novo |
 | Implantador não altera uma tarefa | Não é o responsável | Pedir ao responsável ou à líder (regra RN-12) |
 
 ### Redefinir senha pelo terminal
@@ -69,7 +69,7 @@ pg_dump "$DIRECT_URL" --format=custom --file=trilha-$(date +%F).dump
 ```
 
 - **Restaurar:** criar um banco novo e usar `pg_restore`, ou usar o recurso de restauração do provedor. **Teste a restauração ao menos uma vez** antes de depender dela.
-- **Dados de demonstração** não precisam de backup: o seed os recria.
+- **Dados do seed** não precisam de backup: o seed os recria.
 
 ## 5. Reverter uma migration
 
@@ -87,7 +87,7 @@ O Prisma **não** tem rollback automático. Caminhos, do mais seguro ao mais dr�
 | Quando | Tarefa |
 |---|---|
 | A cada deploy | Conferir `/api/health` e entrar com um usuário |
-| Toda semana (demo) | Rodar o seed ou deixar o workflow agendado fazer |
+| Toda semana (se o ambiente usar dados do seed) | Rodar o seed ou deixar o workflow agendado fazer |
 | A cada mês | Revisar usuários ativos; remover contas que saíram |
 | A cada trimestre | Rodar `npm audit` e atualizar dependências com os testes verdes |
 | Depois de qualquer incidente | Registrar o que houve, a causa e a mudança, sem culpar pessoas |
@@ -100,4 +100,4 @@ O Prisma **não** tem rollback automático. Caminhos, do mais seguro ao mais dr�
 | Média | Uma tela com erro; link de cliente não abre | No mesmo dia útil |
 | Baixa | Texto errado; melhoria | Entra no backlog |
 
-Os prazos são **propostas**; numa demonstração gratuita não há compromisso (SLA).
+Os prazos são **propostas**; no plano gratuito não há compromisso (SLA).

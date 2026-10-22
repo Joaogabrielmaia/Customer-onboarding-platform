@@ -4,7 +4,7 @@
 **Data:** 2026-10-22 · **Status:** concluído
 Relacionados: [AS-IS](07-processo-as-is.md) · [Reunião 1](04-reuniao-1-kickoff-fundador.md) · [Reunião 2](05-reuniao-2-lideranca-e-implantador.md) · [Reunião 3](06-reuniao-3-suporte-e-cliente.md)
 
-> Baseado em reuniões simuladas. Impacto é qualitativo (alto/médio/baixo), é julgamento meu e não há medição.
+> Baseado nas reuniões do discovery. Impacto é qualitativo (alto/médio/baixo), é julgamento meu e não há medição.
 
 | ID | Problema | Causa raiz | Impacto | Evidência | Prioridade |
 |---|---|---|---|---|---|

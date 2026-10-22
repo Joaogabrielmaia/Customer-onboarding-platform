@@ -1,8 +1,6 @@
 import { expect, test } from "@playwright/test";
 import { ADMIN, login, openDeployment } from "./helpers";
 
-// RNF-06: em tela de celular nenhuma página pode ter rolagem horizontal.
-// Este teste nasceu de um defeito real encontrado na exploração do UAT (ver docs/05-qualidade).
 test.use({ viewport: { width: 390, height: 844 } });
 
 const pages = ["/", "/implantacoes", "/pendencias", "/clientes", "/modelos", "/modelos/novo", "/usuarios", "/configuracoes", "/implantacoes/nova"];

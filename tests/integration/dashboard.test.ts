@@ -11,7 +11,6 @@ beforeAll(async () => {
   s = await resetWithSeed();
 });
 
-// TC-17 a TC-22, TC-29 (RF-11, RF-12, RF-13, RF-18)
 describe("painel", () => {
   it("conta em andamento, atrasadas, aguardando cliente e concluídas (US-09 CA1)", async () => {
     const dash = await getDashboard(s.camila, {}, NOW);
@@ -30,7 +29,6 @@ describe("painel", () => {
     expect(santaRita!.maxTeamDaysLate).toBeGreaterThanOrEqual(5);
     expect(santaRita!.worstTaskTitle).toBe("Parametrização fiscal");
     expect(santaRita!.implementerName).toBe("Diego Ferreira");
-    // Espera do cliente não conta como atraso da equipe (RN-03).
     expect(valeVerde).toMatchObject({ category: "WAITING_CLIENT", teamLateCount: 0 });
     expect(valeVerde!.clientLateCount).toBeGreaterThan(0);
   });
@@ -70,16 +68,13 @@ describe("painel", () => {
     expect(queue[0]!.lateness).not.toBeNull();
     const lateDays = queue.filter((q) => q.lateness).map((q) => q.lateness!.daysLate);
     expect(lateDays).toEqual([...lateDays].sort((a, b) => b - a));
-    // Depois das atrasadas, vêm as que vencem em seguida, em ordem de prazo.
     const notLate = queue.filter((q) => !q.lateness).map((q) => q.dueDate.getTime());
     expect(notLate).toEqual([...notLate].sort((a, b) => a - b));
-    // Só tarefas abertas e só as do próprio usuário.
     const rows = await db.deploymentTask.findMany({ where: { id: { in: queue.map((q) => q.id) } } });
     expect(rows.every((r) => r.assigneeId === s.diego.id && r.status !== "DONE")).toBe(true);
   });
 });
 
-// TC-21 e TC-22 (RF-13)
 describe("regra de atraso configurável", () => {
   it("a tolerância muda o que é atraso (US-11 CA1)", async () => {
     const [santaRita] = (await listDeploymentSummaries(s.camila, {}, NOW)).filter((d) => d.companyName.includes("Santa Rita"));

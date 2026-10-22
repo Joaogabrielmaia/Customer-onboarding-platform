@@ -8,8 +8,7 @@ beforeAll(async () => {
   s = await resetWithSeed();
 });
 
-// TC-27 (RF-16, US-14)
-describe("seed de demonstração", () => {
+describe("seed", () => {
   it("cria cerca de 8 clientes, 3 modelos e implantações em estados variados (US-14 CA1)", async () => {
     expect(await db.client.count()).toBe(8);
     expect(await db.template.count()).toBe(3);
@@ -18,7 +17,7 @@ describe("seed de demonstração", () => {
     expect(categories).toEqual(new Set(["ON_TIME", "LATE", "WAITING_CLIENT", "COMPLETED"]));
   });
 
-  it("deixa um cliente sem implantação, para demonstrar a criação", async () => {
+  it("deixa um cliente sem implantação, para testar a criação", async () => {
     const withoutDeployment = await db.client.findMany({ where: { deployments: { none: {} } } });
     expect(withoutDeployment.map((c) => c.companyName)).toEqual(["Costa Lima Embalagens e Distribuição"]);
   });
@@ -36,7 +35,7 @@ describe("seed de demonstração", () => {
     expect(users.every((u) => u.passwordHash.startsWith("scrypt$"))).toBe(true);
   });
 
-  it("gera histórico e comentários para a demonstração", async () => {
+  it("gera histórico e comentários de exemplo", async () => {
     expect(await db.auditLog.count()).toBeGreaterThan(10);
     expect(await db.comment.count()).toBeGreaterThan(0);
   });

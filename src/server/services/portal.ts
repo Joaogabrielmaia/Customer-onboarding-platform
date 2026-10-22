@@ -14,10 +14,6 @@ async function loadDeploymentForLink(deploymentId: string) {
   return deployment;
 }
 
-/**
- * US-12 / RF-15: gera um novo link e revoga o anterior (RN-13).
- * O token em texto só existe neste retorno; no banco fica o hash.
- */
 export async function createPortalLink(actor: Actor, deploymentId: string, now: Date = new Date()) {
   const deployment = await loadDeploymentForLink(deploymentId);
   assertCan(actor, "portal-link:manage", { deploymentImplementerId: deployment.implementerId });
@@ -53,7 +49,6 @@ export async function revokePortalLink(actor: Actor, deploymentId: string, now: 
   });
 }
 
-/** Para a tela T08: existe link ativo e até quando vale? Nunca devolve o token. */
 export async function getActivePortalLink(actor: Actor, deploymentId: string, now: Date = new Date()) {
   assertCan(actor, "deployment:read");
   const link = await db.portalLink.findFirst({
@@ -67,7 +62,6 @@ export interface PortalTask {
   title: string;
   dueDate: Date;
   status: "PENDING" | "IN_PROGRESS" | "WAITING_CLIENT" | "DONE" | "NOT_APPLICABLE";
-  /** A responsabilidade é do cliente. */
   withClient: boolean;
   late: boolean;
 }
@@ -83,12 +77,9 @@ export interface PortalView {
   done: PortalTask[];
 }
 
-/**
- * RF-14 / RN-14: o que o cliente enxerga. Devolve null para qualquer link que não vale
- * (inexistente, expirado ou revogado), sem distinguir os casos (ADR-007).
- * Só saem daqui campos permitidos: nada de comentários, auditoria ou tarefas internas.
- */
 export async function getPortalView(token: string, now: Date = new Date()): Promise<PortalView | null> {
+  // token inexistente, expirado e revogado respondem igual (null)
+
   const link = await db.portalLink.findUnique({
     where: { tokenHash: hashPortalToken(token) },
     include: {
@@ -120,7 +111,6 @@ export async function getPortalView(token: string, now: Date = new Date()): Prom
   return {
     companyName: deployment.client.companyName,
     implementerName: deployment.implementer.name,
-    // O progresso considera todas as tarefas, não só as visíveis.
     progress: computeProgress(deployment.tasks),
     completed: deployment.status === "COMPLETED",
     kickoffDate: deployment.kickoffDate,

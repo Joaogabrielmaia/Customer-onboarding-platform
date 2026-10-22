@@ -12,7 +12,7 @@ Preciso de uma aplicação web com telas autenticadas, uma página pública (por
 | **Next.js (App Router)** | Front e back no mesmo projeto; Server Components e Server Actions reduzem código; deploy nativo na Vercel; é o que domino | App Router tem curva e algumas arestas (cache, fronteira cliente/servidor) |
 | React (Vite) + API Express separada | Separação clara; sem mágica | Dois projetos, dois deploys, CORS, mais código para a mesma coisa |
 | Remix / React Router | Bom modelo de formulários | Menos familiar para mim; menos material de apoio |
-| Rails/Django | Muito produtivo para CRUD | Fora da stack que quero demonstrar |
+| Rails/Django | Muito produtivo para CRUD | Fora da stack que quero usar |
 
 ## Decisão
 Next.js com App Router e TypeScript em modo estrito.

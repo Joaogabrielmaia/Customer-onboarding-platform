@@ -1,9 +1,8 @@
 import path from "node:path";
 import { expect, test, type Page } from "@playwright/test";
-import { DEMO_PORTAL_TOKEN } from "../../src/server/seed-data";
+import { SEED_PORTAL_TOKEN } from "../../src/server/seed-data";
 import { ADMIN, DIEGO, login, openDeployment } from "../e2e/helpers";
 
-// Gera os prints de docs/screenshots/ com o app real e os dados de demonstração (fictícios).
 const OUT = path.resolve(process.cwd(), "docs/screenshots");
 const shot = (page: Page, name: string, fullPage = true) => page.screenshot({ path: path.join(OUT, name), fullPage });
 
@@ -44,13 +43,13 @@ test("telas de desktop", async ({ page }) => {
 });
 
 test("portal do cliente, no desktop e no celular", async ({ page, browser }) => {
-  await page.goto(`/p/${DEMO_PORTAL_TOKEN}`);
+  await page.goto(`/p/${SEED_PORTAL_TOKEN}`);
   await expect(page.getByRole("heading", { level: 1 })).toContainText("Santa Rita");
   await shot(page, "09-portal-cliente.png");
 
   const mobile = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, locale: "pt-BR" });
   const m = await mobile.newPage();
-  await m.goto(`/p/${DEMO_PORTAL_TOKEN}`);
+  await m.goto(`/p/${SEED_PORTAL_TOKEN}`);
   await expect(m.getByRole("heading", { level: 1 })).toContainText("Santa Rita");
   await shot(m, "10-portal-cliente-mobile.png");
 

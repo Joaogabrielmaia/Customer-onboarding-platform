@@ -6,7 +6,6 @@ const admin = { id: "u-admin", role: "ADMIN" as const };
 const diego = { id: "u-diego", role: "IMPLEMENTER" as const };
 const patricia = { id: "u-patricia", role: "IMPLEMENTER" as const };
 
-// Implantação do Diego; tarefa sem responsável específico.
 const diegosDeployment = { deploymentImplementerId: diego.id, taskAssigneeId: null };
 
 describe("can (RN-12)", () => {

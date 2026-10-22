@@ -1,17 +1,8 @@
 # Trilha: acompanhamento de implantação de clientes
 
-> ## ⚠️ Caso simulado de portfólio. Empresa, pessoas e dados são fictícios.
-> A "Rota Fácil Software", as pessoas, os clientes e todos os dados deste repositório são inventados por mim. Reuniões, entrevistas, o UAT e o piloto são **roteirizados** e estão marcados como tal. **Não existe uso real com clientes**, e o sistema fica publicado como **demonstração**. Os números de teste abaixo são os que saíram do meu terminal.
+Plataforma web que uma software house usa para conduzir a implantação do seu sistema nos clientes: etapas, prazos, responsáveis, progresso e um painel que mostra o que está atrasado. O cliente acompanha por um link, sem cadastro.
 
-| | |
-|---|---|
-| 🔗 **Demonstração** | `[PREENCHER: URL da demonstração, depois do deploy]` |
-| 🧪 **Contas de demonstração** (públicas, fictícias) | Administrador: `admin@rotafacil.example` · `Demo-Admin-2026` <br> Implantador: `implantador@rotafacil.example` · `Demo-Implantador-2026` |
-| 👤 **Link de cliente de demonstração** | `<URL da demonstração>/p/demo-portal-santa-rita-token-publico-0001` |
-| 🚦 **CI** | `[PREENCHER: selo do GitHub Actions depois de enviar o repositório]` (o workflow existe, mas **ainda não foi executado no GitHub**) |
-| 🎬 **Vídeo de 2 minutos** | `[PREENCHER: link, depois de gravar]` (o [roteiro](docs/06-deploy-e-go-live/03-roteiro-video-demo.md) está pronto) |
-
-> Se alguém gerar um novo link para a implantação da Santa Rita, o link de cliente acima é revogado (é o comportamento correto). A demo é recarregada pelo seed.
+> A Rota Fácil Software e seus clientes são o cenário que modelei para desenvolver o projeto. As reuniões em `docs/` são roteirizadas por mim e estão marcadas como tal.
 
 ![Painel da Trilha com atrasos em destaque](docs/screenshots/02-painel.png)
 
@@ -21,7 +12,7 @@
 - **Solução:** a Trilha cria a implantação a partir de um modelo, calcula os prazos a partir do kickoff, separa o atraso da equipe da espera do cliente e dá ao cliente um link de leitura, sem cadastro.
 - **Para quem:** fundador e líder (painel), implantadores e suporte (tarefas, comentários, histórico) e o cliente (portal).
 - **Stack:** Next.js 16 (App Router) + TypeScript, Tailwind CSS 4, Prisma 7 + PostgreSQL, Zod, Vitest e Playwright.
-- **Status:** v1.1.0 funcionando localmente; **preparado para publicar** (guia pronto), mas a publicação depende das minhas contas e **ainda não foi feita**.
+- **Status:** v1.1.0 funcionando; guia de publicação (Vercel + Neon) pronto em `docs/06-deploy-e-go-live/deploy.md`.
 
 ## Como o projeto foi conduzido
 
@@ -34,14 +25,14 @@ flowchart LR
 
 | Etapa | O que fiz | Onde |
 |---|---|---|
-| 0. Sobre o caso | O que é real e o que é simulado; como ler | [`00-sobre-este-caso`](docs/00-sobre-este-caso/README.md) |
-| 1. Discovery | Brainstorm e escolha; empresa fictícia; personas; 3 reuniões simuladas; processo AS-IS; problemas priorizados | [`01-discovery`](docs/01-discovery/) |
+| 0. Sobre o projeto | Cenário, ordem de leitura | [`00-sobre-o-projeto`](docs/00-sobre-o-projeto/README.md) |
+| 1. Discovery | Brainstorm e escolha; empresa do cenário; personas; 3 reuniões roteirizadas; processo AS-IS; problemas priorizados | [`01-discovery`](docs/01-discovery/) |
 | 2. Definição | Visão, RF/RNF/RN, histórias com Dado/Quando/Então, MoSCoW, backlog em 3 sprints, riscos, rastreabilidade | [`02-definicao`](docs/02-definicao/) |
 | 3. Arquitetura | 9 ADRs, modelo de dados, contexto e componentes, segurança e privacidade, custo | [`03-arquitetura`](docs/03-arquitetura/) |
 | 4. Protótipo | Wireframes, reunião 4 e change-log (inclui uma **recusa justificada**) | [`04-prototipo`](docs/04-prototipo/) |
 | 5. Implementação | 3 sprints, commits por história com ID | [`sprint reviews`](docs/02-definicao/sprint-1-review.md) |
 | 6. Qualidade | Estratégia, resultado real, limitações, UAT com defeitos reais | [`05-qualidade`](docs/05-qualidade/) |
-| 7 e 8. Deploy e go-live | Guia de deploy, ações manuais, rollout, rollback, treinamento, roteiro de vídeo | [`06-deploy-e-go-live`](docs/06-deploy-e-go-live/) |
+| 7 e 8. Deploy e go-live | Guia de deploy, ações manuais, rollout, rollback, treinamento, comunicação | [`06-deploy-e-go-live`](docs/06-deploy-e-go-live/) |
 | 9. Pós go-live | Runbook, indicadores propostos, retrospectiva, **v1.1.0**, roadmap | [`07-pos-go-live`](docs/07-pos-go-live/) · [CHANGELOG](CHANGELOG.md) |
 | Entrevista | 3 perguntas e respostas por fase | [`entrevista`](docs/entrevista/) |
 | Vitrine | Texto para currículo, LinkedIn e apresentação | [`vitrine`](docs/vitrine/) |
@@ -107,7 +98,7 @@ Explicação completa das escolhas: [modelo de dados](docs/03-arquitetura/modelo
 
 <img src="docs/screenshots/10-portal-cliente-mobile.png" alt="Portal do cliente no celular" width="300">
 
-Outras telas: [login](docs/screenshots/01-login.png), [minhas pendências](docs/screenshots/03-minhas-pendencias.png), [nova implantação com prévia](docs/screenshots/04-nova-implantacao.png), [histórico](docs/screenshots/06-historico.png), [clientes](docs/screenshots/08-clientes.png), [painel no celular](docs/screenshots/11-painel-mobile.png). Os prints são gerados pelo Playwright com os dados de demonstração (`npm run screenshots`).
+Outras telas: [login](docs/screenshots/01-login.png), [minhas pendências](docs/screenshots/03-minhas-pendencias.png), [nova implantação com prévia](docs/screenshots/04-nova-implantacao.png), [histórico](docs/screenshots/06-historico.png), [clientes](docs/screenshots/08-clientes.png), [painel no celular](docs/screenshots/11-painel-mobile.png). Os prints são gerados pelo Playwright com os dados do seed (`npm run screenshots`).
 
 **Lista completa:** login e papéis · clientes · usuários · modelos · implantações com prazos calculados · status, prazo e responsável por tarefa · comentários · histórico de alterações · painel e filtros · fila de pendências · regra de atraso configurável · link do cliente com mensagem pronta · exportação em CSV (v1.1) · healthcheck.
 
@@ -121,11 +112,11 @@ npm install                 # também gera o cliente Prisma (postinstall)
 cp .env.example .env        # os valores padrão já servem para o ambiente local
 docker compose up -d        # PostgreSQL local na porta 5433
 npx prisma migrate deploy   # cria as tabelas
-npm run db:seed             # dados de demonstração (fictícios)
+npm run db:seed             # dados de exemplo
 npm run dev                 # http://localhost:3000
 ```
 
-Entre com as contas da tabela do topo.
+O seed cria usuários de desenvolvimento (e-mails em `@rotafacil.example`); as senhas estão em `src/server/seed-data.ts`.
 
 ## Como testar
 
@@ -140,7 +131,7 @@ npx playwright test          # E2E sobre o app compilado (cria o banco trilha_e2
 npm run screenshots          # regenera docs/screenshots
 ```
 
-## Como publicar (demonstração)
+## Como publicar
 
 Passo a passo em [`docs/06-deploy-e-go-live/deploy.md`](docs/06-deploy-e-go-live/deploy.md) (Vercel + Neon) e a lista do que depende de contas minhas em [`acoes-manuais.md`](docs/06-deploy-e-go-live/acoes-manuais.md).
 
@@ -162,24 +153,18 @@ Passo a passo em [`docs/06-deploy-e-go-live/deploy.md`](docs/06-deploy-e-go-live
 
 ## Limitações e roadmap
 
-Limitações completas em [`03-limitacoes-conhecidas`](docs/05-qualidade/03-limitacoes-conhecidas.md). As principais: demonstração sem uso real; sem notificações; sem feriados no cálculo de prazo; sem dependência entre tarefas; sem limite de tentativas de login; acessibilidade só com verificação automática; apenas Chromium testado.
+Limitações completas em [`03-limitacoes-conhecidas`](docs/05-qualidade/03-limitacoes-conhecidas.md). As principais: sem notificações; sem feriados no cálculo de prazo; sem dependência entre tarefas; sem limite de tentativas de login; acessibilidade só com verificação automática; apenas Chromium testado.
 
 Roadmap ([`roadmap.md`](docs/07-pos-go-live/roadmap.md)): **v1.2** alerta de atraso por e-mail, recuperação de senha, concluir tarefas em lote, feriados. **v2** dependência entre tarefas, "já enviei" com confirmação por e-mail, anexos e subtarefas, integração com CRM/ERP, multiempresa.
 
-## O que este projeto demonstra sobre mim
+## O que o projeto mostra
 
-**Neste caso simulado** (verificável no repositório):
-
-1. **Descobrir o problema e refinar pedido vago:** o discovery transforma "painel bonito" em requisito e documenta contradições e restrições que mudaram o escopo.
-2. **Definir escopo e dizer não:** requisitos rastreáveis, MoSCoW, fora do escopo com motivo e uma recusa justificada ao cliente.
+1. **Descobrir o problema e refinar pedido vago:** o discovery transforma "painel bonito" em requisito e registra contradições e restrições que mudaram o escopo.
+2. **Definir escopo e dizer não:** requisitos rastreáveis, MoSCoW, fora do escopo com motivo e uma recusa justificada.
 3. **Decidir e justificar tecnicamente:** 9 ADRs com alternativas, trade-offs e quando eu mudaria de ideia.
 4. **Construir e testar com rigor:** regras de negócio em funções puras, autorização no servidor, auditoria transacional e 156 testes passando, com os defeitos reais registrados.
-5. **Levar ao uso e evoluir:** treinamento, plano de rollout e rollback, runbook, retrospectiva e uma evolução real (v1.1.0) com changelog.
-
-**Como isso se conecta à minha experiência real:**
-
-`[ESPAÇO PARA EU PREENCHER: como isso se conecta à minha experiência real. Não escrevi de propósito: só eu sei o que é verdade.]`
+5. **Levar ao uso e evoluir:** treinamento, rollout e rollback, runbook, retrospectiva e uma evolução (v1.1.0) com changelog.
 
 ## Licença
 
-[MIT](LICENSE). Projeto de portfólio de João Gabriel Maia da Costa.
+[MIT](LICENSE). João Gabriel Maia da Costa.

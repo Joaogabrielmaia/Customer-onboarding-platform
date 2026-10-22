@@ -27,7 +27,6 @@ function CopyButton({ text, label }: { text: string; label: string }) {
   );
 }
 
-/** Gera, mostra uma vez e revoga o link do cliente (T08, RF-15 e RF-19). */
 export function PortalLinkPanel({ deploymentId, activeUntil, expiresLabel }: { deploymentId: string; activeUntil: string | null; expiresLabel: string | null }) {
   const [created, createAction] = useActionState<ActionState, FormData>(createPortalLinkAction, {});
   const [revoked, revokeAction] = useActionState<ActionState, FormData>(revokePortalLinkAction, {});

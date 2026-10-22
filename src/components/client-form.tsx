@@ -6,14 +6,13 @@ import { ActionForm, Field, SelectField, SubmitButton } from "./form";
 
 const planOptions = Object.entries(planLabel).map(([value, label]) => ({ value, label }));
 
-/** Formulário de cliente, usado para cadastrar e editar (T04). */
 export function ClientForm({ client }: { client?: Client }) {
   return (
     <ActionForm action={saveClientAction} submit={<SubmitButton>{client ? "Salvar alterações" : "Cadastrar cliente"}</SubmitButton>}>
       {client && <input type="hidden" name="id" value={client.id} />}
       <div className="grid gap-4 sm:grid-cols-2">
         <Field name="companyName" label="Empresa" required defaultValue={client?.companyName} />
-        <Field name="cnpj" label="CNPJ" defaultValue={client?.cnpj ?? ""} hint="Opcional. Na demonstração, use sempre um CNPJ fictício." />
+        <Field name="cnpj" label="CNPJ" defaultValue={client?.cnpj ?? ""} hint="Opcional." />
         <Field name="contactName" label="Nome do contato" required defaultValue={client?.contactName} />
         <Field name="contactEmail" label="E-mail do contato" type="email" required defaultValue={client?.contactEmail} />
         <Field name="contactPhone" label="Telefone do contato" type="tel" defaultValue={client?.contactPhone ?? ""} />

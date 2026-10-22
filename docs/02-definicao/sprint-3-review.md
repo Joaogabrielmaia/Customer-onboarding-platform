@@ -8,7 +8,7 @@ Relacionados: [Sprint 2](sprint-2-review.md) · [Change-log](../04-prototipo/03-
 
 | História | Resultado |
 |---|---|
-| US-09 Painel | Contagens, "atenção primeiro" com dias de atraso grandes em vermelho (CH-01), espera do cliente separada, tempo médio rotulado como "só dados de demonstração", filtro por implantador (CH-02) |
+| US-09 Painel | Contagens, "atenção primeiro" com dias de atraso grandes em vermelho (CH-01), espera do cliente separada, tempo médio das concluídas, filtro por implantador (CH-02) |
 | US-10 Pendências | Fila do usuário ordenada por atraso e fila por implantador no painel |
 | US-11 Regra de atraso | Tolerância configurável (só admin), com auditoria |
 | US-12 Link do cliente | Gerado e mostrado uma vez, mensagem pronta para copiar (CH-03), revogável, um ativo por implantação |
@@ -24,5 +24,5 @@ Relacionados: [Sprint 2](sprint-2-review.md) · [Change-log](../04-prototipo/03-
 ## O que aprendi
 
 - **O portal é pequeno, mas o risco é alto.** A maior parte do trabalho foi garantir o que *não* aparece: o teste serializa a resposta do portal e procura textos internos (comentário, motivo do histórico, tarefa interna) para provar que não vazam.
-- **Dados de demonstração precisam de design.** Fiz cada implantação "parar" em uma tarefa-pivô, com datas relativas a hoje, para que a demo sempre mostre atrasada, aguardando cliente, no prazo e concluída.
+- **Dados de exemplo precisam de design.** Fiz cada implantação "parar" em uma tarefa-pivô, com datas relativas a hoje, para o seed sempre ter atrasada, aguardando cliente, no prazo e concluída.
 - **Exploração manual acha o que teste não pensou.** A rolagem horizontal no celular (D3) só apareceu porque olhei as telas em 390 px.

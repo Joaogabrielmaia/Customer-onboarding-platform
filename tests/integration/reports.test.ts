@@ -13,7 +13,6 @@ beforeAll(async () => {
 
 const lines = (csv: string) => csv.split("\r\n").filter((l) => l !== "");
 
-// TC-36 e TC-37 (v1.1, RF-20)
 describe("exportação da implantação em CSV", () => {
   it("gera cabeçalho e uma linha por tarefa, com atraso e situação", async () => {
     const d = await deploymentOf("Santa Rita");
@@ -28,10 +27,8 @@ describe("exportação da implantação em CSV", () => {
     expect(fiscal).toContain("Diego Ferreira");
     expect(fiscal).toContain("Em andamento");
     expect(fiscal).toContain("Atrasada (equipe)");
-    // prazo original diferente do atual (o prazo foi adiado no seed)
     const cells = fiscal.split(";");
     expect(cells[3]).not.toBe(cells[4]);
-    // tarefa do cliente já concluída: sem atraso
     const clientTask = rows.find((r) => r.includes(";Receber planilha de produtos;"))!;
     expect(clientTask).toContain("Cliente");
     expect(clientTask).toContain("Concluída");

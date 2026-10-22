@@ -4,8 +4,6 @@
 **Data:** 2026-10-22 · **Status:** concluído
 Relacionados: [Pós go-live](../07-pos-go-live/) · [Changelog](../../CHANGELOG.md)
 
-> O piloto e a retrospectiva são simulados. A v1.1.0, o código e os testes são reais.
-
 ### 1. Como você escolheu qual melhoria implementar na v1.1?
 Pela dor relatada, o esforço, o risco e se cabia sem infraestrutura nova. A exportação em CSV resolvia um pedido da líder e do fundador, custava pouco e não mexia no modelo de dados. O alerta por e-mail tinha mais impacto, mas depende de provedor, remetente verificado e descadastro; registrei como adiamento consciente para a v1.2. Escolhi CSV e não PDF porque abre no Excel e é simples de testar.
 

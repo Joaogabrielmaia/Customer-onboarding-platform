@@ -20,7 +20,6 @@ beforeAll(async () => {
 
 const essentialTemplate = () => db.template.findFirstOrThrow({ where: { name: { contains: "Essencial" } } });
 
-// TC-09 (cálculo, coberto também em unitário) e TC-10 (RF-06)
 describe("criar implantação a partir de um modelo", () => {
   it("calcula as datas a partir do kickoff e copia as tarefas (US-05 CA1, CA4)", async () => {
     const template = await essentialTemplate();
@@ -31,9 +30,8 @@ describe("criar implantação a partir de um modelo", () => {
     const byTitle = Object.fromEntries(detail.stages.flatMap((st) => st.tasks).map((t) => [t.title, t]));
 
     expect(formatCivil(byTitle["Realizar reunião de kickoff"]!.dueDate)).toBe("2026-03-02");
-    expect(formatCivil(byTitle["Receber planilha de produtos"]!.dueDate)).toBe("2026-03-09"); // D+7
-    expect(formatCivil(byTitle["Importar produtos e clientes"]!.dueDate)).toBe("2026-03-12"); // D+10
-    // RN-09: tarefa do cliente nasce sem usuário interno; a do implantador, com ele.
+    expect(formatCivil(byTitle["Receber planilha de produtos"]!.dueDate)).toBe("2026-03-09");
+    expect(formatCivil(byTitle["Importar produtos e clientes"]!.dueDate)).toBe("2026-03-12");
     expect(byTitle["Receber planilha de produtos"]!.assigneeId).toBeNull();
     expect(byTitle["Receber planilha de produtos"]!.assigneeKind).toBe("CLIENT");
     expect(byTitle["Importar produtos e clientes"]!.assigneeId).toBe(s.diego.id);
@@ -45,11 +43,11 @@ describe("criar implantação a partir de um modelo", () => {
   it("desloca para a segunda-feira o prazo que cairia no fim de semana (US-05 CA2)", async () => {
     const template = await essentialTemplate();
     const created = await createDeployment(s.larissa, {
-      clientId: s.clients.armazem, templateId: template.id, implementerId: s.larissa.id, kickoffDate: "2026-03-06", // sexta
+      clientId: s.clients.armazem, templateId: template.id, implementerId: s.larissa.id, kickoffDate: "2026-03-06",
     });
     const detail = await getDeployment(s.larissa, created.id, { now: NOW });
     const checklist = detail.stages.flatMap((st) => st.tasks).find((t) => t.title === "Enviar checklist de dados necessários")!;
-    expect(formatCivil(checklist.dueDate)).toBe("2026-03-09"); // D+1 seria sábado
+    expect(formatCivil(checklist.dueDate)).toBe("2026-03-09");
     expect(checklist.originalDueDate.getTime()).toBe(checklist.dueDate.getTime());
   });
 
@@ -83,7 +81,6 @@ describe("criar implantação a partir de um modelo", () => {
   });
 });
 
-// TC-12/13 (RF-07), TC-14 (RF-08), TC-15 (RF-09), TC-16 (RF-10)
 describe("tarefas, comentários e histórico", () => {
   let tasks: Awaited<ReturnType<typeof deploymentOf>>["tasks"];
   let deploymentId: string;
@@ -136,7 +133,7 @@ describe("tarefas, comentários e histórico", () => {
     await updateTaskSchedule(s.diego, { taskId: task.id, dueDate: newDue, reason: "Cliente pediu para treinar na semana seguinte" });
     const fresh = await db.deploymentTask.findUniqueOrThrow({ where: { id: task.id } });
     expect(formatCivil(fresh.dueDate)).toBe(newDue);
-    expect(formatCivil(fresh.originalDueDate)).toBe(formatCivil(task.dueDate)); // o original é preservado
+    expect(formatCivil(fresh.originalDueDate)).toBe(formatCivil(task.dueDate));
 
     const entry = (await getAuditLog(s.diego, deploymentId)).find((l) => l.action === "TASK_DUE_DATE_CHANGED")!;
     expect(entry).toMatchObject({
@@ -165,7 +162,6 @@ describe("tarefas, comentários e histórico", () => {
     const entry = (await getAuditLog(s.diego, deploymentId)).find((l) => l.action === "TASK_ASSIGNEE_CHANGED")!;
     expect(entry).toMatchObject({ oldValue: "Diego Ferreira", newValue: "Larissa Prado" });
 
-    // Agora a Larissa é responsável pela tarefa e pode alterar o status dela (RN-12).
     await expect(updateTaskStatus(s.larissa, { taskId: task.id, status: "IN_PROGRESS" }, { now: NOW })).resolves.toBeUndefined();
 
     await expect(
@@ -179,7 +175,6 @@ describe("tarefas, comentários e histórico", () => {
     expect(comment.body).toBe("O cliente pediu para incluir o módulo de entregas.");
     expect(comment.authorId).toBe(s.patricia.id);
     expect((await getAuditLog(s.diego, deploymentId))[0]).toMatchObject({ action: "COMMENT_ADDED", actorId: s.patricia.id });
-    // Comentar não muda o status.
     expect((await db.deploymentTask.findUniqueOrThrow({ where: { id: task.id } })).status).toBe("PENDING");
     await expect(addComment(s.patricia, { taskId: task.id, body: "   " })).rejects.toBeInstanceOf(ValidationError);
   });

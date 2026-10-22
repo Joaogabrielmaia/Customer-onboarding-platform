@@ -1,5 +1,3 @@
-// Modelo de dados da Trilha. Desenho e motivos em docs/03-arquitetura/modelo-de-dados.md
-
 generator client {
   provider = "prisma-client"
   output   = "../src/generated/prisma"
@@ -80,7 +78,7 @@ model Session {
   @@index([userId])
 }
 
-// Configuração global. Sempre uma linha, com id = 1.
+// configuração global: sempre uma linha, id = 1
 model Setting {
   id                   Int @id @default(1)
   overdueToleranceDays Int @default(0)
@@ -215,7 +213,7 @@ model Comment {
   @@index([taskId])
 }
 
-// Somente inserção: a aplicação não edita nem apaga estes registros.
+// só inserção; a aplicação nunca edita nem apaga
 model AuditLog {
   id           String      @id @default(cuid())
   deploymentId String?

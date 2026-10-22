@@ -9,7 +9,7 @@ import type { AssigneeKind } from "@/generated/prisma/enums";
 
 interface TaskDraft {
   title: string;
-  offsetDays: string; // texto, para o campo aceitar digitação parcial
+  offsetDays: string;
   assigneeKind: AssigneeKind;
   required: boolean;
   visibleToClient: boolean;
@@ -35,7 +35,6 @@ function move<T>(list: T[], from: number, to: number): T[] {
   return copy;
 }
 
-/** Editor de modelo (T06): etapas e tarefas com prazo relativo (D+n). Só o administrador usa. */
 export function TemplateEditor({ templateId, initial }: { templateId: string | null; initial?: TemplateDraft }) {
   const router = useRouter();
   const [draft, setDraft] = useState<TemplateDraft>(initial ?? { name: "", description: "", stages: [emptyStage()] });

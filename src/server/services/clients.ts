@@ -46,7 +46,6 @@ export async function updateClient(actor: Actor, id: string, raw: unknown) {
   });
 }
 
-/** RN-16: cliente com implantação em andamento não pode ser arquivado. */
 export async function archiveClient(actor: Actor, id: string) {
   assertCan(actor, "client:manage");
   const client = await db.client.findUnique({ where: { id } });

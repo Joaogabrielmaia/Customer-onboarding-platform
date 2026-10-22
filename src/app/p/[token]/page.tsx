@@ -4,7 +4,6 @@ import { ProgressBar } from "@/components/ui";
 import { formatBR } from "@/domain/dates";
 import { getPortalView, type PortalTask } from "@/server/services/portal";
 
-// O link é um segredo: não indexar e não guardar em cache.
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Acompanhe sua implantação",
@@ -65,7 +64,6 @@ export default async function PortalPage({ params }: { params: Promise<{ token: 
       <p className="mt-8 border-t border-slate-300 pt-4 text-sm text-slate-700">
         Esta página é somente para consulta. Para qualquer dúvida ou para avisar que algo foi enviado, fale com {view.implementerName}.
       </p>
-      <p className="mt-2 text-xs text-slate-600">Demonstração de portfólio (caso simulado): empresa, pessoas e dados são fictícios.</p>
     </main>
   );
 }

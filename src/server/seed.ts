@@ -4,24 +4,18 @@ import { hashPortalToken } from "@/domain/portal-token";
 import type { PrismaClient } from "@/generated/prisma/client";
 import { hashPassword } from "./password";
 import {
-  DEMO_ADMIN_PASSWORD,
-  DEMO_IMPLEMENTER_PASSWORD,
-  demoClients,
-  demoScenarios,
-  demoTemplates,
-  demoUsers,
+  SEED_ADMIN_PASSWORD,
+  SEED_USER_PASSWORD,
+  seedClients,
+  seedScenarios,
+  seedTemplates,
+  seedUsers,
 } from "./seed-data";
 
 const HOUR_MS = 60 * 60 * 1000;
 const isWeekend = (d: Date) => d.getUTCDay() === 0 || d.getUTCDay() === 6;
 
-/**
- * Apaga tudo e recria os dados de demonstração. As datas são relativas a `today`,
- * então a demo sempre tem implantações no prazo, atrasadas e concluídas.
- * Usado por `npm run db:seed` e pelo teste de integração do seed (TC-27).
- */
-export async function seedDemo(db: PrismaClient, today: Date) {
-  // Ordem de exclusão respeita as chaves estrangeiras.
+export async function seedDatabase(db: PrismaClient, today: Date) {
   await db.auditLog.deleteMany();
   await db.comment.deleteMany();
   await db.portalLink.deleteMany();
@@ -38,10 +32,10 @@ export async function seedDemo(db: PrismaClient, today: Date) {
 
   await db.setting.create({ data: { id: 1, overdueToleranceDays: 0, portalLinkDays: 60 } });
 
-  const adminHash = await hashPassword(DEMO_ADMIN_PASSWORD);
-  const implementerHash = await hashPassword(DEMO_IMPLEMENTER_PASSWORD);
+  const adminHash = await hashPassword(SEED_ADMIN_PASSWORD);
+  const implementerHash = await hashPassword(SEED_USER_PASSWORD);
   const users: Record<string, string> = {};
-  for (const u of demoUsers) {
+  for (const u of seedUsers) {
     const created = await db.user.create({
       data: { name: u.name, email: u.email, role: u.role, passwordHash: u.admin ? adminHash : implementerHash },
     });
@@ -49,7 +43,7 @@ export async function seedDemo(db: PrismaClient, today: Date) {
   }
 
   const clients: Record<string, string> = {};
-  for (const c of demoClients) {
+  for (const c of seedClients) {
     const created = await db.client.create({
       data: {
         companyName: c.companyName,
@@ -65,7 +59,7 @@ export async function seedDemo(db: PrismaClient, today: Date) {
   }
 
   const templates: Record<string, { id: string; name: string; tasks: TemplateTaskRow[] }> = {};
-  for (const t of demoTemplates) {
+  for (const t of seedTemplates) {
     const created = await db.template.create({ data: { name: t.name, description: t.description } });
     const tasks: TemplateTaskRow[] = [];
     for (const [stageIndex, stage] of t.stages.entries()) {
@@ -82,14 +76,14 @@ export async function seedDemo(db: PrismaClient, today: Date) {
     templates[t.key] = { id: created.id, name: created.name, tasks };
   }
 
-  for (const scenario of demoScenarios) {
+  for (const scenario of seedScenarios) {
     const template = templates[scenario.template]!;
     const implementerId = users[scenario.implementer]!;
     const tasks = template.tasks;
     const pivotIndex = scenario.pivotTitle ? tasks.findIndex((t) => t.title === scenario.pivotTitle) : -1;
     if (scenario.pivotTitle && pivotIndex < 0) throw new Error(`Pivô não encontrado: ${scenario.pivotTitle}`);
 
-    // Kickoff: em dia útil, escolhido para o prazo do pivô cair onde o cenário pede.
+    // o kickoff é escolhido pra o prazo da tarefa-pivô cair onde o cenário pede
     let kickoff: Date;
     if (pivotIndex >= 0) {
       const pivot = tasks[pivotIndex]!;
@@ -186,7 +180,7 @@ export async function seedDemo(db: PrismaClient, today: Date) {
     await db.auditLog.create({
       data: {
         deploymentId: deployment.id, actorId: implementerId, action: "DEPLOYMENT_CREATED",
-        field: demoClients.find((c) => c.key === scenario.client)!.companyName, newValue: template.name,
+        field: seedClients.find((c) => c.key === scenario.client)!.companyName, newValue: template.name,
         createdAt: new Date(kickoff.getTime() - 12 * HOUR_MS),
       },
     });
@@ -226,6 +220,4 @@ interface TemplateTaskRow {
   required: boolean;
   visibleToClient: boolean;
 }
-
-
 

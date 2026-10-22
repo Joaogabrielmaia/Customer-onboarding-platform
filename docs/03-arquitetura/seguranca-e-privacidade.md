@@ -34,7 +34,6 @@ Relacionados: [ADR-002](adr/002-autenticacao.md) · [ADR-006](adr/006-controle-d
 | Quem acessa? | Usuários internos autenticados; o cliente vê só o que RN-14 permite |
 | Correção/exclusão | Cliente pode ser editado; o contato pode ser anonimizado ao arquivar (melhoria prevista; hoje o arquivamento preserva o dado). **Limitação registrada** |
 | Retenção | Sem política automática no MVP. **Limitação registrada** |
-| Dados da demo | 100% fictícios, com CNPJ de exemplo claramente inválido |
 
 ## O que **não** guardo
 Senha em texto; token do cliente em texto; IP e navegador do cliente no portal; cookies de rastreamento; analytics de terceiros.

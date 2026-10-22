@@ -4,7 +4,7 @@
 **Data:** 2026-10-22 · **Status:** concluído
 Relacionados: [Regras de negócio](03-regras-de-negocio.md) · [Histórias](04-historias-de-usuario.md) · [Rastreabilidade](08-rastreabilidade.md)
 
-> A coluna "Origem" aponta para evidências do [discovery](../01-discovery/) (reuniões simuladas).
+> A coluna "Origem" aponta para evidências do [discovery](../01-discovery/) (reuniões do discovery).
 
 ## Requisitos funcionais
 
@@ -25,7 +25,7 @@ Relacionados: [Regras de negócio](03-regras-de-negocio.md) · [Histórias](04-h
 | RF-13 | Configurar a regra de atraso (tolerância em dias) e destacar visualmente o atraso | Premissa, R1-04 | Must |
 | RF-14 | Exibir ao cliente, por link com token, o progresso e as próximas etapas em modo leitura | R1-07, R3-05 | Must |
 | RF-15 | Gerar, renovar e revogar o link do cliente | R3-06 | Must |
-| RF-16 | Carregar dados de demonstração (seed) | Premissa | Must |
+| RF-16 | Carregar dados de exemplo (seed) | Premissa | Must |
 | RF-17 | Gerenciar usuários internos (criar, desativar, definir papel) | Premissa | Should |
 | RF-18 | Filtrar o painel e a lista de implantações por status, implantador e cliente | R1-03, M4-02 | Must |
 | RF-19 | Mostrar, ao gerar o link do cliente, uma mensagem pronta com o link para copiar | M4-03 | Should |
@@ -42,8 +42,8 @@ Relacionados: [Regras de negócio](03-regras-de-negocio.md) · [Histórias](04-h
 | RNF-05 | Segurança | Token do cliente: aleatório, só o hash fica no banco, expira e pode ser revogado | Testes do portal |
 | RNF-06 | Usabilidade | Uso fluido no celular, em especial o portal do cliente. Estados de carregamento, vazio e erro tratados | E2E em viewport mobile |
 | RNF-07 | Acessibilidade | Foco visível, rótulos em todos os campos, contraste adequado, navegação por teclado (referência: WCAG 2.2 AA, sem prometer certificação) | Checklist manual + verificação automatizada onde possível |
-| RNF-08 | Disponibilidade | Demonstração em plano gratuito, sem SLA. Healthcheck disponível | Endpoint `/api/health` |
-| RNF-09 | LGPD básica | Coletar só o necessário; sem dados sensíveis; contato do cliente é dado pessoal e pode ser corrigido ou anonimizado; dados de demonstração fictícios | Revisão documentada na Fase 3 |
+| RNF-08 | Disponibilidade | Plano gratuito de hospedagem, sem SLA. Healthcheck disponível | Endpoint `/api/health` |
+| RNF-09 | LGPD básica | Coletar só o necessário; sem dados sensíveis; contato do cliente é dado pessoal e pode ser corrigido ou anonimizado; dados de exemplo no seed | Revisão documentada na Fase 3 |
 | RNF-10 | Observabilidade | Logs mínimos de erros e de eventos de segurança, sem dados pessoais nem segredos | Revisão de código |
 | RNF-11 | Manutenibilidade | Lint, tipos e testes rodando no CI a cada push | GitHub Actions |
 | RNF-12 | Consistência | Alterações que afetam várias tabelas (ex.: status + auditoria) ocorrem na mesma transação | Testes de integração |

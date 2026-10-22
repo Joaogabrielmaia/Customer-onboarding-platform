@@ -1,4 +1,3 @@
-// Textos da interface em português para os valores (em inglês) do banco.
 import { formatBR } from "@/domain/dates";
 import type { AssigneeKind, AuditAction, Plan, Role, TaskStatus } from "@/generated/prisma/enums";
 
@@ -37,7 +36,6 @@ const dateOrRaw = (value: string | null) => {
 };
 const statusOrRaw = (value: string | null) => (value && value in statusLabel ? statusLabel[value as TaskStatus] : (value ?? "—"));
 
-/** Frase legível para uma linha do histórico (RF-10). */
 export function auditText(entry: {
   action: AuditAction;
   field: string | null;
@@ -70,7 +68,6 @@ export function auditText(entry: {
   }
 }
 
-/** Mensagem pronta para enviar o link ao cliente (RF-19). Não envia nada; só facilita copiar. */
 export function buildShareMessage(companyName: string, url: string): string {
   return `Olá! Segue o link para acompanhar a implantação do sistema na ${companyName}. Nele você vê o que já foi feito e o que falta, inclusive o que depende de vocês: ${url}`;
 }

@@ -10,7 +10,8 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       { source: "/:path*", headers: securityHeaders },
-      // O link do cliente é um segredo: não pode vazar por Referer nem ser indexado.
+      // o link do cliente é segredo: não pode vazar por referer nem ser indexado
+
       {
         source: "/p/:path*",
         headers: [

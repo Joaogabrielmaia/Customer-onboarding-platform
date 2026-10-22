@@ -4,8 +4,6 @@
 **Data:** 2026-10-22 · **Status:** concluído
 Relacionados: [Discovery](../01-discovery/) · [Problemas priorizados](../01-discovery/08-problemas-priorizados.md)
 
-> Lembrete: as reuniões são simuladas, roteirizadas por mim. Em entrevista, eu digo isso logo no início.
-
 ### 1. O fundador pediu "um painel bonito". Como você transformou isso em requisito?
 Perguntei qual decisão ele tomaria ao ver o painel. A resposta foi "ligaria pro implantador das atrasadas", o que gerou o requisito concreto: listar atrasadas, o responsável e há quanto tempo. Quando alguém pede uma solução ou um adjetivo ("bonito", "simples"), eu volto para a decisão ou o comportamento que ele quer mudar. É o que evita construir algo que ninguém usa.
 

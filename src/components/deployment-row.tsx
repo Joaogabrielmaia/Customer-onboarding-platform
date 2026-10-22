@@ -13,7 +13,6 @@ const tones: Record<DeploymentSummary["category"], { tone: Tone; border: string 
 
 const plural = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : many}`;
 
-/** Uma implantação na lista do painel e da tela de implantações. O atraso aparece grande e em vermelho. */
 export function DeploymentRow({ d }: { d: DeploymentSummary }) {
   const { tone, border } = tones[d.category];
   return (

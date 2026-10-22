@@ -1,4 +1,3 @@
-// Igual para link inexistente, expirado ou revogado: não revela qual é o caso (ADR-007).
 export default function PortalNotFound() {
   return (
     <main id="conteudo" className="mx-auto max-w-xl px-4 py-16 text-center">

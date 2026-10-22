@@ -13,7 +13,7 @@ Relacionados: [Requisitos](02-requisitos.md) · [Histórias](04-historias-de-usu
 | RN-05 | **Progresso.** `tarefas concluídas ÷ (total − não aplicáveis)`, em porcentagem inteira. |
 | RN-06 | **Conclusão.** Quando todas as tarefas, exceto as não aplicáveis, estão concluídas, a implantação passa a "concluída" e grava a data. Se uma tarefa for reaberta, a implantação volta a "em andamento". |
 | RN-07 | **Não aplicável.** Só tarefas não obrigatórias podem ficar "não aplicável". |
-| RN-08 | **Tempo médio.** Média de `data de conclusão − data do kickoff`, em dias, das implantações concluídas. Calculado só sobre os dados existentes (no caso, os de demonstração). |
+| RN-08 | **Tempo médio.** Média de `data de conclusão − data do kickoff`, em dias, das implantações concluídas. Calculado só sobre os dados existentes. |
 | RN-09 | **Responsável padrão.** Cada tarefa do modelo tem um tipo de responsável: *implantador* (vira o implantador da implantação), *cliente* (sem usuário interno) ou *admin*. Pode ser trocado por usuário específico na implantação. |
 | RN-10 | **Cópia do modelo.** Ao criar a implantação, as tarefas são copiadas do modelo. Alterar o modelo depois não muda implantações já criadas. |
 | RN-11 | **Alteração de prazo.** Exige motivo (texto) e gera registro de auditoria com data anterior e nova. |

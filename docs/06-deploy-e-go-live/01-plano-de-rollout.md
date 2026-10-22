@@ -1,7 +1,7 @@
 # Plano de rollout
 
 **Objetivo:** descrever como a Rota Fácil passaria a usar a Trilha, em etapas e com critério para avançar.
-**Data:** 2026-10-22 · **Status:** plano (**cenário simulado; nada disto foi executado com clientes reais**)
+**Data:** 2026-10-22 · **Status:** plano (ainda não executado)
 Relacionados: [Checklist e rollback](02-checklist-go-live-e-rollback.md) · [Comunicação](06-plano-de-comunicacao.md) · [Treinamento](04-guia-treinamento-implantador.md) · [Riscos](../02-definicao/07-riscos.md)
 
 > Os critérios de avanço abaixo são **metas/hipóteses** que eu usaria num piloto real. Não há resultado medido.

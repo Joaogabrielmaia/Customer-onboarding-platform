@@ -2,7 +2,6 @@ import { execSync } from "node:child_process";
 import pg from "pg";
 import { TEST_DATABASE_URL } from "./test-db";
 
-// Antes de todos os testes: garante que o banco de testes existe e está com as migrations aplicadas.
 export default async function setup() {
   const url = new URL(TEST_DATABASE_URL);
   const dbName = url.pathname.slice(1);

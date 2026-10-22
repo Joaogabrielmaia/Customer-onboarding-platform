@@ -1,4 +1,3 @@
-// Tipos mínimos que o domínio precisa. Não dependem do Prisma, só dos enums.
 import type { AssigneeKind, Role, TaskStatus } from "@/generated/prisma/enums";
 
 export type { AssigneeKind, Role, TaskStatus };

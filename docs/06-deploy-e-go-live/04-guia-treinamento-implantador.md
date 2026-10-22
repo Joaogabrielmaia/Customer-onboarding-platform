@@ -1,10 +1,10 @@
 # Guia de treinamento: implantador
 
 **Objetivo:** ensinar o implantador a conduzir uma implantação na Trilha, do cadastro ao go-live.
-**Data:** 2026-10-22 · **Status:** concluído (prints reais, com dados de demonstração)
+**Data:** 2026-10-22 · **Status:** concluído (com prints reais do sistema)
 Relacionados: [Guia rápido do cliente](05-guia-rapido-cliente.md) · [Plano de rollout](01-plano-de-rollout.md)
 
-> Empresa, pessoas e dados dos prints são fictícios (caso simulado). Duração sugerida do treinamento: cerca de 45 minutos, com a pessoa mexendo no sistema.
+> Duração sugerida do treinamento: cerca de 45 minutos, com a pessoa mexendo no sistema.
 
 ## O que muda no seu dia
 

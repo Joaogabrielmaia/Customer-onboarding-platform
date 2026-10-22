@@ -20,7 +20,6 @@ describe("datas civis", () => {
   });
 
   it("usa o dia de São Paulo, não o de UTC, em todayCivil", () => {
-    // 02:00 UTC de 05/03 ainda é 23:00 de 04/03 em São Paulo (UTC-3).
     expect(formatCivil(todayCivil(new Date("2026-03-05T02:00:00Z")))).toBe("2026-03-04");
     expect(formatCivil(todayCivil(new Date("2026-03-05T12:00:00Z")))).toBe("2026-03-05");
   });

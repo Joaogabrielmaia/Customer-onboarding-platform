@@ -1,25 +1,22 @@
-name: Recarregar dados da demonstração
+name: Recarregar dados de exemplo
 
-# Recria os dados fictícios da demonstração, com datas relativas a hoje, para a demo
-# sempre mostrar atrasadas, no prazo e concluídas. APAGA os dados do banco de demonstração.
-# Só roda se o segredo DEMO_DATABASE_URL existir no repositório. Pode ser disparado à mão.
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 9 * * 1" # segundas-feiras, 09:00 UTC
+    - cron: "0 9 * * 1"
 
 jobs:
   reseed:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
-      DATABASE_URL: ${{ secrets.DEMO_DATABASE_URL }}
+      DATABASE_URL: ${{ secrets.SEED_DATABASE_URL }}
       SEED_CONFIRM_RESET: "yes"
     steps:
-      - name: Verificar se o banco de demonstração está configurado
+      - name: Verificar se o banco está configurado
         run: |
           if [ -z "$DATABASE_URL" ]; then
-            echo "Segredo DEMO_DATABASE_URL ausente: nada a fazer."
+            echo "Segredo SEED_DATABASE_URL ausente: nada a fazer."
             echo "SKIP=1" >> "$GITHUB_ENV"
           fi
       - uses: actions/checkout@v4

@@ -3,7 +3,6 @@ import { DomainError, ForbiddenError, ValidationError } from "@/domain/errors";
 import { logEvent } from "@/server/log";
 import type { ActionState } from "./action-state";
 
-/** Converte o FormData em um objeto de textos (ignora os campos internos do Next). */
 export function formValues(formData: FormData): Record<string, string> {
   const values: Record<string, string> = {};
   for (const [key, value] of formData.entries()) {
@@ -12,11 +11,6 @@ export function formValues(formData: FormData): Record<string, string> {
   return values;
 }
 
-/**
- * Executa um serviço e transforma erros de negócio em mensagens para a tela.
- * Devolve undefined quando deu certo. Erros inesperados são registrados no log
- * (sem dados pessoais) e a pessoa vê uma mensagem genérica.
- */
 export async function attempt(
   work: () => Promise<unknown>,
   values?: Record<string, string>,

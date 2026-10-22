@@ -1,7 +1,6 @@
 import { expect, test } from "@playwright/test";
 import { ADMIN, DIEGO, login, openDeployment } from "./helpers";
 
-// TC-07, TC-08 (RF-04, RF-05)
 test.describe("modelos", () => {
   test("o administrador cria um modelo com etapa e tarefa", async ({ page }) => {
     await login(page, ADMIN);
@@ -37,7 +36,6 @@ test.describe("modelos", () => {
   });
 });
 
-// TC-24, TC-26 (RF-14, RF-15)
 test.describe("portal do cliente", () => {
   test("gera o link, o cliente abre no celular sem login e não vê dados internos; revogar derruba o acesso", async ({ page, browser }) => {
     await login(page, DIEGO);
@@ -48,9 +46,8 @@ test.describe("portal do cliente", () => {
     await expect(linkField).toBeVisible();
     const url = await linkField.inputValue();
     expect(url).toMatch(/\/p\/[A-Za-z0-9_-]{43}$/);
-    await expect(page.getByText(/Olá! Segue o link para acompanhar a implantação/)).toBeVisible(); // RF-19
+    await expect(page.getByText(/Olá! Segue o link para acompanhar a implantação/)).toBeVisible();
 
-    // O cliente: contexto novo, sem cookies, tela de celular.
     const client = await browser.newContext({ viewport: { width: 360, height: 740 }, locale: "pt-BR" });
     const portal = await client.newPage();
     const response = await portal.goto(url);
@@ -60,17 +57,14 @@ test.describe("portal do cliente", () => {
     await expect(portal.getByRole("heading", { name: "Implantação de Distribuidora Santa Rita Alimentos", level: 1 })).toBeVisible();
     await expect(portal.getByRole("progressbar", { name: "Progresso da implantação" })).toBeVisible();
     await expect(portal.getByRole("heading", { name: "Próximas etapas" })).toBeVisible();
-    // Nada de comentário interno, de tarefa interna nem de histórico.
     const body = await portal.locator("body").innerText();
     expect(body).not.toContain("módulo de entregas");
     expect(body).not.toContain("Revisão interna");
     expect(body).not.toContain("Configurar contas a receber");
     expect(body).not.toContain("Histórico");
-    // Sem rolagem horizontal em 360 px (US-13 CA4).
     const overflow = await portal.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
     expect(overflow).toBeLessThanOrEqual(0);
 
-    // Revogar derruba o acesso.
     await page.getByRole("button", { name: "Revogar link" }).click();
     await expect(page.getByText("Link revogado.")).toBeVisible();
     const after = await portal.goto(url);

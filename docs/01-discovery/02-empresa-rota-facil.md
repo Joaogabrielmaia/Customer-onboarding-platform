@@ -4,7 +4,7 @@
 **Data:** 2026-10-22 · **Status:** concluído
 Relacionados: [Personas](03-stakeholders-e-personas.md) · [Processo AS-IS](07-processo-as-is.md)
 
-> **Caso simulado.** Empresa, pessoas e números abaixo são fictícios e foram definidos por mim como premissas do cenário. Não são medições.
+> Empresa, pessoas e números abaixo são premissas do cenário que modelei para este projeto. Não são medições.
 
 ## Quem é
 

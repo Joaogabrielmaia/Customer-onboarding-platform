@@ -1,15 +1,14 @@
 import { randomBytes, scrypt, timingSafeEqual } from "node:crypto";
 
-// ADR-002: scrypt do Node, com parâmetros N=2^15, r=8, p=3 (equivalentes às
-// recomendações da OWASP). O formato guardado inclui os parâmetros, então dá
-// para trocar de algoritmo ou custo no futuro sem quebrar senhas existentes.
+// scrypt com N=2^15, r=8, p=3. O formato guardado leva os parâmetros, então dá pra trocar o custo depois
+
 const N = 2 ** 15;
 const R = 8;
 const P = 3;
 const KEY_LENGTH = 64;
 const MAX_MEMORY = 128 * 1024 * 1024;
 
-export const MIN_PASSWORD_LENGTH = 10; // RN-17
+export const MIN_PASSWORD_LENGTH = 10;
 
 function derive(password: string, salt: Buffer, n: number, r: number, p: number): Promise<Buffer> {
   return new Promise((resolve, reject) => {
@@ -19,7 +18,6 @@ function derive(password: string, salt: Buffer, n: number, r: number, p: number)
   });
 }
 
-/** Devolve `scrypt$N$r$p$salt$hash` (salt e hash em base64). */
 export async function hashPassword(password: string): Promise<string> {
   const salt = randomBytes(16);
   const key = await derive(password, salt, N, R, P);

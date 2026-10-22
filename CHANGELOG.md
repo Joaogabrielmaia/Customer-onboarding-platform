@@ -2,8 +2,6 @@
 
 Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e versionamento semântico.
 
-> Projeto de portfólio com caso simulado. As versões descrevem o que o código passou a fazer, não uso em produção com clientes.
-
 ## [Não lançado]
 
 ### Corrigido
@@ -40,10 +38,10 @@ Primeira versão: o MVP.
 - Cadastro de clientes e de usuários.
 - Modelos de implantação com etapas e tarefas, prazo relativo (D+n), responsável padrão, obrigatoriedade e visibilidade ao cliente.
 - Implantação criada a partir de um modelo, com datas calculadas, status, responsável, comentários e histórico de alterações.
-- Painel com implantações em andamento, atrasadas, aguardando cliente e concluídas, tempo médio (só dados de demonstração), filtro por implantador e fila de pendências.
+- Painel com implantações em andamento, atrasadas, aguardando cliente e concluídas, tempo médio das concluídas, filtro por implantador e fila de pendências.
 - Regra de atraso configurável.
 - Portal do cliente por link com token (leitura, com expiração e revogação) e mensagem pronta para enviar o link.
-- Seed de demonstração com dados fictícios; healthcheck e logs mínimos.
+- Seed com dados de exemplo; healthcheck e logs mínimos.
 - Testes (46 unitários, 64 de integração e 31 E2E) e workflow de CI.
 
 ### Corrigido durante a construção

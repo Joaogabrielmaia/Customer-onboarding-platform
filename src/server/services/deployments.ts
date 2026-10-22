@@ -17,7 +17,6 @@ import { getSettings } from "./settings";
 
 type Options = { now?: Date };
 
-/** US-05 / RF-06: cria a implantação copiando o modelo e calculando as datas (RN-01, RN-09, RN-10). */
 export async function createDeployment(actor: Actor, raw: unknown) {
   assertCan(actor, "deployment:create");
   const input = parseInput(deploymentCreateSchema, raw);
@@ -36,7 +35,6 @@ export async function createDeployment(actor: Actor, raw: unknown) {
   if (!implementer || !implementer.active) throw new RuleError("Escolha um implantador ativo.");
   if (template.stages.every((s) => s.tasks.length === 0)) throw new RuleError("O modelo não tem tarefas.");
 
-  // Responsável das tarefas "admin": quem está criando, se for admin; senão, o primeiro admin ativo.
   const adminAssignee =
     actor.role === "ADMIN"
       ? actor.id
@@ -68,7 +66,6 @@ export async function createDeployment(actor: Actor, raw: unknown) {
             dueDate,
             originalDueDate: dueDate,
             assigneeKind: task.assigneeKind,
-            // RN-09: tarefa do cliente fica sem usuário interno.
             assigneeId:
               task.assigneeKind === "IMPLEMENTER" ? implementer.id : task.assigneeKind === "ADMIN" ? adminAssignee : null,
             required: task.required,
@@ -99,7 +96,6 @@ async function loadTaskWithDeployment(taskId: string) {
   return task;
 }
 
-/** US-06 / RF-07: muda o status da tarefa, recalcula a conclusão da implantação e audita (RN-05 a RN-07). */
 export async function updateTaskStatus(actor: Actor, raw: unknown, { now = new Date() }: Options = {}) {
   const input = parseInput(taskStatusSchema, raw);
   const task = await loadTaskWithDeployment(input.taskId);
@@ -129,7 +125,7 @@ export async function updateTaskStatus(actor: Actor, raw: unknown, { now = new D
       newValue: input.status,
     });
 
-    // RN-06: a conclusão da implantação acompanha o estado das tarefas.
+    // a conclusão da implantação acompanha o estado das tarefas
     const all = await tx.deploymentTask.findMany({ where: { deploymentId: task.deploymentId }, select: { status: true } });
     const complete = isDeploymentComplete(all);
     if (complete && task.deployment.status === "IN_PROGRESS") {
@@ -142,7 +138,6 @@ export async function updateTaskStatus(actor: Actor, raw: unknown, { now = new D
   });
 }
 
-/** US-07 / RF-08: ajusta prazo e/ou responsável. Mudar o prazo exige motivo (RN-11). */
 export async function updateTaskSchedule(actor: Actor, raw: unknown) {
   const input = parseInput(taskScheduleSchema, raw);
   const task = await loadTaskWithDeployment(input.taskId);
@@ -201,7 +196,6 @@ export async function updateTaskSchedule(actor: Actor, raw: unknown) {
   });
 }
 
-/** US-08 / RF-09: qualquer usuário interno comenta (RN-12). Comentários são internos (RN-14). */
 export async function addComment(actor: Actor, raw: unknown) {
   assertCan(actor, "comment:create");
   const input = parseInput(commentSchema, raw);
@@ -223,7 +217,6 @@ export async function addComment(actor: Actor, raw: unknown) {
   });
 }
 
-/** US-08 / RF-10: histórico da implantação, do mais recente ao mais antigo. */
 export async function getAuditLog(actor: Actor, deploymentId: string) {
   assertCan(actor, "deployment:read");
   return db.auditLog.findMany({
@@ -233,7 +226,6 @@ export async function getAuditLog(actor: Actor, deploymentId: string) {
   });
 }
 
-/** Detalhe da implantação com tudo o que a tela T08 precisa, já com atraso calculado. */
 export async function getDeployment(actor: Actor, id: string, { now = new Date() }: Options = {}) {
   assertCan(actor, "deployment:read");
   const deployment = await db.deployment.findUnique({

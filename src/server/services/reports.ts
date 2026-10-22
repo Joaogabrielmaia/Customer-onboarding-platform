@@ -20,7 +20,6 @@ const slug = (text: string) =>
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-|-$/g, "");
 
-/** v1.1: relatório de uma implantação, uma linha por tarefa. Qualquer usuário interno pode exportar (RN-12). */
 export async function exportDeploymentCsv(actor: Actor, id: string, now: Date = new Date()): Promise<CsvFile> {
   assertCan(actor, "deployment:read");
   const d = await getDeployment(actor, id, { now });
@@ -52,7 +51,6 @@ export async function exportDeploymentCsv(actor: Actor, id: string, now: Date = 
   };
 }
 
-/** v1.1: a lista de implantações (respeita os filtros da tela), uma linha por implantação. */
 export async function exportDeploymentsCsv(
   actor: Actor,
   filters: DeploymentFilters = {},

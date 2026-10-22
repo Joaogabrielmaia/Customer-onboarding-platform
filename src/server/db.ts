@@ -1,8 +1,8 @@
 import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "@/generated/prisma/client";
 
-// Uma única instância do cliente por processo. Em desenvolvimento o Next recarrega
-// os módulos a cada alteração, então guardo a instância em globalThis.
+// em dev o Next recarrega os módulos; guardo a instância em globalThis pra não abrir conexões demais
+
 const globalForPrisma = globalThis as unknown as { prisma?: PrismaClient };
 
 function createClient(): PrismaClient {
@@ -14,5 +14,4 @@ function createClient(): PrismaClient {
 export const db = globalForPrisma.prisma ?? createClient();
 if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = db;
 
-/** Tipo do cliente dentro de `db.$transaction(async (tx) => ...)`. */
 export type Tx = Parameters<Parameters<typeof db.$transaction>[0]>[0];

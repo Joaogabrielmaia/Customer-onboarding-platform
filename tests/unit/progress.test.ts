@@ -29,9 +29,8 @@ describe("taskLateness (RN-02, RN-03)", () => {
   });
 
   it("respeita a tolerância: só atrasa quando passa dela (US-11 CA1)", () => {
-    // prazo 05/03, tolerância 2 dias
-    expect(taskLateness(task("2026-03-05"), d("2026-03-06"), 2)).toBeNull(); // 1 dia
-    expect(taskLateness(task("2026-03-05"), d("2026-03-07"), 2)).toBeNull(); // 2 dias
+    expect(taskLateness(task("2026-03-05"), d("2026-03-06"), 2)).toBeNull();
+    expect(taskLateness(task("2026-03-05"), d("2026-03-07"), 2)).toBeNull();
     expect(taskLateness(task("2026-03-05"), d("2026-03-08"), 2)).toEqual({ kind: "TEAM", daysLate: 3 });
   });
 
@@ -94,11 +93,11 @@ describe("deploymentLateness (RN-04)", () => {
     const today = d("2026-03-10");
     const result = deploymentLateness(
       [
-        task("2026-03-05"), // equipe, 5 dias
-        task("2026-03-08"), // equipe, 2 dias
-        task("2026-03-01", "WAITING_CLIENT"), // cliente
-        task("2026-03-20"), // no prazo
-        task("2026-03-01", "DONE"), // concluída
+        task("2026-03-05"),
+        task("2026-03-08"),
+        task("2026-03-01", "WAITING_CLIENT"),
+        task("2026-03-20"),
+        task("2026-03-01", "DONE"),
       ],
       today,
       0,
@@ -119,20 +118,20 @@ describe("averageDeploymentDays (RN-08)", () => {
 
   it("calcula a média em dias, arredondada", () => {
     const avg = averageDeploymentDays([
-      { kickoffDate: d("2026-01-05"), completedAt: d("2026-02-04") }, // 30
-      { kickoffDate: d("2026-01-12"), completedAt: d("2026-02-26") }, // 45
+      { kickoffDate: d("2026-01-05"), completedAt: d("2026-02-04") },
+      { kickoffDate: d("2026-01-12"), completedAt: d("2026-02-26") },
     ]);
-    expect(avg).toBe(38); // 37,5 arredonda para 38
+    expect(avg).toBe(38);
   });
 });
 
 describe("sortPendingQueue (RF-12)", () => {
   it("coloca as mais atrasadas primeiro, depois as que vencem antes", () => {
     const today = d("2026-03-10");
-    const a = { ...task("2026-03-08"), id: "a" }; // 2 dias de atraso
-    const b = { ...task("2026-03-02"), id: "b" }; // 8 dias de atraso
-    const c = { ...task("2026-03-12"), id: "c" }; // vence em 2 dias
-    const e = { ...task("2026-03-11"), id: "e" }; // vence em 1 dia
+    const a = { ...task("2026-03-08"), id: "a" };
+    const b = { ...task("2026-03-02"), id: "b" };
+    const c = { ...task("2026-03-12"), id: "c" };
+    const e = { ...task("2026-03-11"), id: "e" };
     const done = { ...task("2026-03-01", "DONE"), id: "x" };
     const ordered = sortPendingQueue([c, a, done, e, b], today, 0).map((t) => t.id);
     expect(ordered).toEqual(["b", "a", "e", "c"]);

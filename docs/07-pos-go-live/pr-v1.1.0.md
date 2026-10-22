@@ -13,7 +13,7 @@ Relacionados: [Changelog](../../CHANGELOG.md) · [Retrospectiva](reuniao-6-retro
 ## Descrição
 
 ### Contexto
-Na retrospectiva do piloto (simulado), a líder de implantação e o fundador pediram um relatório que pudessem abrir no Excel, em vez de tirar print (pedidos M4-07/UAT). Era a melhoria de maior impacto e menor esforço.
+Na retrospectiva do piloto, a líder de implantação e o fundador pediram um relatório que pudessem abrir no Excel, em vez de tirar print (pedidos M4-07/UAT). Era a melhoria de maior impacto e menor esforço.
 
 ### O que muda
 - Botão **Exportar CSV** no detalhe da implantação: uma linha por tarefa.

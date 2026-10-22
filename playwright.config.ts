@@ -1,8 +1,6 @@
 import { defineConfig, devices } from "@playwright/test";
 import { E2E_DATABASE_URL, E2E_PORT } from "./tests/e2e/e2e-env";
 
-// Testes E2E dos fluxos críticos. Sobem o app já compilado (`npm run build`) apontando
-// para um banco próprio (trilha_e2e), recriado com o seed a cada execução.
 export default defineConfig({
   testDir: "./tests/e2e",
   testMatch: /.*\.spec\.ts/,

@@ -1,5 +1,3 @@
-// Logs mínimos em JSON, uma linha por evento (RNF-10).
-// Regra: nunca registrar senha, token, e-mail ou outros dados pessoais.
 type Level = "info" | "warn" | "error";
 
 export function logEvent(level: Level, event: string, meta: Record<string, string | number | boolean | null> = {}): void {

@@ -3,7 +3,7 @@
   "version": "1.1.0",
   "private": true,
   "type": "module",
-  "description": "Trilha: plataforma de acompanhamento de implantação de clientes. Caso simulado de portfólio.",
+  "description": "Trilha: plataforma de acompanhamento de implantação de clientes.",
   "license": "MIT",
   "scripts": {
     "dev": "next dev",

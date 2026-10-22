@@ -4,8 +4,6 @@
 **Data:** 2026-10-22 · **Status:** concluído
 Relacionados: [Protótipo](../04-prototipo/) · [Change-log](../04-prototipo/03-change-log.md)
 
-> As reuniões são simuladas, roteirizadas por mim.
-
 ### 1. Por que desenhar antes de codar?
 Porque mudar um desenho custa minutos e mudar uma tela pronta custa horas e retrabalho de teste. Os wireframes me deram algo concreto para o fundador reagir, e três dos pedidos (filtro por implantador, dias de atraso em destaque, mensagem pronta com o link) só apareceram porque ele viu a tela. Sem desenho, teriam aparecido depois do código pronto.
 

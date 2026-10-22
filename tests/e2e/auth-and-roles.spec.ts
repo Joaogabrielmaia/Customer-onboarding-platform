@@ -1,7 +1,6 @@
 import { expect, test } from "@playwright/test";
 import { ADMIN, DIEGO, login } from "./helpers";
 
-// TC-02 (RF-01, RF-02)
 test.describe("login e papéis", () => {
   test("recusa senha errada com mensagem genérica", async ({ page }) => {
     await page.goto("/login");
@@ -10,7 +9,6 @@ test.describe("login e papéis", () => {
     await page.getByRole("button", { name: "Entrar" }).click();
     await expect(page.locator("p[role=alert]")).toHaveText("E-mail ou senha incorretos.");
     await expect(page).toHaveURL(/\/login$/);
-    // O e-mail digitado é mantido; a senha não.
     await expect(page.getByLabel("E-mail")).toHaveValue(ADMIN.email);
     await expect(page.getByLabel("Senha")).toHaveValue("");
   });

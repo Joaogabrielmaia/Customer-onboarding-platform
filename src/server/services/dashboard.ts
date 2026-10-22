@@ -27,7 +27,6 @@ export interface DeploymentSummary {
   teamLateCount: number;
   clientLateCount: number;
   maxTeamDaysLate: number;
-  /** Título da tarefa da equipe mais atrasada (ou da espera do cliente, se não houver atraso da equipe). */
   worstTaskTitle: string | null;
   nextDueDate: Date | null;
 }
@@ -38,7 +37,6 @@ export interface DeploymentFilters {
   clientId?: string;
 }
 
-/** Resumo de cada implantação com atraso e progresso calculados (RF-11, RF-18). */
 export async function listDeploymentSummaries(
   actor: Actor,
   filters: DeploymentFilters = {},
@@ -117,7 +115,6 @@ export async function listDeploymentSummaries(
   });
 }
 
-/** US-09 / RF-11: números do painel. O tempo médio vem só dos dados existentes (RN-08). */
 export async function getDashboard(
   actor: Actor,
   filters: { implementerId?: string } = {},
@@ -143,7 +140,6 @@ export async function getDashboard(
   };
 }
 
-/** RF-12: quantas pendências cada implantador tem, e quantas estão atrasadas. */
 async function queueByImplementer(actor: Actor, implementerId: string | undefined, now: Date) {
   assertCan(actor, "deployment:read");
   const { overdueToleranceDays: tolerance } = await getSettings();
@@ -168,7 +164,6 @@ async function queueByImplementer(actor: Actor, implementerId: string | undefine
   return [...byUser.values()].sort((a, b) => b.late - a.late || b.open - a.open);
 }
 
-/** US-10 / RF-12: as tarefas abertas do próprio usuário, as mais atrasadas primeiro. */
 export async function getMyQueue(actor: Actor, now: Date = new Date()) {
   assertCan(actor, "deployment:read");
   const { overdueToleranceDays: tolerance } = await getSettings();

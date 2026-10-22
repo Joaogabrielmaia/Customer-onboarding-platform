@@ -32,7 +32,7 @@ flowchart BT
 2. **"Integração da API" é integração dos serviços.** Segui o ADR-009: a API da aplicação são os serviços. Não testo endpoints REST porque não existem (só `/api/health`, coberto no E2E). Não chamo isso de teste de API REST.
 3. **Relógio fixo nos testes de integração.** Os serviços recebem `now`, então o resultado não depende do dia em que o teste roda. Os E2E, ao contrário, usam o seed relativo a hoje, e os testes validam as categorias (atrasada, aguardando, no prazo), não datas absolutas.
 4. **Axe não é teste de acessibilidade completo.** Pega contraste, rótulos e papéis ARIA, mas não avalia se a navegação por teclado faz sentido nem a experiência com leitor de tela. Isso ficou como verificação manual pendente (ver limitações).
-5. **Só Chromium.** Cobrir Firefox e WebKit dobraria o tempo do E2E sem prova de benefício para uma demonstração. Registrado como limitação.
+5. **Só Chromium.** Cobrir Firefox e WebKit dobraria o tempo do E2E sem prova de benefício neste momento. Registrado como limitação.
 6. **Não medi cobertura de código.** Preferi rastrear regra → teste (matriz) a perseguir um percentual. Por isso **não há número de cobertura** neste projeto, e não vou inventar um.
 
 ## Quando eu mudaria

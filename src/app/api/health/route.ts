@@ -4,7 +4,6 @@ import { logEvent } from "@/server/log";
 
 export const dynamic = "force-dynamic";
 
-/** Healthcheck simples (RNF-08): confirma que o app responde e que o banco atende uma consulta. */
 export async function GET() {
   try {
     await db.$queryRaw`SELECT 1`;

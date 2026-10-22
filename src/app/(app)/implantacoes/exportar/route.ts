@@ -6,7 +6,6 @@ export const dynamic = "force-dynamic";
 
 const STATUSES = ["all", "in_progress", "late", "waiting_client", "completed"];
 
-/** v1.1: baixa a lista de implantações em CSV, com os mesmos filtros da tela. */
 export async function GET(request: Request) {
   const params = new URL(request.url).searchParams;
   const situacao = params.get("situacao") ?? "all";

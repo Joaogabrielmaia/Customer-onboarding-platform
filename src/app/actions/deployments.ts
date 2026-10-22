@@ -39,7 +39,6 @@ export async function updateTaskScheduleAction(_prev: ActionState, formData: For
   const values = formValues(formData);
   const input = {
     taskId: values.taskId,
-    // Campos vazios significam "não alterar".
     dueDate: values.dueDate || undefined,
     assigneeId: values.assigneeId || undefined,
     reason: values.reason,
@@ -59,7 +58,6 @@ export async function addCommentAction(_prev: ActionState, formData: FormData): 
   return { ok: true, nonce: Date.now() };
 }
 
-/** Gera o link do cliente. O endereço completo só existe nesta resposta (ADR-007). */
 export async function createPortalLinkAction(_prev: ActionState, formData: FormData): Promise<ActionState> {
   const user = await requireUser();
   const deploymentId = String(formData.get("deploymentId") ?? "");

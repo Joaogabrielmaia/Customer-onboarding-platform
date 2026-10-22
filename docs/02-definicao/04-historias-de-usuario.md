@@ -87,7 +87,7 @@ Como cliente, quero ver o progresso e o que vem agora pelo celular, sem criar co
 - **CA3** Dado um token inexistente, então vejo a mesma mensagem de link inválido.
 - **CA4** Dado uma tela de 360 px de largura, então tudo é legível sem rolagem horizontal.
 
-### US-14 Dados de demonstração (RF-16) · Sprint 1 e 3
-Como visitante da demo, quero encontrar dados realistas para avaliar o sistema.
+### US-14 Dados de exemplo (RF-16) · Sprint 1 e 3
+Como usuário, quero encontrar dados de exemplo realistas para conhecer o sistema.
 - **CA1** Dado o seed rodado, então existem cerca de 8 clientes, 3 modelos e implantações no prazo, atrasadas e concluídas.
-- **CA2** Dado o seed, então todos os dados são fictícios, incluindo CNPJ.
+- **CA2** Dado o seed, então os CNPJs são de exemplo, claramente inválidos.

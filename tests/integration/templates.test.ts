@@ -23,7 +23,6 @@ const validTemplate = {
   ],
 };
 
-// TC-07 (RF-04) e TC-08 (RF-05)
 describe("modelos de implantação", () => {
   it("o admin cria um modelo com etapa e tarefas na ordem informada (US-04 CA1)", async () => {
     const template = await saveTemplate(s.camila, null, validTemplate);

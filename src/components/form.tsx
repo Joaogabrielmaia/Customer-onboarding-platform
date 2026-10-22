@@ -27,10 +27,6 @@ export function SubmitButton({ children, pendingLabel = "Salvando...", variant =
   );
 }
 
-/**
- * Formulário ligado a uma Server Action. Mostra o erro geral no topo, repassa os
- * erros de cada campo aos <Field> e mantém o que foi digitado quando há erro.
- */
 export function ActionForm({
   action,
   children,
@@ -56,7 +52,6 @@ export function ActionForm({
       <form ref={formRef} action={formAction} className={className ?? "space-y-4"} noValidate>
         {state.error && (
           <p role="alert" className="rounded-md border border-red-300 bg-red-50 px-3 py-2 text-sm text-red-900">
-            {/* Com erros por campo, o detalhe fica em cada campo e o topo só orienta. */}
             {Object.keys(state.fieldErrors ?? {}).length > 0 ? "Revise os campos destacados." : state.error}
           </p>
         )}
@@ -164,12 +159,10 @@ export function SelectField(props: BaseFieldProps & { options: { value: string; 
   );
 }
 
-/** Estado atual do formulário (erros por campo, valores), para campos personalizados. */
 export function useFormState(): ActionState {
   return useContext(FormStateContext);
 }
 
-/** Mensagem de sucesso exibida depois de uma ação que não redireciona. */
 export function FormSuccess({ children }: { children: ReactNode }) {
   const state = useContext(FormStateContext);
   if (!state.ok) return null;

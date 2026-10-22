@@ -2,8 +2,6 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect, test, type Page } from "@playwright/test";
 import { ADMIN, DIEGO, login, openDeployment } from "./helpers";
 
-// RNF-07: verificação AUTOMÁTICA com axe-core (regras WCAG 2.x A/AA). Ela não substitui
-// o teste manual com teclado e leitor de tela; só pega o que uma máquina consegue pegar.
 async function expectNoSeriousViolations(page: Page) {
   const results = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"]).analyze();
   const serious = results.violations.filter((v) => v.impact === "serious" || v.impact === "critical");

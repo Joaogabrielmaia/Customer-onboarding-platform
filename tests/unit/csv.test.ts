@@ -1,7 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { csvCell, toCsv } from "@/domain/csv";
 
-// TC-36 (v1.1, RF-20)
 describe("csvCell", () => {
   it("escreve texto simples, números e vazios", () => {
     expect(csvCell("Parametrização fiscal")).toBe("Parametrização fiscal");

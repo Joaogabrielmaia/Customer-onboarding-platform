@@ -3,13 +3,9 @@ import { parseCivil } from "@/domain/dates";
 import { ValidationError } from "@/domain/errors";
 import { MIN_PASSWORD_LENGTH } from "./password";
 
-// Toda entrada passa por aqui antes de tocar no banco (RNF-04).
-// Os serviços chamam `parseInput`; não confio que a interface já validou.
-
 const requiredText = (label: string, max = 120) =>
   z.string().trim().min(1, `Informe ${label}.`).max(max, `${label} deve ter no máximo ${max} caracteres.`);
 
-/** Texto opcional: string vazia vira undefined. */
 const optionalText = (max = 200) =>
   z.preprocess(
     (v) => (typeof v === "string" && v.trim() === "" ? undefined : v),
@@ -117,7 +113,6 @@ export const settingsSchema = z.object({
 export type ClientInput = z.infer<typeof clientSchema>;
 export type TemplateInput = z.infer<typeof templateSchema>;
 
-/** Valida `data` com o schema; em caso de erro lança ValidationError com a mensagem de cada campo. */
 export function parseInput<T extends z.ZodType>(schema: T, data: unknown): z.infer<T> {
   const result = schema.safeParse(data);
   if (result.success) return result.data;

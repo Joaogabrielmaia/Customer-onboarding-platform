@@ -1,6 +1,6 @@
 # Estimativa de custo de hospedagem
 
-**Objetivo:** estimar o custo da demonstração e de um uso real.
+**Objetivo:** estimar o custo de hospedagem no plano gratuito e em uso comercial.
 **Data:** 2026-10-22 · **Status:** concluído (**estimativa**; preços e limites mudam, conferir nas páginas oficiais antes de decidir)
 Relacionados: [ADR-008](adr/008-hospedagem.md) · [Visão](../02-definicao/01-visao-e-metas.md)
 
@@ -8,13 +8,13 @@ Relacionados: [ADR-008](adr/008-hospedagem.md) · [Visão](../02-definicao/01-vi
 
 | Cenário | Componentes | Custo mensal estimado |
 |---|---|---|
-| **Demonstração de portfólio (este projeto)** | Vercel Hobby + Neon plano gratuito + GitHub | **R$ 0** |
+| **Plano gratuito (como está hoje)** | Vercel Hobby + Neon plano gratuito + GitHub | **R$ 0** |
 | Uso real, equipe pequena | Vercel Pro (por usuário/mês, em dólar) + banco Neon pago de entrada | Da ordem de **US$ 20 a US$ 45** (aprox. R$ 110 a R$ 250, conforme o câmbio) |
 | Uso real alternativo | Um host de containers pequeno + Postgres gerenciado básico | Da ordem de **US$ 10 a US$ 30** |
 
 ## Leitura
 
-- Para a **demo** o custo é zero, dentro do que o cenário permite.
+- No **plano gratuito** o custo é zero, dentro do que o cenário permite.
 - Para **uso real**, o teto de R$ 100/mês dito pelo fundador (R1-05) provavelmente seria ultrapassado se ele quisesse backup, banco sem suspensão e licença comercial de hospedagem. Registro isso como um **ponto a renegociar**, não como detalhe.
 - O que mais pesa no custo não é o tráfego (poucos usuários e um portal leve), e sim as garantias: banco sem suspensão e backup.
 

@@ -1,18 +1,16 @@
 import "dotenv/config";
 import { todayCivil } from "../src/domain/dates";
 import { db } from "../src/server/db";
-import { seedDemo } from "../src/server/seed";
+import { seedDatabase } from "../src/server/seed";
 import { listDeploymentSummaries } from "../src/server/services/dashboard";
 
-// Carrega os dados de demonstração (todos fictícios). ATENÇÃO: apaga os dados existentes.
 async function main() {
-  // O seed APAGA tudo. Em qualquer banco que não seja local, exijo confirmação explícita.
   const isLocal = /@(localhost|127.0.0.1)[:/]/.test(process.env.DATABASE_URL ?? "");
   if (!isLocal && process.env.SEED_CONFIRM_RESET !== "yes") {
-    throw new Error("Este banco não é local. Defina SEED_CONFIRM_RESET=yes para apagar e recriar os dados de demonstração.");
+    throw new Error("Este banco não é local. Defina SEED_CONFIRM_RESET=yes para apagar e recriar os dados do seed.");
   }
   const today = todayCivil();
-  const { users } = await seedDemo(db, today);
+  const { users } = await seedDatabase(db, today);
 
   const admin = { id: users.camila!, role: "ADMIN" as const };
   const summaries = await listDeploymentSummaries(admin, {}, new Date());

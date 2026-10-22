@@ -13,10 +13,10 @@ export async function loginAction(_prev: ActionState, formData: FormData): Promi
   let session: Awaited<ReturnType<typeof login>> | undefined;
   const failure = await attempt(async () => {
     session = await login({ email: values.email, password: values.password });
-  }, { email: values.email ?? "" }); // a senha nunca volta para a tela
+  }, { email: values.email ?? "" });
 
   if (failure || !session) {
-    logEvent("warn", "login_failed"); // sem e-mail no log (dado pessoal)
+    logEvent("warn", "login_failed");
     return failure ?? { error: "Não foi possível entrar.", nonce: Date.now() };
   }
   await setSessionCookie(session.token, session.expiresAt);

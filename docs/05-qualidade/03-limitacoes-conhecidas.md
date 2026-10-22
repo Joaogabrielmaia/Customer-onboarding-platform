@@ -8,7 +8,6 @@ Relacionados: [Resultado da execução](02-resultado-da-ultima-execucao.md) · [
 
 | Limitação | Motivo / efeito |
 |---|---|
-| É uma **demonstração**, sem uso real com clientes | Caso simulado de portfólio |
 | Sem notificações por e-mail ou WhatsApp | Custo e prazo (R1-05, R1-06); fora do MVP |
 | Sem recuperação de senha por e-mail | O admin redefine a senha |
 | Prazos não consideram feriados | Só fim de semana (RN-01) |
@@ -23,7 +22,7 @@ Relacionados: [Resultado da execução](02-resultado-da-ultima-execucao.md) · [
 - Sem autenticação em dois fatores.
 - A auditoria é imutável por convenção da aplicação, não por permissão do banco (ADR-005).
 - Quem tem o link do cliente acessa o portal; o conteúdo exposto é pouco sensível por desenho (ADR-007).
-- Contas de demonstração têm senhas públicas **de propósito** (README). Não usar este padrão em produção.
+- As contas criadas pelo seed têm senhas fixas em `src/server/seed-data.ts`: servem só para desenvolvimento e teste. Em produção, trocar.
 
 ## Qualidade e testes
 
@@ -34,7 +33,7 @@ Relacionados: [Resultado da execução](02-resultado-da-ultima-execucao.md) · [
 - Sem teste de carga ou desempenho. A meta de 2 s (RNF-01) é uma hipótese não medida.
 - O CI (GitHub Actions) está configurado, mas **ainda não foi executado no GitHub**.
 
-## Plataforma de demonstração
+## Hospedagem gratuita
 
 - O banco gratuito suspende por inatividade: a primeira visita pode demorar alguns segundos (ADR-008).
 - O plano gratuito da hospedagem é para uso não comercial; uso real exigiria plano pago (ver [custo](../03-arquitetura/custo-hospedagem.md)).

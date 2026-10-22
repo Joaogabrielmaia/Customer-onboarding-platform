@@ -4,8 +4,6 @@
 **Data:** 2026-10-22 · **Status:** concluído
 Relacionados: [Go-live](../06-deploy-e-go-live/) · [Plano de rollout](../06-deploy-e-go-live/01-plano-de-rollout.md)
 
-> É um plano para um cenário simulado. Em entrevista, deixo claro que não executei com clientes reais.
-
 ### 1. Por que um piloto com uma implantação e não lançar para todos?
 O maior risco não é técnico: é a equipe não preencher. Com uma implantação e um implantador, o custo de errar é pequeno e eu consigo observar o que a pessoa faz de verdade. No piloto a planilha continua em paralelo só naquele cliente, então voltar atrás não perde controle. Só amplio se houver critério: o implantador atualizou sem ajuda constante, o cliente abriu o link e a líder viu o atraso no painel sem perguntar. Esses critérios são metas que eu mediria, não resultados.
 

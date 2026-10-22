@@ -42,7 +42,7 @@ erDiagram
     Client {
         string id PK
         string companyName
-        string cnpj "fictício"
+        string cnpj
         string contactName
         string contactEmail
         enum plan "ESSENCIAL | PROFISSIONAL | REDE"
@@ -117,4 +117,4 @@ erDiagram
 | Índices em `Deployment(status)`, `DeploymentTask(deploymentId)`, `DeploymentTask(assigneeId, status)` e `AuditLog(deploymentId, createdAt)` | Painel, fila de pendências e histórico são as consultas mais frequentes | Pequeno custo de escrita |
 
 ## O que não guardo
-Senha em texto, token do cliente em texto, IP do cliente do portal, dados de pagamento, documentos pessoais. O CNPJ é opcional e, na demo, sempre fictício.
+Senha em texto, token do cliente em texto, IP do cliente do portal, dados de pagamento, documentos pessoais. O CNPJ é opcional.

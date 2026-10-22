@@ -1,7 +1,7 @@
 # Checklist de go-live e plano de rollback
 
 **Objetivo:** garantir que nada essencial seja esquecido no go-live e que exista um caminho de volta.
-**Data:** 2026-10-22 · **Status:** plano (cenário simulado)
+**Data:** 2026-10-22 · **Status:** plano
 Relacionados: [Plano de rollout](01-plano-de-rollout.md) · [Deploy](deploy.md) · [Runbook](../07-pos-go-live/)
 
 ## Checklist de go-live
@@ -10,10 +10,10 @@ Relacionados: [Plano de rollout](01-plano-de-rollout.md) · [Deploy](deploy.md) 
 - [ ] `/api/health` devolve `ok` (app e banco).
 - [ ] Migrations aplicadas (`prisma migrate deploy` sem pendências).
 - [ ] Variáveis de ambiente de produção conferidas (`DATABASE_URL`, `DIRECT_URL`, `AUTH_SECRET`, `APP_URL`).
-- [ ] `DEMO_MODE=false` e **senhas de demonstração trocadas** (em produção real).
+- [ ] Senhas das contas criadas pelo seed trocadas (ou o seed nunca rodado no banco de produção).
 - [ ] Execução mais recente do CI verde.
 - [ ] Backup do banco confirmado (plano do provedor) e restauração testada uma vez.
-- [ ] Contas de usuários reais criadas; contas de demonstração removidas ou desativadas.
+- [ ] Contas de usuários reais criadas; contas do seed removidas ou desativadas.
 
 ### Dados
 - [ ] Modelos revisados pela líder de implantação.

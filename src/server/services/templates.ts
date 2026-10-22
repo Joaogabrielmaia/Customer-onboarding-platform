@@ -24,10 +24,6 @@ export async function getTemplate(actor: Actor, id: string) {
   return template;
 }
 
-/**
- * Cria (id nulo) ou substitui a estrutura inteira de um modelo (RF-04, RF-05).
- * Substituir é seguro porque as implantações guardam uma cópia (RN-10, ADR-004).
- */
 export async function saveTemplate(actor: Actor, id: string | null, raw: unknown) {
   assertCan(actor, "template:manage");
   const input = parseInput(templateSchema, raw);
@@ -73,7 +69,6 @@ export async function saveTemplate(actor: Actor, id: string | null, raw: unknown
   });
 }
 
-/** RN-16: modelos são arquivados, não excluídos. */
 export async function archiveTemplate(actor: Actor, id: string) {
   assertCan(actor, "template:manage");
   await db.template.update({ where: { id }, data: { archivedAt: new Date() } });

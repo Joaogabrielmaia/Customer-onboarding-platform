@@ -2,8 +2,6 @@ import "dotenv/config";
 import { db } from "../src/server/db";
 import { MIN_PASSWORD_LENGTH, hashPassword } from "../src/server/password";
 
-// Uso: npm run admin:reset-password -- <email> <nova-senha>
-// Redefine a senha de um usuário direto no banco (ex.: o único admin perdeu o acesso) e encerra as sessões dele.
 async function main() {
   const [email, password] = process.argv.slice(2);
   if (!email || !password) throw new Error("Uso: npm run admin:reset-password -- <email> <nova-senha>");

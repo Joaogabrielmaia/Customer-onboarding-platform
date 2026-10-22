@@ -12,7 +12,7 @@ Sou uma pessoa só, então "sprint" aqui é um bloco de entrega com objetivo, n�
 | **2. Núcleo** | Modelo → implantação → tarefas, comentários e auditoria funcionando de ponta a ponta | US-04, US-05, US-06, US-07, US-08 | RF-04 a RF-10 |
 | **3. Visão e cliente** | Painel, atraso, pendências, portal por token, seed completo e acabamento | US-09, US-10, US-11, US-12, US-13, US-14 | RF-11 a RF-15, RF-18, RF-19 |
 
-**Primeiro corte se o tempo apertar:** RF-19 (mensagem pronta) e RF-17 (gestão de usuários pela interface). Depois, o portal (ver ordem de corte no [CLAUDE.md](../../CLAUDE.md)).
+**Primeiro corte se o tempo apertar:** RF-19 (mensagem pronta) e RF-17 (gestão de usuários pela interface). Depois, o portal.
 
 ## Definition of Ready (história pronta para começar)
 

@@ -7,7 +7,6 @@ import { requireUser } from "@/lib/auth";
 import { attempt, formValues } from "@/lib/run-action";
 import { archiveClient, createClient, unarchiveClient, updateClient } from "@/server/services/clients";
 
-/** Cria (sem `id`) ou edita o cliente. */
 export async function saveClientAction(_prev: ActionState, formData: FormData): Promise<ActionState> {
   const user = await requireUser();
   const { id, ...values } = formValues(formData);

@@ -1,7 +1,7 @@
 import { beforeAll, describe, expect, it } from "vitest";
 import { ForbiddenError, RuleError, ValidationError } from "@/domain/errors";
 import { db } from "@/server/db";
-import { DEMO_IMPLEMENTER_PASSWORD } from "@/server/seed-data";
+import { SEED_USER_PASSWORD } from "@/server/seed-data";
 import { login } from "@/server/services/auth";
 import { archiveClient, createClient, listClients, updateClient } from "@/server/services/clients";
 import { createUser, listUsers, resetPassword, setUserActive } from "@/server/services/users";
@@ -20,7 +20,6 @@ const newClient = {
   contractDate: "2026-10-01",
 };
 
-// TC-28 (RF-17) e TC-04 (acesso negado)
 describe("usuários", () => {
   it("o admin cria um usuário que consegue entrar", async () => {
     const user = await createUser(s.camila, {
@@ -62,12 +61,11 @@ describe("usuários", () => {
 
   it("redefinir a senha troca o acesso e encerra sessões", async () => {
     await resetPassword(s.camila, { userId: s.diego.id, password: "senha-nova-muito-longa" });
-    await expect(login({ email: "implantador@rotafacil.example", password: DEMO_IMPLEMENTER_PASSWORD })).rejects.toBeInstanceOf(RuleError);
+    await expect(login({ email: "implantador@rotafacil.example", password: SEED_USER_PASSWORD })).rejects.toBeInstanceOf(RuleError);
     await expect(login({ email: "implantador@rotafacil.example", password: "senha-nova-muito-longa" })).resolves.toBeDefined();
   });
 });
 
-// TC-05 (RF-03, RN-16)
 describe("clientes", () => {
   it("cadastra e edita um cliente (US-02 CA1)", async () => {
     const created = await createClient(s.diego, newClient);

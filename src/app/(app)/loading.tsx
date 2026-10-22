@@ -1,4 +1,3 @@
-// Estado de carregamento (RNF-06): esqueleto simples enquanto a página busca os dados.
 export default function Loading() {
   return (
     <div role="status" aria-live="polite" className="animate-pulse space-y-4">

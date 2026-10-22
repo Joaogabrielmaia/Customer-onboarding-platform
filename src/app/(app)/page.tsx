@@ -56,7 +56,7 @@ export default async function DashboardPage({ searchParams }: { searchParams: Pr
             <StatCard
               label="Tempo médio de implantação"
               value={dash.averageDays === null ? "—" : `${dash.averageDays} dias`}
-              note="Só sobre as concluídas dos dados de demonstração"
+              note="Média das implantações concluídas"
             />
           </section>
 

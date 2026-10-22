@@ -1,14 +1,11 @@
-// Dados de demonstração da Trilha. TUDO aqui é fictício: empresas, pessoas, e-mails
-// (domínio reservado .example) e CNPJs (claramente inválidos, com zeros).
 
 import type { AssigneeKind, Plan } from "@/generated/prisma/enums";
 
-export const DEMO_ADMIN_PASSWORD = "Demo-Admin-2026";
-export const DEMO_IMPLEMENTER_PASSWORD = "Demo-Implantador-2026";
-/** Token público do link de cliente da demonstração (fictício). */
-export const DEMO_PORTAL_TOKEN = "demo-portal-santa-rita-token-publico-0001";
+export const SEED_ADMIN_PASSWORD = "Admin-Trilha-2026";
+export const SEED_USER_PASSWORD = "Usuario-Trilha-2026";
+export const SEED_PORTAL_TOKEN = "portal-santa-rita-token-0001";
 
-export const demoUsers = [
+export const seedUsers = [
   { key: "camila", name: "Camila Tavares", email: "admin@rotafacil.example", role: "ADMIN", admin: true },
   { key: "ricardo", name: "Ricardo Almeida", email: "fundador@rotafacil.example", role: "ADMIN", admin: true },
   { key: "diego", name: "Diego Ferreira", email: "implantador@rotafacil.example", role: "IMPLEMENTER", admin: false },
@@ -16,7 +13,7 @@ export const demoUsers = [
   { key: "patricia", name: "Patrícia Nogueira", email: "suporte@rotafacil.example", role: "IMPLEMENTER", admin: false },
 ] as const;
 
-export const demoClients: {
+export const seedClients: {
   key: string;
   companyName: string;
   cnpj: string;
@@ -33,13 +30,12 @@ export const demoClients: {
   { key: "paoProsa", companyName: "Distribuidora Pão e Prosa", cnpj: "00.000.005/0001-00", contactName: "Rogério Teixeira", contactEmail: "rogerio@paoeprosa.example", contactPhone: "(31) 90000-0005", plan: "ESSENTIAL", contractDaysAgo: 6 },
   { key: "boaMesa", companyName: "Central de Frios Boa Mesa", cnpj: "00.000.006/0001-00", contactName: "Aline Siqueira", contactEmail: "aline@boamesa.example", contactPhone: "(31) 90000-0006", plan: "PROFESSIONAL", contractDaysAgo: 115 },
   { key: "armazem", companyName: "Armazém do Vale Distribuição", cnpj: "00.000.007/0001-00", contactName: "Jorge Antunes", contactEmail: "jorge@armazemdovale.example", contactPhone: "(31) 90000-0007", plan: "ESSENTIAL", contractDaysAgo: 80 },
-  // Sem implantação: serve para demonstrar a criação de uma nova.
   { key: "costaLima", companyName: "Costa Lima Embalagens e Distribuição", cnpj: "00.000.008/0001-00", contactName: "Beatriz Costa Lima", contactEmail: "beatriz@costalima.example", contactPhone: "(31) 90000-0008", plan: "NETWORK", contractDaysAgo: 3 },
 ];
 
 type T = [title: string, offsetDays: number, assigneeKind: AssigneeKind, required: boolean, visibleToClient: boolean];
 
-export const demoTemplates: {
+export const seedTemplates: {
   key: string;
   name: string;
   description: string;
@@ -162,12 +158,6 @@ export const demoTemplates: {
   },
 ];
 
-/**
- * Cada cenário define um "pivô": a tarefa em que a implantação está parada.
- * Tudo antes dele (na ordem do modelo) está concluído; o pivô recebe `pivotStatus`;
- * o que vem depois fica pendente. `pivotDaysAgo` positivo = prazo do pivô já passou;
- * negativo = prazo no futuro. Sem pivô = implantação concluída.
- */
 export interface DeploymentScenario {
   client: string;
   template: string;
@@ -175,22 +165,20 @@ export interface DeploymentScenario {
   pivotTitle?: string;
   pivotDaysAgo?: number;
   pivotStatus?: "PENDING" | "IN_PROGRESS" | "WAITING_CLIENT";
-  /** Dias entre o último prazo e a conclusão real (implantações concluídas). */
   finishDelayDays?: number;
-  /** Se definido, o prazo do pivô foi adiado: o original era este número de dias antes. */
   pivotPostponedByDays?: number;
   pivotPostponeReason?: string;
   pivotComment?: { author: string; body: string };
   portalToken?: string;
 }
 
-export const demoScenarios: DeploymentScenario[] = [
+export const seedScenarios: DeploymentScenario[] = [
   {
     client: "santaRita", template: "professional", implementer: "diego",
     pivotTitle: "Parametrização fiscal", pivotDaysAgo: 5, pivotStatus: "IN_PROGRESS",
     pivotPostponedByDays: 3, pivotPostponeReason: "Contador do cliente ficou de férias até o fim da semana.",
     pivotComment: { author: "diego", body: "Combinado com o Sérgio por telefone: o módulo de entregas entra depois do go-live, na fase 2." },
-    portalToken: DEMO_PORTAL_TOKEN,
+    portalToken: SEED_PORTAL_TOKEN,
   },
   {
     client: "valeVerde", template: "essential", implementer: "larissa",

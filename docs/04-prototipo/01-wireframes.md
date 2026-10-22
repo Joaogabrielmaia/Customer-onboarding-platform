@@ -18,8 +18,6 @@ Os dados nos desenhos são fictícios. Legenda: `[ ]` botão ou campo, `▓` bar
 │                              │
 │  [        Entrar          ]  │
 │                              │
-│  Demonstração: caso simulado │
-│  (credenciais no README)     │
 └──────────────────────────────┘
 ```
 

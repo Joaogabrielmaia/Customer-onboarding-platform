@@ -3,7 +3,7 @@ import { addDays } from "@/domain/dates";
 import { ForbiddenError } from "@/domain/errors";
 import { computeProgress } from "@/domain/progress";
 import { db } from "@/server/db";
-import { DEMO_PORTAL_TOKEN } from "@/server/seed-data";
+import { SEED_PORTAL_TOKEN } from "@/server/seed-data";
 import { getAuditLog } from "@/server/services/deployments";
 import { createPortalLink, getActivePortalLink, getPortalView, revokePortalLink } from "@/server/services/portal";
 import { deploymentOf, NOW, resetWithSeed, type Seeded } from "./helpers";
@@ -15,10 +15,9 @@ beforeAll(async () => {
   santaRitaId = (await deploymentOf("Santa Rita")).id;
 });
 
-// TC-23 (RF-14, RN-14)
 describe("portal do cliente: o que aparece", () => {
   it("mostra empresa, progresso e as próximas pendências (US-13 CA1)", async () => {
-    const view = (await getPortalView(DEMO_PORTAL_TOKEN, NOW))!;
+    const view = (await getPortalView(SEED_PORTAL_TOKEN, NOW))!;
     const tasks = await db.deploymentTask.findMany({ where: { deploymentId: santaRitaId } });
     expect(view.companyName).toBe("Distribuidora Santa Rita Alimentos");
     expect(view.progress).toBe(computeProgress(tasks));
@@ -27,25 +26,21 @@ describe("portal do cliente: o que aparece", () => {
   });
 
   it("não expõe comentários, histórico nem tarefas internas (US-13 CA2, RN-14)", async () => {
-    const view = await getPortalView(DEMO_PORTAL_TOKEN, NOW);
+    const view = await getPortalView(SEED_PORTAL_TOKEN, NOW);
     const json = JSON.stringify(view);
-    // Tarefas marcadas como não visíveis ao cliente.
     expect(json).not.toContain("Configurar contas a receber");
     expect(json).not.toContain("Revisão interna");
-    // Comentário interno e motivo registrado no histórico.
     expect(json).not.toContain("módulo de entregas");
     expect(json).not.toContain("férias");
-    // Nada de identificadores internos.
     expect(json).not.toMatch(/"id"|deploymentId|assigneeId|tokenHash/);
   });
 
   it("não vaza dados de outros clientes", async () => {
-    const json = JSON.stringify(await getPortalView(DEMO_PORTAL_TOKEN, NOW));
+    const json = JSON.stringify(await getPortalView(SEED_PORTAL_TOKEN, NOW));
     for (const other of ["Vale Verde", "Serra Azul", "Horizonte", "Boa Mesa"]) expect(json).not.toContain(other);
   });
 });
 
-// TC-25 e TC-26 (RF-15, RN-13)
 describe("portal do cliente: link", () => {
   it("responde null, do mesmo jeito, para token inexistente, vazio ou malformado (US-13 CA3)", async () => {
     expect(await getPortalView("token-que-nao-existe", NOW)).toBeNull();
@@ -54,8 +49,8 @@ describe("portal do cliente: link", () => {
   });
 
   it("deixa de valer depois de expirar", async () => {
-    expect(await getPortalView(DEMO_PORTAL_TOKEN, addDays(NOW, 364))).not.toBeNull();
-    expect(await getPortalView(DEMO_PORTAL_TOKEN, addDays(NOW, 366))).toBeNull();
+    expect(await getPortalView(SEED_PORTAL_TOKEN, addDays(NOW, 364))).not.toBeNull();
+    expect(await getPortalView(SEED_PORTAL_TOKEN, addDays(NOW, 366))).toBeNull();
   });
 
   it("gerar outro link revoga o anterior e guarda só o hash (US-12 CA1, CA2)", async () => {
@@ -64,7 +59,7 @@ describe("portal do cliente: link", () => {
     expect(expiresAt.getTime()).toBe(addDays(NOW, 60).getTime());
 
     expect(await getPortalView(token, NOW)).not.toBeNull();
-    expect(await getPortalView(DEMO_PORTAL_TOKEN, NOW)).toBeNull(); // o do seed foi revogado
+    expect(await getPortalView(SEED_PORTAL_TOKEN, NOW)).toBeNull();
 
     const stored = await db.portalLink.findMany({ where: { deploymentId: santaRitaId } });
     expect(stored.some((l) => l.tokenHash === token)).toBe(false);

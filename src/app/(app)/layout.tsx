@@ -23,9 +23,6 @@ export default async function AppLayout({ children }: { children: React.ReactNod
 
   return (
     <>
-      <p className="bg-slate-900 px-4 py-1 text-center text-xs text-slate-100">
-        Caso simulado de portfólio. Empresa, pessoas e dados são fictícios.
-      </p>
       <header className="border-b border-slate-300 bg-white">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-1 px-4 py-2">
           <Link href="/" className="text-xl font-bold text-indigo-900">

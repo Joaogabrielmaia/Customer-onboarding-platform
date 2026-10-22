@@ -9,7 +9,6 @@ export interface AppSettings {
   portalLinkDays: number;
 }
 
-/** Configuração global (RF-13). Cria a linha padrão se ainda não existir. */
 export async function getSettings(): Promise<AppSettings> {
   const row = await db.setting.upsert({ where: { id: 1 }, update: {}, create: { id: 1 } });
   return { overdueToleranceDays: row.overdueToleranceDays, portalLinkDays: row.portalLinkDays };

@@ -3,10 +3,9 @@ import pg from "pg";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "../../src/generated/prisma/client";
 import { todayCivil } from "../../src/domain/dates";
-import { seedDemo } from "../../src/server/seed";
+import { seedDatabase } from "../../src/server/seed";
 import { E2E_DATABASE_URL } from "./e2e-env";
 
-// Antes dos testes E2E: cria o banco trilha_e2e (se preciso), aplica as migrations e recarrega o seed.
 export default async function setup() {
   const dbName = new URL(E2E_DATABASE_URL).pathname.slice(1);
   const adminUrl = new URL(E2E_DATABASE_URL);
@@ -26,7 +25,7 @@ export default async function setup() {
 
   const db = new PrismaClient({ adapter: new PrismaPg({ connectionString: E2E_DATABASE_URL }) });
   try {
-    await seedDemo(db, todayCivil());
+    await seedDatabase(db, todayCivil());
   } finally {
     await db.$disconnect();
   }

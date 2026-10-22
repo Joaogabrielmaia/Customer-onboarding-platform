@@ -5,10 +5,8 @@ import type { CsvFile } from "@/server/services/reports";
 import { getCurrentUser } from "./auth";
 import type { SessionUser } from "@/server/services/auth";
 
-// BOM para o Excel reconhecer UTF-8 (acentos) ao abrir o arquivo.
 const BOM = "﻿";
 
-/** Resposta de download de CSV. Rota de arquivo: sem sessão devolve 401 em vez de redirecionar. */
 export async function csvResponse(kind: string, build: (user: SessionUser) => Promise<CsvFile>): Promise<Response> {
   const user = await getCurrentUser();
   if (!user) return new Response("Faça login para exportar.", { status: 401 });

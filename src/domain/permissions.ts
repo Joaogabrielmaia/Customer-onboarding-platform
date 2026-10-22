@@ -1,7 +1,6 @@
 import { ForbiddenError } from "./errors";
 import type { Actor } from "./types";
 
-// Matriz da RN-12 (docs/02-definicao/03-regras-de-negocio.md).
 export type Action =
   | "user:manage"
   | "settings:update"
@@ -16,9 +15,7 @@ export type Action =
   | "portal-link:manage";
 
 export interface Resource {
-  /** Implantador responsável pela implantação. */
   deploymentImplementerId?: string;
-  /** Usuário a quem a tarefa está atribuída (pode ser nulo). */
   taskAssigneeId?: string | null;
 }
 
@@ -31,7 +28,6 @@ const ANY_INTERNAL_USER: Action[] = [
   "comment:create",
 ];
 
-/** Decide se o ator pode executar a ação. Função pura, sem banco. */
 export function can(actor: Actor, action: Action, resource: Resource = {}): boolean {
   if (actor.role === "ADMIN") return true;
 
@@ -41,7 +37,6 @@ export function can(actor: Actor, action: Action, resource: Resource = {}): bool
   const isDeploymentImplementer = resource.deploymentImplementerId === actor.id;
   switch (action) {
     case "task:update-status":
-      // Responsável pela implantação ou pela tarefa.
       return isDeploymentImplementer || resource.taskAssigneeId === actor.id;
     case "task:update-schedule":
     case "portal-link:manage":
@@ -51,7 +46,6 @@ export function can(actor: Actor, action: Action, resource: Resource = {}): bool
   }
 }
 
-/** Lança ForbiddenError se não puder. Todo serviço chama isto primeiro (ADR-006). */
 export function assertCan(actor: Actor, action: Action, resource: Resource = {}): void {
   if (!can(actor, action, resource)) {
     throw new ForbiddenError("Você não tem permissão para esta ação.");

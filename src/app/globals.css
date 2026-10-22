@@ -16,7 +16,7 @@ body {
   line-height: 1.5;
 }
 
-/* Foco sempre visível (RNF-07) */
+/* foco sempre visível */
 :focus-visible {
   outline: 3px solid #4338ca;
   outline-offset: 2px;

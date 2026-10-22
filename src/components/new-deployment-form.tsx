@@ -12,7 +12,6 @@ interface TemplateOption {
   tasks: { title: string; offsetDays: number; stageName: string }[];
 }
 
-/** Escolha do modelo e do kickoff, com prévia das datas calculadas (T07). */
 function TemplateAndKickoff({ templates, defaultKickoff }: { templates: TemplateOption[]; defaultKickoff: string }) {
   const state = useFormState();
   const [templateId, setTemplateId] = useState(state.values?.templateId ?? "");

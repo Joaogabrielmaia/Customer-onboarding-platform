@@ -4,7 +4,6 @@
 **Data:** 2026-10-22 · **Status:** concluído
 Relacionados: [Resultado da execução](../05-qualidade/02-resultado-da-ultima-execucao.md) · [Roadmap](roadmap.md) · [Perguntas de entrevista](../entrevista/)
 
-> Escrita em primeira pessoa sobre **este projeto**, com base no que está no repositório. Não é sobre a minha experiência profissional anterior; essa conexão fica para eu preencher no README.
 
 ## O que fiz bem
 
@@ -29,11 +28,8 @@ Relacionados: [Resultado da execução](../05-qualidade/02-resultado-da-ultima-e
 - **Pedido vago vira requisito com uma boa pergunta.** "Painel bonito" virou "quais estão atrasadas, de quem e há quanto tempo".
 - **Contradição entre stakeholders não se resolve escolhendo um lado.** A pergunta "se só pudesse entregar três campos, quais seriam?" fez o implantador e a líder convergirem.
 - **O que o sistema esconde importa tanto quanto o que mostra.** O trabalho mais cuidadoso do portal foi garantir o que não aparece.
-- **Dado de demonstração precisa de design.** Datas relativas a hoje e cenários com pivô fazem a demo sempre mostrar atrasada, aguardando e concluída.
+- **Dado de exemplo precisa de design.** Datas relativas a hoje e cenários com pivô fazem o seed sempre mostrar atrasada, aguardando e concluída.
 - **Segurança tem detalhes pequenos e concretos:** hash do token, mensagem única de login, injeção de fórmula em CSV, rota de arquivo respondendo 401.
 - **Testes sobrevivem a mudanças de plano:** a primeira rodada do E2E teve 8 falhas e todas eram do teste. Foi útil separar "o produto está errado" de "meu seletor está ruim".
 - **Honestidade rende:** documentar limitações e o que não foi verificado deixa o restante mais confiável.
 
-## Próximos passos pessoais (fora do repositório)
-
-Executar as [ações manuais](../06-deploy-e-go-live/acoes-manuais.md), ver o primeiro CI rodar no GitHub, gravar o vídeo e preencher a conexão com a minha experiência real no README.

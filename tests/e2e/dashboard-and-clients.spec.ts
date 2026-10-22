@@ -1,7 +1,6 @@
 import { expect, test } from "@playwright/test";
 import { ADMIN, DIEGO, login } from "./helpers";
 
-// TC-19 (RF-11, RF-12, RF-13, RF-18)
 test.describe("painel", () => {
   test("mostra os indicadores e destaca o atraso primeiro", async ({ page }) => {
     await login(page, ADMIN);
@@ -43,7 +42,6 @@ test.describe("painel", () => {
   });
 });
 
-// TC-06 (RF-03)
 test.describe("clientes", () => {
   test("cadastra um cliente e ele aparece na lista", async ({ page }) => {
     await login(page, DIEGO);

@@ -1,7 +1,7 @@
 # Indicadores de acompanhamento (propostos)
 
 **Objetivo:** definir o que eu acompanharia depois do lançamento e como extrair do sistema.
-**Data:** 2026-10-22 · **Status:** proposta. **Todos os indicadores são hipóteses de medição; não existe resultado medido**, porque o caso é simulado.
+**Data:** 2026-10-22 · **Status:** proposta. **Todos os indicadores são hipóteses de medição; não existe resultado medido**.
 Relacionados: [Visão e metas](../02-definicao/01-visao-e-metas.md) · [Plano de rollout](../06-deploy-e-go-live/01-plano-de-rollout.md)
 
 > Nenhum número abaixo é um resultado. As metas (quando existirem) seriam definidas **depois** de ver a linha de base do cliente real. Sem linha de base, não faz sentido prometer "reduzir X%".
@@ -25,7 +25,7 @@ Poucos indicadores, ligados às hipóteses H1 a H5 da visão, e cada um com a pe
 ## O que o painel já calcula hoje
 
 - Contagens de em andamento, atrasadas, aguardando cliente e concluídas.
-- Tempo médio de implantação (média de `conclusão − kickoff` das concluídas). **Na demonstração, vem só dos dados fictícios** e o painel avisa isso.
+- Tempo médio de implantação (média de `conclusão − kickoff` das concluídas).
 
 ## O que falta para medir de verdade
 

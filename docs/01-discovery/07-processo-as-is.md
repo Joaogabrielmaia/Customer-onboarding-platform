@@ -4,7 +4,7 @@
 **Data:** 2026-10-22 · **Status:** concluído
 Relacionados: [Reunião 2](05-reuniao-2-lideranca-e-implantador.md) · [Problemas priorizados](08-problemas-priorizados.md)
 
-> Processo montado a partir das reuniões simuladas. Cenário fictício.
+> Processo montado a partir das reuniões do discovery.
 
 ```mermaid
 flowchart TD

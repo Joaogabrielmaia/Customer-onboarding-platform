@@ -1,10 +1,10 @@
 # Guia rápido do cliente
 
 **Objetivo:** explicar em uma página, para quem recebe a implantação, como acompanhar o andamento.
-**Data:** 2026-10-22 · **Status:** concluído (print real, com dados de demonstração)
+**Data:** 2026-10-22 · **Status:** concluído (com print real do portal)
 Relacionados: [Guia do implantador](04-guia-treinamento-implantador.md)
 
-> Exemplo fictício (caso simulado). Pode ser enviado ao cliente junto com o link.
+> Pode ser enviado ao cliente junto com o link.
 
 ## Como acompanhar sua implantação
 

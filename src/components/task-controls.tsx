@@ -6,7 +6,6 @@ import { statusLabel } from "@/lib/labels";
 import type { TaskStatus } from "@/generated/prisma/enums";
 import { ActionForm, Field, FormSuccess, SelectField, SubmitButton, TextAreaField } from "./form";
 
-/** Seletor de status que salva ao escolher uma opção. */
 export function TaskStatusSelect({ taskId, title, status, required }: { taskId: string; title: string; status: TaskStatus; required: boolean }) {
   const formRef = useRef<HTMLFormElement>(null);
   const options = (Object.keys(statusLabel) as TaskStatus[]).filter((s) => s !== "NOT_APPLICABLE" || !required);
