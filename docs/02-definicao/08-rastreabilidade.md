@@ -44,6 +44,7 @@ Legenda dos testes: **U** = unitário (Vitest), **I** = integração/API (Vitest
 | RF-16 | – | US-14 | TC-27 (I) seed gera os estados esperados | – |
 | RF-17 | RN-18 | US-03 | TC-28 (I) usuários, só admin | T10 |
 | RF-18 | – | US-09 | TC-29 (I) filtros | T02, T08 |
+| RF-19 | – | US-12 | TC-33 (E) mensagem pronta com o link | T08 |
 | RNF-02 | RN-12 | todas | TC-03, TC-04 | – |
 | RNF-03 | RN-17 | US-01 | TC-30 (U) hash de senha | – |
 | RNF-04 | – | todas | TC-31 (I) entrada inválida | – |

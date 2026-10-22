@@ -9,11 +9,11 @@ Relacionados: [Requisitos](02-requisitos.md) · [Backlog](06-backlog-e-sprints.m
 | Nível | Itens | Justificativa |
 |---|---|---|
 | **Must** | RF-01 a RF-16 | Sem eles o fluxo de ponta a ponta (modelo → implantação → painel → portal) não existe |
-| **Should** | RF-17 (gestão de usuários), RF-18 (filtros) | Sem eles dá para operar com o seed, mas a demo fica menos convincente |
+| **Should** | RF-17 (gestão de usuários), RF-19 (mensagem pronta com o link) | Sem eles dá para operar com o seed, mas a demo fica menos convincente |
 | **Could** | Exportar relatório em CSV/PDF (candidato à v1.1), tema escuro | Úteis, sem impacto no problema principal |
 | **Won't (agora)** | Ver abaixo | Custo, prazo ou complexidade |
 
-Observação: RF-17 e RF-18 entram na sprint 1 e 3 respectivamente, se o tempo permitir; são o primeiro corte se apertar.
+Observação: RF-18 (filtros) subiu para Must na validação do protótipo ([change-log](../04-prototipo/03-change-log.md)). RF-17 e RF-19 são o primeiro corte se apertar.
 
 ## Escopo do MVP
 
@@ -33,3 +33,5 @@ Papéis; clientes; modelos com prazo relativo; implantação com datas calculada
 | Dependência entre tarefas (prazo relativo a outra tarefa) | Exige recalcular em cadeia; ajuste manual auditado cobre o caso (R2-08) | v2 |
 | Feriados no cálculo de prazo | Precisa de calendário por região; fim de semana já cobre o grosso | v1.2 |
 | Recuperação de senha por e-mail | Depende de e-mail; o admin redefine senha no MVP | Junto com notificações |
+| Botão "já enviei" no portal (cliente escreve) | Link sem login não deve alterar dados (CH-04, ADR-007) | v2, com confirmação por e-mail |
+| Calendário semanal de prazos | A fila de pendências cobre a necessidade (CH-08) | v1.2 ou v2 |
