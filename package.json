@@ -23,8 +23,7 @@
     "db:reset": "prisma migrate reset --force",
     "postinstall": "prisma generate",
     "admin:reset-password": "tsx prisma/reset-password.ts",
-    "setup": "docker compose up -d --wait && prisma migrate deploy && npm run db:seed",
-    "start:render": "prisma migrate deploy && tsx prisma/bootstrap.ts && next start"
+    "setup": "docker compose up -d --wait && prisma migrate deploy && npm run db:seed"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.10.1",
