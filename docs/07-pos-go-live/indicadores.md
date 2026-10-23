@@ -2,7 +2,7 @@
 
 **Objetivo:** definir o que eu acompanharia depois do lançamento e como extrair do sistema.
 **Data:** 2026-10-22 · **Status:** proposta. **Todos os indicadores são hipóteses de medição; não existe resultado medido**.
-Relacionados: [Visão e metas](../02-definicao/01-visao-e-metas.md) · [Plano de rollout](../06-deploy-e-go-live/01-plano-de-rollout.md)
+Relacionados: [Visão e metas](../02-definicao/01-visao-e-metas.md) · [Plano de rollout](../06-treinamento-e-rollout/01-plano-de-rollout.md)
 
 > Nenhum número abaixo é um resultado. As metas (quando existirem) seriam definidas **depois** de ver a linha de base do cliente real. Sem linha de base, não faz sentido prometer "reduzir X%".
 

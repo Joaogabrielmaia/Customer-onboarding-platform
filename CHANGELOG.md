@@ -5,11 +5,7 @@ Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e
 ## [Não lançado]
 
 ### Adicionado
-- Preparação para deploy na Render: `render.yaml` (Blueprint com banco e serviço), comando `npm run start:render` (migrations, bootstrap e start) e `prisma/bootstrap.ts`, que cria o primeiro administrador ou carrega dados de exemplo quando o banco está sem usuários.
 - `npm run setup` para subir o banco local, aplicar as migrations e carregar o seed.
-
-### Alterado
-- Hospedagem: Render no lugar de Vercel + Neon (ADR-008 atualizado).
 
 ### Corrigido
 - `.env.example` trazia `DIRECT_URL=""` e a migration falhava com "Connection url is empty" para quem copiasse o arquivo (D5). Agora a linha vem comentada e o `prisma.config.ts` usa `||`.

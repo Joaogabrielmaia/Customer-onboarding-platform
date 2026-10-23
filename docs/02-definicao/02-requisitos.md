@@ -42,7 +42,7 @@ Relacionados: [Regras de negócio](03-regras-de-negocio.md) · [Histórias](04-h
 | RNF-05 | Segurança | Token do cliente: aleatório, só o hash fica no banco, expira e pode ser revogado | Testes do portal |
 | RNF-06 | Usabilidade | Uso fluido no celular, em especial o portal do cliente. Estados de carregamento, vazio e erro tratados | E2E em viewport mobile |
 | RNF-07 | Acessibilidade | Foco visível, rótulos em todos os campos, contraste adequado, navegação por teclado (referência: WCAG 2.2 AA, sem prometer certificação) | Checklist manual + verificação automatizada onde possível |
-| RNF-08 | Disponibilidade | Plano gratuito de hospedagem, sem SLA. Healthcheck disponível | Endpoint `/api/health` |
+| RNF-08 | Disponibilidade | Sem SLA (demonstração local). Healthcheck disponível | Endpoint `/api/health` |
 | RNF-09 | LGPD básica | Coletar só o necessário; sem dados sensíveis; contato do cliente é dado pessoal e pode ser corrigido ou anonimizado; dados de exemplo no seed | Revisão documentada na Fase 3 |
 | RNF-10 | Observabilidade | Logs mínimos de erros e de eventos de segurança, sem dados pessoais nem segredos | Revisão de código |
 | RNF-11 | Manutenibilidade | Lint, tipos e testes rodando no CI a cada push | GitHub Actions |

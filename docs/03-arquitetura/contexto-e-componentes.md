@@ -2,16 +2,16 @@
 
 **Objetivo:** mostrar o sistema visto de fora e suas peças internas.
 **Data:** 2026-10-22 · **Status:** concluído
-Relacionados: [ADR-009](adr/009-camada-de-servicos.md) · [Modelo de dados](modelo-de-dados.md)
+Relacionados: [ADR-008](adr/008-camada-de-servicos.md) · [Modelo de dados](modelo-de-dados.md)
 
 ## Contexto
 
 ```mermaid
 flowchart LR
-    Admin([Admin<br/>fundador, líder]) -->|navegador| T[Trilha<br/>Next.js na Render]
+    Admin([Admin<br/>fundador, líder]) -->|navegador| T[Trilha<br/>Next.js]
     Impl([Implantador<br/>e suporte]) -->|navegador| T
     Cli([Cliente<br/>link com token]) -->|celular, leitura| T
-    T -->|SQL via Prisma| DB[(PostgreSQL<br/>Render)]
+    T -->|SQL via Prisma| DB[(PostgreSQL)]
     T -.fora do escopo.-> W[WhatsApp / e-mail]
     T -.fora do escopo.-> E[CRM / ERP]
 ```
@@ -20,7 +20,7 @@ flowchart LR
 
 ```mermaid
 flowchart TB
-    %% Zod valida dentro dos serviços (ADR-009)
+    %% Zod valida dentro dos serviços (ADR-008)
     subgraph app["src/app (Next.js)"]
         P[Páginas<br/>Server Components]
         A[Server Actions<br/>finas]

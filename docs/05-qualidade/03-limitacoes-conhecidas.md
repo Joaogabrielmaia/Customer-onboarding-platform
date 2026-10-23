@@ -22,7 +22,7 @@ Relacionados: [Resultado da execução](02-resultado-da-ultima-execucao.md) · [
 - Sem autenticação em dois fatores.
 - A auditoria é imutável por convenção da aplicação, não por permissão do banco (ADR-005).
 - Quem tem o link do cliente acessa o portal; o conteúdo exposto é pouco sensível por desenho (ADR-007).
-- As contas criadas pelo seed têm senhas fixas em `src/server/seed-data.ts`: servem só para desenvolvimento e teste. Em produção, trocar.
+- As contas criadas pelo seed têm senhas fixas em `src/server/seed-data.ts`: servem só para desenvolvimento e teste. Num uso real, trocar.
 
 ## Qualidade e testes
 
@@ -32,8 +32,4 @@ Relacionados: [Resultado da execução](02-resultado-da-ultima-execucao.md) · [
 - **Não testado automaticamente:** estado vazio do painel (US-09 CA5), preservação do histórico de usuário desativado na tela (US-03 CA3) e atomicidade da transação de auditoria sob falha (os testes provam que o registro existe junto com a mudança, não que tudo reverte se o registro falhar).
 - Sem teste de carga ou desempenho. A meta de 2 s (RNF-01) é uma hipótese não medida.
 - O CI (GitHub Actions) está configurado, mas **ainda não foi executado no GitHub**.
-
-## Hospedagem gratuita
-
-- O banco gratuito suspende por inatividade: a primeira visita pode demorar alguns segundos (ADR-008).
-- O plano gratuito da hospedagem é para uso não comercial; uso real exigiria plano pago (ver [custo](../03-arquitetura/custo-hospedagem.md)).
+- O projeto **não está hospedado**: roda apenas localmente (Docker + `npm run dev`). Não há ambiente online, nem teste com usuários reais.

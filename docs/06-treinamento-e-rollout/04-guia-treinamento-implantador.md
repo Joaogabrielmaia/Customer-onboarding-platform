@@ -14,7 +14,7 @@ Antes: planilha pessoal, WhatsApp e memória. Agora: **um lugar só**, com as me
 
 Acesse o endereço da Trilha, informe e-mail e senha. Use a senha que o administrador passou; ele pode redefini-la se você esquecer.
 
-![Tela de login](../screenshots/01-login.png)
+![Tela de login](../imagens/01-login.png)
 
 ## 2. Ler o painel
 
@@ -24,7 +24,7 @@ O **Painel** mostra quatro números e uma lista **"Atenção primeiro"**.
 - **Aguardando cliente:** a tarefa vencida depende do cliente. **Não é atraso seu**, mas fica visível.
 - Use o filtro **Implantador** para ver só o que é seu.
 
-![Painel](../screenshots/02-painel.png)
+![Painel](../imagens/02-painel.png)
 
 ## 3. Cadastrar o cliente e iniciar a implantação
 
@@ -33,7 +33,7 @@ O **Painel** mostra quatro números e uma lista **"Atenção primeiro"**.
 3. Escolha o **modelo** e a **data do kickoff**. A prévia mostra os prazos reais: os que cairiam no fim de semana vão para segunda.
 4. **Criar implantação.** As tarefas já nascem com responsável e prazo.
 
-![Nova implantação com prévia dos prazos](../screenshots/04-nova-implantacao.png)
+![Nova implantação com prévia dos prazos](../imagens/04-nova-implantacao.png)
 
 ## 4. Conduzir as tarefas
 
@@ -52,19 +52,19 @@ Na tela da implantação, cada tarefa tem prazo, responsável e status.
 - **Comentar:** registre o que foi combinado. Comentários são **internos**; o cliente nunca os vê.
 - Você só altera as implantações em que é o responsável. Nas demais, consulta e comenta.
 
-![Detalhe da implantação](../screenshots/05-detalhe-implantacao.png)
+![Detalhe da implantação](../imagens/05-detalhe-implantacao.png)
 
 ## 5. Consultar o histórico
 
 A aba **Histórico** mostra quem mudou o quê e quando, com o motivo. Serve para tirar dúvidas ("quando esse prazo mudou e por quê?").
 
-![Histórico](../screenshots/06-historico.png)
+![Histórico](../imagens/06-historico.png)
 
 ## 6. Minhas pendências
 
 Sua fila de tarefas em aberto, **as mais atrasadas primeiro**. Abra no começo do dia.
 
-![Minhas pendências](../screenshots/03-minhas-pendencias.png)
+![Minhas pendências](../imagens/03-minhas-pendencias.png)
 
 ## 7. Compartilhar o link com o cliente
 

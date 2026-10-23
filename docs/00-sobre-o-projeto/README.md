@@ -17,7 +17,7 @@ flowchart LR
     C --> D[03 Arquitetura]
     D --> E[04 Protótipo]
     E --> F[05 Qualidade]
-    F --> G[06 Deploy e go-live]
+    F --> G[06 Treinamento e rollout]
     G --> H[07 Pós go-live]
 ```
 
@@ -25,13 +25,13 @@ flowchart LR
 |---|---|
 | [`01-discovery`](../01-discovery/) | Brainstorm, empresa, personas, reuniões 1 a 3, AS-IS, problemas |
 | [`02-definicao`](../02-definicao/) | Visão, RF/RNF/RN, histórias, MoSCoW, backlog, rastreabilidade |
-| [`03-arquitetura`](../03-arquitetura/) | ADRs, modelo de dados, segurança, custo |
+| [`03-arquitetura`](../03-arquitetura/) | ADRs, modelo de dados, segurança |
 | [`04-prototipo`](../04-prototipo/) | Wireframes, reunião 4, change-log |
 | [`05-qualidade`](../05-qualidade/) | Estratégia de testes, resultado real, UAT, limitações |
-| [`06-deploy-e-go-live`](../06-deploy-e-go-live/) | Deploy, rollout, treinamento, comunicação |
+| [`06-treinamento-e-rollout`](../06-treinamento-e-rollout/) | Rollout, treinamento, comunicação |
 | [`07-pos-go-live`](../07-pos-go-live/) | Runbook, indicadores, retrospectiva, roadmap |
 | [`entrevista`](../entrevista/) | 3 perguntas e respostas por fase |
-| [`screenshots`](../screenshots/) | Prints gerados com Playwright |
+| [`imagens`](../imagens/) | Prints gerados com Playwright |
 | [`vitrine`](../vitrine/) | Textos para currículo, LinkedIn e apresentação |
 
 ## Convenções

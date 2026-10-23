@@ -10,7 +10,7 @@ Relacionados: [Guia do implantador](04-guia-treinamento-implantador.md)
 
 Seu implantador enviou um **link**. Abra no celular ou no computador. **Não precisa de cadastro nem de senha.**
 
-<img src="../screenshots/10-portal-cliente-mobile.png" alt="Portal do cliente no celular: progresso, próximas etapas e itens concluídos" width="300">
+<img src="../imagens/10-portal-cliente-mobile.png" alt="Portal do cliente no celular: progresso, próximas etapas e itens concluídos" width="300">
 
 ## O que você vê
 

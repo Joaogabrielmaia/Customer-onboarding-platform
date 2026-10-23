@@ -2,7 +2,7 @@
 
 **Objetivo:** definir o que dizer, a quem e quando, no piloto e na ampliação.
 **Data:** 2026-10-22 · **Status:** plano
-Relacionados: [Plano de rollout](01-plano-de-rollout.md) · [Checklist](02-checklist-go-live-e-rollback.md)
+Relacionados: [Plano de rollout](01-plano-de-rollout.md) · [Checklist](02-checklist-de-entrada-em-uso.md)
 
 > Mensagens de exemplo, com pessoas e empresa fictícias. Em uso real, ajusto o tom ao canal que o time já usa.
 

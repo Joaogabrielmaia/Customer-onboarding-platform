@@ -2,7 +2,7 @@
 
 **Objetivo:** explicar o que testo, em que camada e por quê.
 **Data:** 2026-10-22 · **Status:** concluído
-Relacionados: [Resultado da última execução](02-resultado-da-ultima-execucao.md) · [Limitações](03-limitacoes-conhecidas.md) · [Rastreabilidade](../02-definicao/08-rastreabilidade.md) · [ADR-009](../03-arquitetura/adr/009-camada-de-servicos.md)
+Relacionados: [Resultado da última execução](02-resultado-da-ultima-execucao.md) · [Limitações](03-limitacoes-conhecidas.md) · [Rastreabilidade](../02-definicao/08-rastreabilidade.md) · [ADR-008](../03-arquitetura/adr/008-camada-de-servicos.md)
 
 ## Princípio
 
@@ -29,7 +29,7 @@ flowchart BT
 ## Decisões de teste (e o que perdi com elas)
 
 1. **Integração contra PostgreSQL real, não contra mock.** Mocks do Prisma passariam mesmo se a transação estivesse errada. O preço é um pouco de lentidão (cerca de 30 s) e precisar de um banco. Mantenho o banco de testes separado (`trilha_test`) e o CI sobe um Postgres como serviço.
-2. **"Integração da API" é integração dos serviços.** Segui o ADR-009: a API da aplicação são os serviços. Não testo endpoints REST porque não existem (só `/api/health`, coberto no E2E). Não chamo isso de teste de API REST.
+2. **"Integração da API" é integração dos serviços.** Segui o ADR-008: a API da aplicação são os serviços. Não testo endpoints REST porque não existem (só `/api/health`, coberto no E2E). Não chamo isso de teste de API REST.
 3. **Relógio fixo nos testes de integração.** Os serviços recebem `now`, então o resultado não depende do dia em que o teste roda. Os E2E, ao contrário, usam o seed relativo a hoje, e os testes validam as categorias (atrasada, aguardando, no prazo), não datas absolutas.
 4. **Axe não é teste de acessibilidade completo.** Pega contraste, rótulos e papéis ARIA, mas não avalia se a navegação por teclado faz sentido nem a experiência com leitor de tela. Isso ficou como verificação manual pendente (ver limitações).
 5. **Só Chromium.** Cobrir Firefox e WebKit dobraria o tempo do E2E sem prova de benefício neste momento. Registrado como limitação.

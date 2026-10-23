@@ -1,19 +1,16 @@
-# Checklist de go-live e plano de rollback
+# Checklist de entrada em uso e plano de volta
 
-**Objetivo:** garantir que nada essencial seja esquecido no go-live e que exista um caminho de volta.
-**Data:** 2026-10-22 · **Status:** plano
-Relacionados: [Plano de rollout](01-plano-de-rollout.md) · [Deploy](deploy.md) · [Runbook](../07-pos-go-live/)
+**Objetivo:** garantir que nada essencial seja esquecido quando a equipe começar a usar a Trilha e que exista um caminho de volta para a planilha.
+**Data:** 2026-10-22 · **Status:** plano (não executado; a Trilha roda só localmente)
+Relacionados: [Plano de rollout](01-plano-de-rollout.md) · [Comunicação](06-plano-de-comunicacao.md) · [Runbook](../07-pos-go-live/runbook.md)
 
-## Checklist de go-live
+## Checklist
 
-### Técnico
+### Antes do piloto
 - [ ] `/api/health` devolve `ok` (app e banco).
-- [ ] Migrations aplicadas (`prisma migrate deploy` sem pendências).
-- [ ] Variáveis de ambiente de produção conferidas (`DATABASE_URL`, `DIRECT_URL`, `AUTH_SECRET`, `APP_URL`).
-- [ ] Senhas das contas criadas pelo seed trocadas (ou o seed nunca rodado no banco de produção).
 - [ ] Execução mais recente do CI verde.
-- [ ] Backup do banco confirmado (plano do provedor) e restauração testada uma vez.
-- [ ] Contas de usuários reais criadas; contas do seed removidas ou desativadas.
+- [ ] Senhas das contas do seed trocadas, ou contas reais criadas e as do seed desativadas.
+- [ ] Combinado quem faz backup do banco e como ([runbook](../07-pos-go-live/runbook.md)).
 
 ### Dados
 - [ ] Modelos revisados pela líder de implantação.
@@ -30,7 +27,7 @@ Relacionados: [Plano de rollout](01-plano-de-rollout.md) · [Deploy](deploy.md) 
 - [ ] Link do cliente gerado e testado em um celular.
 - [ ] Cliente avisado, com a mensagem pronta enviada por WhatsApp.
 
-## Gatilhos de rollback
+## Gatilhos para voltar à planilha
 
 Volto atrás se ocorrer qualquer um:
 
@@ -39,28 +36,24 @@ Volto atrás se ocorrer qualquer um:
 3. Sistema fora do ar por mais tempo do que a equipe consegue contornar.
 4. A equipe não consegue trabalhar e o piloto está prejudicando a implantação do cliente.
 
-## Plano de rollback
+## Plano de volta
 
 ```mermaid
 flowchart TD
     P[Problema grave] --> Q{Qual a natureza?}
-    Q -->|Código novo com defeito| A[Render: voltar ao deploy anterior<br/>Instant Rollback]
-    Q -->|Migration com defeito| B[Nova migration que desfaz<br/>ou restaurar backup]
-    Q -->|Dados corrompidos| C[Restaurar backup do banco<br/>para o ponto anterior]
+    Q -->|Dados corrompidos| C[Restaurar o último backup do banco]
     Q -->|Link vazado| D[Revogar o link na tela<br/>da implantação]
     Q -->|Sistema inviável| E[Voltar à planilha<br/>Trilha vira somente leitura]
 ```
 
 | Situação | Ação | Quem | Perda esperada |
 |---|---|---|---|
-| Deploy com bug | Na Render, fazer rollback para o deploy anterior (aba Events) | Quem fez o deploy | Nenhuma de dados |
-| Migration com defeito | Aplicar migration corretiva; se destrutiva, restaurar backup | Responsável técnico | Possível perda desde o último backup |
-| Dados corrompidos | Restaurar backup do provedor | Responsável técnico | Alterações desde o backup |
+| Dados corrompidos | Restaurar o backup do banco ([runbook](../07-pos-go-live/runbook.md)) | Responsável técnico | Alterações desde o backup |
 | Link de cliente vazado | Revogar o link; gerar outro | Implantador ou admin | Nenhuma |
 | Sistema inviável | Retomar a planilha do cliente-piloto; Trilha fica só para consulta; comunicar o time | Líder | Registros feitos só na Trilha precisam ser copiados à mão |
 
-**Por que o rollback é barato no piloto:** durante o piloto a planilha continua sendo preenchida em paralelo, então voltar atrás não perde o controle do cliente.
+**Por que voltar é barato no piloto:** durante o piloto a planilha continua sendo preenchida em paralelo, então voltar atrás não perde o controle do cliente.
 
-## Depois de um rollback
+## Depois de voltar atrás
 
 Registro o que aconteceu, a causa e o que muda antes de tentar de novo, no runbook. Sem culpar pessoas.

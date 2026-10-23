@@ -65,7 +65,7 @@ Não repeti integração e E2E no clone (o código é o mesmo e já passaram no 
 
 ## O que esta execução **não** prova
 
-- Não prova o funcionamento no GitHub Actions nem na Render (ainda não executei lá).
+- Não prova o funcionamento no GitHub Actions (ainda não executei lá).
 - Não prova comportamento em Firefox, Safari ou em celular físico.
 - Não prova que o CSV abre corretamente em todas as versões do Excel (testei o conteúdo e o BOM, não o Excel).
 - Não prova acessibilidade completa (só as regras automáticas do axe).

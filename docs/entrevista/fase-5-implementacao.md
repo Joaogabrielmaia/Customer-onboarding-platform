@@ -2,7 +2,7 @@
 
 **Objetivo:** preparar respostas sobre como construí o sistema e por quê.
 **Data:** 2026-10-22 · **Status:** concluído
-Relacionados: [Sprints](../02-definicao/sprint-1-review.md) · [ADR-009](../03-arquitetura/adr/009-camada-de-servicos.md)
+Relacionados: [Sprints](../02-definicao/sprint-1-review.md) · [ADR-008](../03-arquitetura/adr/008-camada-de-servicos.md)
 
 ### 1. Como o código está organizado e por que assim?
 Em três camadas. `domain` tem as regras puras (prazo, atraso, progresso, permissões, token), sem banco nem Next, então testo rápido e com casos de borda. `server/services` tem um caso de uso por função: valida com Zod, checa permissão, abre transação, grava e audita. `app` tem as páginas e as Server Actions, que só autenticam, chamam o serviço e mostram o erro. O ganho é eu conseguir explicar cada regra isolada e provar com teste. O custo é uma camada a mais para um sistema pequeno; compensa porque a autorização e a auditoria nunca ficam esquecidas na tela.

@@ -1,4 +1,4 @@
-# ADR-009: Camada de serviços e Server Actions
+# ADR-008: Camada de serviços e Server Actions
 
 **Data:** 2026-10-22 · **Status:** aceito
 Relacionados: [ADR-001](001-framework.md) · [ADR-006](006-controle-de-acesso.md) · [ADR-005](005-auditoria.md)

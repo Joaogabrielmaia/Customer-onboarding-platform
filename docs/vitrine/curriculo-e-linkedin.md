@@ -8,7 +8,7 @@ Relacionados: [README](../../README.md) · [Apresentação do projeto](apresenta
 
 Seção *Projetos*. Título: **Trilha: plataforma de acompanhamento de implantação de clientes (projeto pessoal)**
 
-- Conduzi o projeto de ponta a ponta: discovery, requisitos rastreáveis (RF/RNF/RN), 9 ADRs, protótipo, construção em 3 sprints, UAT, plano de go-live, runbook e uma evolução pós-lançamento (v1.1.0).
+- Conduzi o projeto de ponta a ponta: discovery, requisitos rastreáveis (RF/RNF/RN), 8 ADRs, protótipo, construção em 3 sprints, UAT, plano de rollout, runbook e uma evolução pós-lançamento (v1.1.0).
 - Desenvolvi a aplicação em **Next.js, TypeScript, PostgreSQL e Prisma**: modelos de implantação com prazos relativos, painel de atrasos, portal do cliente por link com token (expiração e revogação), autorização no servidor e auditoria transacional.
 - Usei **IA (Claude) como assistente de desenvolvimento** e para simular os stakeholders do discovery, definindo o problema, revisando e testando o que ela produzia.
 - Cobri o código com **156 testes automatizados** (unitários, integração contra PostgreSQL real e E2E com Playwright, incluindo verificação de acessibilidade com axe) e documentei os defeitos que encontrei e as limitações conhecidas.

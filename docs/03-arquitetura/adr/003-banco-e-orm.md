@@ -1,7 +1,7 @@
 # ADR-003: Banco e ORM — PostgreSQL com Prisma
 
 **Data:** 2026-10-22 · **Status:** aceito
-Relacionados: [Modelo de dados](../modelo-de-dados.md) · [ADR-008](008-hospedagem.md)
+Relacionados: [Modelo de dados](../modelo-de-dados.md)
 
 ## Contexto
 Os dados são relacionais (clientes, modelos, implantações, tarefas, comentários) e precisam de transações (status + auditoria juntos, RNF-12).
@@ -9,16 +9,16 @@ Os dados são relacionais (clientes, modelos, implantações, tarefas, comentár
 ## Alternativas
 | Opção | Pró | Contra |
 |---|---|---|
-| **PostgreSQL + Prisma** | Relacional, transações, tipos `DATE` e `enum`; Prisma dá tipos e migrations versionadas; plano gratuito em vários provedores | Prisma adiciona uma camada e um passo de geração de cliente |
+| **PostgreSQL + Prisma** | Relacional, transações, tipos `DATE` e `enum`; Prisma dá tipos e migrations versionadas | Prisma adiciona uma camada e um passo de geração de cliente |
 | PostgreSQL + Drizzle/Kysely | SQL mais explícito, mais leve | Menos familiar para mim; menos conforto nas migrations |
-| SQLite | Simples, zero infraestrutura | Disco do serviço web é efêmero e diverge da produção |
+| SQLite | Simples, zero infraestrutura | Diverge do banco dos ambientes reais de uso e não tem os mesmos tipos e recursos |
 | MongoDB | Flexível | O domínio é relacional; auditoria e relatórios ficariam mais difíceis |
 
 ## Decisão
-PostgreSQL (local via Docker, produção na Render) com Prisma ORM e migrations versionadas no repositório.
+PostgreSQL (local via Docker) com Prisma ORM e migrations versionadas no repositório.
 
 ## Por quê
-Tipos fortes de ponta a ponta, migrations revisáveis e a mesma engine em desenvolvimento, CI e produção (RK-10).
+Tipos fortes de ponta a ponta, migrations revisáveis e a mesma engine em desenvolvimento e no CI (RK-10).
 
 ## Trade-off
 Queries complexas de relatório ficam menos transparentes que SQL puro. Se precisar, uso `$queryRaw` pontual. Também aceito o passo extra de gerar o cliente a cada build.

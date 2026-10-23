@@ -3,7 +3,7 @@
 **Objetivo:** ouvir a equipe depois do piloto e sair com três melhorias priorizadas.
 **Data:** 2026-10-22 (documento) · **Status:** concluído
 Participantes: Ricardo Almeida (fundador), Camila Tavares (líder de implantação), Diego Ferreira (implantador-piloto) e eu
-Relacionados: [Plano de rollout](../06-deploy-e-go-live/01-plano-de-rollout.md) · [Indicadores](indicadores.md) · [Roadmap](roadmap.md) · [Changelog](../../CHANGELOG.md)
+Relacionados: [Plano de rollout](../06-treinamento-e-rollout/01-plano-de-rollout.md) · [Indicadores](indicadores.md) · [Roadmap](roadmap.md) · [Changelog](../../CHANGELOG.md)
 
 > Reunião simulada com o Claude (Anthropic) no papel dos stakeholders, a partir do meu briefing. Pessoas e empresa fictícias.
 >
