@@ -1,55 +1,75 @@
 # Trilha: acompanhamento de implantação de clientes
 
-Plataforma web que uma software house usa para conduzir a implantação do seu sistema nos clientes: etapas, prazos, responsáveis, progresso e um painel que mostra o que está atrasado. O cliente acompanha por um link, sem cadastro.
+Plataforma web que uma software house pequena usa para conduzir a implantação do seu sistema nos clientes: etapas, prazos, responsáveis, progresso e um painel que mostra o que está atrasado. O problema que resolve: implantações em planilha e WhatsApp, em que o atraso aparece tarde, o combinado com o cliente se perde e cada implantação segue um roteiro diferente.
 
-![Painel da Trilha com atrasos em destaque](docs/screenshots/02-painel.png)
+![Painel da Trilha com atrasos em destaque](docs/imagens/02-painel.png)
 
-## Resumo
+## Diferenciais
 
-- **Problema:** uma software house pequena conduz implantações em planilha e WhatsApp; descobre atrasos tarde, perde o que combinou com o cliente e cada implantação segue um roteiro diferente.
-- **Solução:** a Trilha cria a implantação a partir de um modelo, calcula os prazos a partir do kickoff, separa o atraso da equipe da espera do cliente e dá ao cliente um link de leitura, sem cadastro.
-- **Para quem:** fundador e líder (painel), implantadores e suporte (tarefas, comentários, histórico) e o cliente (portal).
-- **Stack:** Next.js 16 (App Router) + TypeScript, Tailwind CSS 4, Prisma 7 + PostgreSQL, Zod, Vitest e Playwright.
-- **Status:** v1.1.0 funcionando; guia de publicação na Render pronto em `docs/06-deploy-e-go-live/deploy.md`.
+- **Atraso da equipe separado da espera do cliente.** O painel não culpa o implantador por algo que depende do cliente.
+- **Prazos relativos ao kickoff (D+n).** O modelo gera as datas reais; mudar o modelo depois não altera o que já foi combinado.
+- **Histórico de alterações.** Toda mudança de prazo, status ou responsável registra quem fez e o motivo, na mesma transação.
+- **Portal do cliente por link com token**, somente leitura e sem cadastro. O banco guarda só o hash do token; o link expira e pode ser revogado.
+- **Autorização no servidor** por papel (administrador e implantador), com teste do caso negado.
+- **Regras de negócio em funções puras**, testadas contra PostgreSQL real nos serviços.
 
-## Como foi feito (e onde usei IA)
+## O que é simulado e o que não foi validado
 
-A Rota Fácil Software e seus clientes são o cenário que modelei para desenvolver o projeto. **Usei o Claude (Anthropic) de duas formas:** como assistente de desenvolvimento ao longo da construção e como ator nas reuniões, interpretando fundador, líder, implantador, suporte e cliente a partir do meu briefing. Por isso as reuniões em `docs/` estão marcadas como simuladas, e os números de ganho aparecem só como hipótese. O que é verificável é o código, as decisões, os testes e o resultado de cada execução. Usar IA com critério, definindo o problema, revisando e testando o que ela produz, é uma habilidade que faz parte do meu trabalho.
+- **A Rota Fácil Software, as pessoas e os clientes são fictícios.** Modelei o cenário para desenvolver o projeto. Usei o Claude (Anthropic) de duas formas: como assistente de desenvolvimento e como ator nas reuniões, interpretando fundador, líder, implantador, suporte e cliente a partir do meu briefing. Por isso as reuniões em `docs/` estão marcadas como simuladas.
+- **Não há usuários reais nem resultado medido.** Números de ganho aparecem só como hipótese ou meta.
+- **Não está hospedado.** O projeto roda localmente; qualquer pessoa o executa com os comandos abaixo.
+- **O CI (GitHub Actions) está configurado, mas ainda não foi executado no GitHub.** O que registrei foram as execuções locais.
+- Não validei: Firefox, Safari e celular físico; acessibilidade além das regras automáticas do axe; desempenho e carga; cobertura de código (não medida). Lista completa em [limitações conhecidas](docs/05-qualidade/03-limitacoes-conhecidas.md).
 
-## Como o projeto foi conduzido
+## Veja o produto
 
-Do discovery à v1.1, cada etapa tem uma pasta de documentos. Os ADRs, o modelo de dados e a matriz de rastreabilidade ligam o "porquê" ao código e ao teste.
+**1. Login.** Entrada por e-mail e senha, com sessão própria no banco. Escolhi não usar Auth.js para ter logout e desativação imediatos com pouco código que eu consiga explicar ([ADR-002](docs/03-arquitetura/adr/002-autenticacao.md)).
 
-```mermaid
-flowchart LR
-    A[Discovery] --> B[Definição] --> C[Arquitetura] --> D[Protótipo] --> E[Construção<br/>3 sprints] --> F[Qualidade<br/>e UAT] --> G[Deploy e<br/>go-live] --> H[Pós go-live<br/>v1.1]
-```
+![Login](docs/imagens/01-login.png)
 
-| Etapa | O que fiz | Onde |
-|---|---|---|
-| 0. Sobre o projeto | Cenário, ordem de leitura | [`00-sobre-o-projeto`](docs/00-sobre-o-projeto/README.md) |
-| 1. Discovery | Brainstorm e escolha; empresa do cenário; personas; 3 reuniões simuladas com IA; processo AS-IS; problemas priorizados | [`01-discovery`](docs/01-discovery/) |
-| 2. Definição | Visão, RF/RNF/RN, histórias com Dado/Quando/Então, MoSCoW, backlog em 3 sprints, riscos, rastreabilidade | [`02-definicao`](docs/02-definicao/) |
-| 3. Arquitetura | 9 ADRs, modelo de dados, contexto e componentes, segurança e privacidade, custo | [`03-arquitetura`](docs/03-arquitetura/) |
-| 4. Protótipo | Wireframes, reunião 4 e change-log (inclui uma **recusa justificada**) | [`04-prototipo`](docs/04-prototipo/) |
-| 5. Implementação | 3 sprints, commits por história com ID | [`sprint reviews`](docs/02-definicao/sprint-1-review.md) |
-| 6. Qualidade | Estratégia, resultado real, limitações, UAT com defeitos reais | [`05-qualidade`](docs/05-qualidade/) |
-| 7 e 8. Deploy e go-live | Guia de deploy, ações manuais, rollout, rollback, treinamento, comunicação | [`06-deploy-e-go-live`](docs/06-deploy-e-go-live/) |
-| 9. Pós go-live | Runbook, indicadores propostos, retrospectiva, **v1.1.0**, roadmap | [`07-pos-go-live`](docs/07-pos-go-live/) · [CHANGELOG](CHANGELOG.md) |
-| Entrevista | 3 perguntas e respostas por fase | [`entrevista`](docs/entrevista/) |
-| Vitrine | Texto para currículo, LinkedIn e apresentação | [`vitrine`](docs/vitrine/) |
+**2. Painel.** O que está atrasado, de quem e há quanto tempo, com a espera do cliente em outra cor e a fila de pendências por implantador. O "tempo médio" é calculado só sobre os dados de demonstração.
 
-## As 5 decisões mais importantes e seus trade-offs
+![Painel](docs/imagens/02-painel.png)
 
-| # | Decisão | O que ganhei | O que perdi | Detalhe |
-|---|---|---|---|---|
-| 1 | **Separar atraso da equipe e espera do cliente** | Painel que não gera discussão toda segunda; mostra os dois | Regra mais difícil de explicar que "venceu, atrasou" (por isso tem testes de borda) | [RN-02, RN-03](docs/02-definicao/03-regras-de-negocio.md) |
-| 2 | **Copiar o modelo para a implantação** e usar prazo relativo (D+n) com datas civis | O combinado com o cliente não muda se o modelo mudar; sem bug de fuso | Duplicação de dados; corrigir o modelo não corrige o que está em andamento | [ADR-004](docs/03-arquitetura/adr/004-tarefas-e-prazos-relativos.md) |
-| 3 | **Sessão própria** em vez de Auth.js | Desativação e logout imediatos; poucas linhas que sei explicar | Eu respondo pelos detalhes de segurança; sem login social | [ADR-002](docs/03-arquitetura/adr/002-autenticacao.md) |
-| 4 | **Portal por token opaco** (hash no banco, expira, revoga) e **somente leitura** | Cliente sem conta; vazamento do banco não entrega links; recusei escrita no portal | Quem tem o link acessa; sem botão "já enviei" | [ADR-007](docs/03-arquitetura/adr/007-portal-por-token.md), [CH-04](docs/04-prototipo/03-change-log.md) |
-| 5 | **Camada de serviços** com autorização, validação e auditoria na mesma transação, testada contra PostgreSQL real | Regra de negócio testável sem Next; nada de mudança sem registro | Uma camada a mais; testes de integração mais lentos | [ADR-005, 006, 009](docs/03-arquitetura/adr/) |
+**3. Minhas pendências.** A fila pessoal de cada implantador, com as atrasadas primeiro. É o benefício imediato de preencher o sistema, o que ataca o risco de a equipe não usá-lo.
 
-## Arquitetura
+![Minhas pendências](docs/imagens/03-minhas-pendencias.png)
+
+**4. Nova implantação.** O cliente, o modelo e o kickoff geram uma prévia das datas reais (D+n) antes de criar. Depois de criada, a implantação é uma cópia e não muda se o modelo mudar ([ADR-004](docs/03-arquitetura/adr/004-tarefas-e-prazos-relativos.md)).
+
+![Nova implantação](docs/imagens/04-nova-implantacao.png)
+
+**5. Detalhe da implantação.** Status por tarefa, prazo com o original e o motivo do ajuste, comentários internos e o painel do link do cliente. Só o responsável altera; os demais comentam.
+
+![Detalhe da implantação](docs/imagens/05-detalhe-implantacao.png)
+
+**6. Histórico.** Quem mudou o quê e por quê. A auditoria é gravada na mesma transação da mudança, então não há alteração sem registro ([ADR-005](docs/03-arquitetura/adr/005-auditoria.md)).
+
+![Histórico](docs/imagens/06-historico.png)
+
+**7. Modelo de implantação.** Etapas e tarefas com prazo D+n, responsável padrão, obrigatoriedade e visibilidade ao cliente. Editar o modelo não afeta as implantações já criadas.
+
+![Modelo](docs/imagens/07-modelo.png)
+
+**8. Clientes.** Cadastro de empresa, contato, plano e data de contrato. Cliente com implantação em andamento não pode ser arquivado.
+
+![Clientes](docs/imagens/08-clientes.png)
+
+**9. Portal do cliente.** Progresso e próximas etapas, sem comentários nem tarefas internas. Recusei escrita no portal: o link não tem login e isso comprometeria o dado que o fundador usa para decidir ([ADR-007](docs/03-arquitetura/adr/007-portal-por-token.md)).
+
+![Portal do cliente](docs/imagens/09-portal-cliente.png)
+
+**10. Portal no celular.** O cliente abre o link no WhatsApp, então o portal foi desenhado para 360 px. Um teste E2E garante que não há rolagem horizontal.
+
+<img src="docs/imagens/10-portal-cliente-mobile.png" alt="Portal do cliente no celular" width="300">
+
+**11. Painel no celular.** O mesmo painel reorganizado em uma coluna, para o líder consultar fora da mesa.
+
+<img src="docs/imagens/11-painel-mobile.png" alt="Painel no celular" width="300">
+
+Os prints são gerados pelo Playwright sobre dados de exemplo, em um banco separado (`npm run screenshots`).
+
+## Como funciona
 
 ```mermaid
 flowchart LR
@@ -63,7 +83,10 @@ flowchart LR
     S --> DB[(PostgreSQL)]
 ```
 
-### Modelo de dados (resumo)
+- **Páginas e Server Actions** (`src/app`): finas; autenticam, chamam o serviço e revalidam.
+- **Serviços** (`src/server/services`): cada caso de uso valida com Zod, autoriza, grava e audita numa transação ([ADR-008](docs/03-arquitetura/adr/008-camada-de-servicos.md)).
+- **Domínio puro** (`src/domain`): cálculo de prazo, atraso, progresso, permissões e token do portal, sem framework nem banco.
+- **PostgreSQL com Prisma**, migrations versionadas ([modelo de dados](docs/03-arquitetura/modelo-de-dados.md)).
 
 ```mermaid
 erDiagram
@@ -80,97 +103,90 @@ erDiagram
     Deployment ||--o{ PortalLink : compartilha
 ```
 
-Explicação completa das escolhas: [modelo de dados](docs/03-arquitetura/modelo-de-dados.md) e [segurança e privacidade](docs/03-arquitetura/seguranca-e-privacidade.md).
+## O que tem em cada pasta
 
-## Funcionalidades
+| Pasta | O que é |
+|---|---|
+| [`src/app`](src/app) | Páginas, Server Actions e o healthcheck |
+| [`src/server`](src/server) | Serviços, sessão, senha, auditoria e dados de exemplo |
+| [`src/domain`](src/domain) | Regras puras: prazos, atraso, progresso, permissões |
+| [`src/components`](src/components) | Componentes de interface |
+| [`prisma`](prisma) | Schema, migration, seed e script de redefinição de senha |
+| [`tests`](tests) | Unitários, integração (PostgreSQL real), E2E e geração dos prints |
+| [`docs`](docs) | Toda a documentação do projeto, por etapa (tabela abaixo) |
+| [`docs/imagens`](docs/imagens) | Prints reais das telas |
+| [`.github/workflows`](.github/workflows) | CI: lint, tipos, testes e build |
 
-**Painel:** o que está atrasado, de quem e há quanto tempo, com a espera do cliente separada.
+## Documentação
 
-![Painel](docs/screenshots/02-painel.png)
+| Etapa | Documentos |
+|---|---|
+| Sobre | [Cenário e ordem de leitura](docs/00-sobre-o-projeto/README.md) |
+| Discovery | [Brainstorm](docs/01-discovery/01-brainstorm-e-escolha.md) · [Empresa](docs/01-discovery/02-empresa-rota-facil.md) · [Personas](docs/01-discovery/03-stakeholders-e-personas.md) · [Reunião 1](docs/01-discovery/04-reuniao-1-kickoff-fundador.md) · [Reunião 2](docs/01-discovery/05-reuniao-2-lideranca-e-implantador.md) · [Reunião 3](docs/01-discovery/06-reuniao-3-suporte-e-cliente.md) · [Processo AS-IS](docs/01-discovery/07-processo-as-is.md) · [Problemas priorizados](docs/01-discovery/08-problemas-priorizados.md) |
+| Definição | [Visão e metas](docs/02-definicao/01-visao-e-metas.md) · [Requisitos](docs/02-definicao/02-requisitos.md) · [Regras de negócio](docs/02-definicao/03-regras-de-negocio.md) · [Histórias](docs/02-definicao/04-historias-de-usuario.md) · [Priorização e escopo](docs/02-definicao/05-priorizacao-e-escopo.md) · [Backlog e sprints](docs/02-definicao/06-backlog-e-sprints.md) · [Riscos](docs/02-definicao/07-riscos.md) · [Rastreabilidade](docs/02-definicao/08-rastreabilidade.md) · Reviews das sprints [1](docs/02-definicao/sprint-1-review.md), [2](docs/02-definicao/sprint-2-review.md) e [3](docs/02-definicao/sprint-3-review.md) |
+| Arquitetura | [Contexto e componentes](docs/03-arquitetura/contexto-e-componentes.md) · [Modelo de dados](docs/03-arquitetura/modelo-de-dados.md) · [Segurança e privacidade](docs/03-arquitetura/seguranca-e-privacidade.md) |
+| Protótipo | [Wireframes](docs/04-prototipo/01-wireframes.md) · [Reunião 4 (validação)](docs/04-prototipo/02-reuniao-4-validacao.md) · [Change-log](docs/04-prototipo/03-change-log.md) |
+| Qualidade | [Estratégia de testes](docs/05-qualidade/01-estrategia-de-testes.md) · [Resultado da última execução](docs/05-qualidade/02-resultado-da-ultima-execucao.md) · [Limitações](docs/05-qualidade/03-limitacoes-conhecidas.md) · [UAT (reunião 5)](docs/05-qualidade/04-reuniao-5-uat.md) |
+| Treinamento e rollout | [Plano de rollout](docs/06-treinamento-e-rollout/01-plano-de-rollout.md) · [Checklist de entrada em uso](docs/06-treinamento-e-rollout/02-checklist-de-entrada-em-uso.md) · [Guia do implantador](docs/06-treinamento-e-rollout/04-guia-treinamento-implantador.md) · [Guia do cliente](docs/06-treinamento-e-rollout/05-guia-rapido-cliente.md) · [Comunicação](docs/06-treinamento-e-rollout/06-plano-de-comunicacao.md) |
+| Operação e evolução | [Runbook](docs/07-pos-go-live/runbook.md) · [Indicadores propostos](docs/07-pos-go-live/indicadores.md) · [Retrospectiva (reunião 6)](docs/07-pos-go-live/reuniao-6-retrospectiva.md) · [Retrospectiva final](docs/07-pos-go-live/retrospectiva-final.md) · [Roadmap](docs/07-pos-go-live/roadmap.md) · [v1.1.0](docs/07-pos-go-live/pr-v1.1.0.md) · [CHANGELOG](CHANGELOG.md) |
+| Entrevista | [Perguntas e respostas por fase](docs/entrevista/) |
+| Vitrine | [Apresentação](docs/vitrine/apresentacao-do-projeto.md) · [Currículo e LinkedIn](docs/vitrine/curriculo-e-linkedin.md) |
 
-**Detalhe da implantação:** status, prazo com motivo, comentários internos e histórico.
+## Decisões de arquitetura (ADRs)
 
-![Detalhe da implantação](docs/screenshots/05-detalhe-implantacao.png)
-
-**Modelo de implantação:** etapas e tarefas com prazo relativo (D+n), responsável padrão, obrigatoriedade e visibilidade ao cliente.
-
-![Modelo](docs/screenshots/07-modelo.png)
-
-**Portal do cliente (celular):** progresso e o que depende do cliente, sem comentários nem tarefas internas.
-
-<img src="docs/screenshots/10-portal-cliente-mobile.png" alt="Portal do cliente no celular" width="300">
-
-Outras telas: [login](docs/screenshots/01-login.png), [minhas pendências](docs/screenshots/03-minhas-pendencias.png), [nova implantação com prévia](docs/screenshots/04-nova-implantacao.png), [histórico](docs/screenshots/06-historico.png), [clientes](docs/screenshots/08-clientes.png), [painel no celular](docs/screenshots/11-painel-mobile.png). Os prints são gerados pelo Playwright com os dados do seed (`npm run screenshots`).
-
-**Lista completa:** login e papéis · clientes · usuários · modelos · implantações com prazos calculados · status, prazo e responsável por tarefa · comentários · histórico de alterações · painel e filtros · fila de pendências · regra de atraso configurável · link do cliente com mensagem pronta · exportação em CSV (v1.1) · healthcheck.
-
-## Como rodar localmente
-
-Pré-requisitos: Node.js 24 (a versão com que desenvolvi e testei) e Docker.
-
-```bash
-git clone <url-do-repositório> && cd <pasta>
-npm install
-cp .env.example .env     # os valores padrão já servem para o ambiente local
-npm run setup            # sobe o PostgreSQL (Docker), aplica as migrations e carrega os dados de exemplo
-npm run dev              # http://localhost:3000
-```
-
-Contas criadas pelo seed (só para desenvolvimento local):
-
-| Papel | E-mail | Senha |
-|---|---|---|
-| Administrador | `admin@rotafacil.example` | `Admin-Trilha-2026` |
-| Implantador | `implantador@rotafacil.example` | `Usuario-Trilha-2026` |
-
-Outros usuários do seed: `fundador@` (admin), `larissa@` e `suporte@` (implantadores), todos em `@rotafacil.example`. O link do cliente é gerado dentro de uma implantação (botão "Gerar link do cliente"). Sem Docker, aponte `DATABASE_URL` para qualquer PostgreSQL e rode `npx prisma migrate deploy && npm run db:seed`.
-
-## Como testar
-
-```bash
-npm run lint
-npm run typecheck
-npm run test:unit            # regras puras, sem banco
-npm run test:integration     # serviços contra PostgreSQL real (cria o banco trilha_test)
-npm run build
-npx playwright install chromium   # só na primeira vez
-npx playwright test          # E2E sobre o app compilado (cria o banco trilha_e2e)
-npm run screenshots          # regenera docs/screenshots
-```
-
-## Como publicar
-
-Passo a passo em [`docs/06-deploy-e-go-live/deploy.md`](docs/06-deploy-e-go-live/deploy.md) (Render) e a lista do que depende de contas minhas em [`acoes-manuais.md`](docs/06-deploy-e-go-live/acoes-manuais.md).
+| ADR | Decisão |
+|---|---|
+| [001](docs/03-arquitetura/adr/001-framework.md) | Next.js (App Router) com TypeScript, um projeto só para interface e regras |
+| [002](docs/03-arquitetura/adr/002-autenticacao.md) | Sessão própria no banco, senha com scrypt, em vez de Auth.js |
+| [003](docs/03-arquitetura/adr/003-banco-e-orm.md) | PostgreSQL com Prisma e migrations versionadas |
+| [004](docs/03-arquitetura/adr/004-tarefas-e-prazos-relativos.md) | Modelo copiado para a implantação; prazo relativo (D+n) com datas civis |
+| [005](docs/03-arquitetura/adr/005-auditoria.md) | Auditoria gravada na mesma transação da mudança |
+| [006](docs/03-arquitetura/adr/006-controle-de-acesso.md) | Papéis e autorização central no servidor |
+| [007](docs/03-arquitetura/adr/007-portal-por-token.md) | Portal do cliente por token opaco, hash no banco, somente leitura |
+| [008](docs/03-arquitetura/adr/008-camada-de-servicos.md) | Camada de serviços com validação, autorização e auditoria |
 
 ## Qualidade
 
-Última execução local, **v1.1.0** (detalhes e histórico em [`docs/05-qualidade`](docs/05-qualidade/02-resultado-da-ultima-execucao.md)):
+Executei em 2026-10-23, nesta máquina, com `npm run lint`, `npm run typecheck`, `npm test`, `npm run build` e `npx playwright test`:
 
 | Verificação | Resultado |
 |---|---|
 | Lint e tipos | sem erros |
 | Testes unitários | 52 passaram |
 | Testes de integração (PostgreSQL real) | 70 passaram |
-| Testes E2E (Chromium, inclui 6 de acessibilidade com axe) | 34 passaram |
+| Testes E2E (Chromium, inclui acessibilidade com axe) | 34 passaram |
 | **Total** | **156 testes passando** |
+| Build | compilou |
 
-- **CI:** GitHub Actions com lint, tipos, unitários, integração (Postgres como serviço), build e E2E. **Ainda não foi executado no GitHub**; quando eu enviar o repositório, o primeiro resultado real entra aqui, passando ou não.
-- **Cobertura de código:** não medida (não vou inventar um percentual). A rastreabilidade regra → teste está em [`08-rastreabilidade`](docs/02-definicao/08-rastreabilidade.md).
-- **Defeitos reais** encontrados e corrigidos durante a construção estão no [resultado da execução](docs/05-qualidade/02-resultado-da-ultima-execucao.md) (por exemplo, rolagem horizontal no celular em `/clientes`).
+Defeitos reais encontrados e corrigidos durante a construção estão no [resultado da execução](docs/05-qualidade/02-resultado-da-ultima-execucao.md) (por exemplo, rolagem horizontal no celular em `/clientes`).
 
-## Limitações e roadmap
+**O que não foi validado:** o CI no GitHub (ainda não executado); outros navegadores além do Chromium; celular físico; acessibilidade manual (teclado e leitor de tela); desempenho; cobertura de código (não medida, não vou inventar um percentual); uso por pessoas reais.
 
-Limitações completas em [`03-limitacoes-conhecidas`](docs/05-qualidade/03-limitacoes-conhecidas.md). As principais: sem notificações; sem feriados no cálculo de prazo; sem dependência entre tarefas; sem limite de tentativas de login; acessibilidade só com verificação automática; apenas Chromium testado.
+## Como rodar localmente
 
-Roadmap ([`roadmap.md`](docs/07-pos-go-live/roadmap.md)): **v1.2** alerta de atraso por e-mail, recuperação de senha, concluir tarefas em lote, feriados. **v2** dependência entre tarefas, "já enviei" com confirmação por e-mail, anexos e subtarefas, integração com CRM/ERP, multiempresa.
+Pré-requisitos: Node.js 24 (versão com que desenvolvi e testei) e Docker.
 
-## O que o projeto mostra
+```bash
+npm install
+cp .env.example .env     # os valores padrão já servem para o ambiente local
+npm run setup            # sobe o PostgreSQL (Docker), aplica as migrations e carrega os dados de exemplo
+npm run dev              # http://localhost:3000
+```
 
-1. **Descobrir o problema e refinar pedido vago:** o discovery transforma "painel bonito" em requisito e registra contradições e restrições que mudaram o escopo.
-2. **Definir escopo e dizer não:** requisitos rastreáveis, MoSCoW, fora do escopo com motivo e uma recusa justificada.
-3. **Decidir e justificar tecnicamente:** 9 ADRs com alternativas, trade-offs e quando eu mudaria de ideia.
-4. **Construir e testar com rigor:** regras de negócio em funções puras, autorização no servidor, auditoria transacional e 156 testes passando, com os defeitos reais registrados.
-5. **Levar ao uso e evoluir:** treinamento, rollout e rollback, runbook, retrospectiva e uma evolução (v1.1.0) com changelog.
+Contas de demonstração, criadas pelo seed (dados fictícios, só para uso local):
+
+| Papel | E-mail | Senha |
+|---|---|---|
+| Administrador | `admin@rotafacil.example` | `Admin-Trilha-2026` |
+| Implantador | `implantador@rotafacil.example` | `Usuario-Trilha-2026` |
+
+O link do cliente é gerado dentro de uma implantação, no botão "Gerar link do cliente". Para testar:
+
+```bash
+npm run lint && npm run typecheck && npm test   # unitários e integração (cria o banco trilha_test)
+npm run build && npx playwright install chromium && npx playwright test   # E2E (cria o banco trilha_e2e)
+npm run screenshots                              # regenera docs/imagens
+```
 
 ## Licença
 
