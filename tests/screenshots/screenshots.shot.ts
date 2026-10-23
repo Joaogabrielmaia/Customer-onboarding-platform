@@ -3,7 +3,7 @@ import { expect, test, type Page } from "@playwright/test";
 import { SEED_PORTAL_TOKEN } from "../../src/server/seed-data";
 import { ADMIN, DIEGO, login, openDeployment } from "../e2e/helpers";
 
-const OUT = path.resolve(process.cwd(), "docs/screenshots");
+const OUT = path.resolve(process.cwd(), "docs/imagens");
 const shot = (page: Page, name: string, fullPage = true) => page.screenshot({ path: path.join(OUT, name), fullPage });
 
 test.use({ viewport: { width: 1280, height: 800 } });
@@ -17,10 +17,13 @@ test("telas de desktop", async ({ page }) => {
   await shot(page, "02-painel.png");
 
   await page.goto("/pendencias");
+  await expect(page.getByRole("heading", { name: "Minhas pendências" })).toBeVisible();
   await shot(page, "03-minhas-pendencias.png");
 
   await page.goto("/implantacoes/nova");
   await page.getByLabel("Modelo de implantação").selectOption({ label: "Implantação Padrão — Plano Profissional" });
+  await expect(page.getByText("Prévia dos prazos")).toBeVisible();
+  await page.addStyleTag({ content: ".max-h-64 { max-height: none !important; }" });
   await shot(page, "04-nova-implantacao.png");
 
   await openDeployment(page, "Distribuidora Santa Rita Alimentos");
