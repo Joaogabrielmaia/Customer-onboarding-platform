@@ -4,7 +4,7 @@
 **Data:** 2026-10-24 · **Status:** concluído
 Relacionados: [Guia da série](../INDEX.md) · [Wireframes](../04-prototipo/01-wireframes.md) · [Glossário](../GLOSSARIO.md)
 
-Os prints são gerados pelo Playwright sobre dados de exemplo, em banco separado (`npm run screenshots`). O "47 dias" do painel é a média das implantações concluídas do seed de demonstração, não uma medição. Os prints de Usuários, Configurações e da lista de Implantações foram capturados em 2026-10-24; as datas do seed são relativas ao dia da captura, por isso os dias de atraso diferem de um print para outro.
+Os prints são gerados pelo Playwright sobre dados de exemplo, em banco separado. O "47 dias" do painel é a média das implantações concluídas do seed de demonstração, não uma medição. Os prints de Usuários, Configurações e da lista de Implantações foram capturados em 2026-10-24; as datas do seed são relativas ao dia da captura, por isso os dias de atraso diferem de um print para outro.
 
 ## 1. Login
 <img src="01-login.png" alt="Tela de login da Trilha com os campos E-mail e Senha e o botão Entrar" width="480">
