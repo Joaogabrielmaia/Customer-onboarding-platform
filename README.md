@@ -126,7 +126,7 @@ Execução local de 2026-10-22, versão v1.1.0 (commit `a16b9bf`), com `npm run 
 O que falta para sair do estudo:
 
 - Não está hospedado: roda só localmente ([limitações](docs/05-qualidade/03-limitacoes-conhecidas.md)).
-- O CI (rotina automática de lint, tipos, testes e build) está configurado e não foi executado ([resultado da execução](docs/05-qualidade/02-resultado-da-ultima-execucao.md)).
+- O CI (rotina automática de lint, tipos, testes e build) rodou uma vez no GitHub, em 2026-10-23, no commit `453f1e1`, e falhou na etapa de testes E2E; lint, tipos, testes unitários, de integração e build passaram ([execução](https://github.com/Joaogabrielmaia/Customer-onboarding-platform/actions/runs/39984884953)). A causa ainda não foi investigada.
 - A cobertura de código não foi medida ([limitações](docs/05-qualidade/03-limitacoes-conhecidas.md)).
 - Rollout, plano de volta e treinamento são planos, não executados ([rollout](docs/06-treinamento-e-rollout/01-plano-de-rollout.md)).
 - Os indicadores são hipóteses, sem resultado medido ([indicadores](docs/07-pos-go-live/indicadores.md)).
@@ -161,7 +161,7 @@ npm run screenshots                              # regenera docs/imagens
 ## Limites
 
 - Não está hospedado: a execução é local.
-- O CI está configurado e não foi executado no GitHub; o registro de testes vem de execuções locais.
+- O CI falhou na etapa E2E na única execução no GitHub ([execução](https://github.com/Joaogabrielmaia/Customer-onboarding-platform/actions/runs/39984884953)); o registro de 156 testes vem de execuções locais.
 - A cobertura de código não foi medida.
 - O feedback do piloto é simulado: não houve piloto real nem resultado medido.
 

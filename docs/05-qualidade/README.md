@@ -2,7 +2,7 @@
 
 A estratégia combina testes unitários (regras puras), de integração (contra PostgreSQL real) e E2E (fluxo completo no navegador, com verificação de acessibilidade pelo axe). A última execução registrada é de 2026-10-22, na versão v1.1.0: 156 testes passaram, e cinco defeitos (D1 a D5) foram encontrados e corrigidos, com teste de regressão ou verificação associada.
 
-O registro também diz o que não prova: o CI no GitHub não foi executado, a cobertura de código não foi medida, e Firefox, Safari, celular físico, desempenho e acessibilidade manual não foram verificados. O UAT (teste de aceitação) é uma reunião simulada; seus resultados vêm de execução real dos critérios.
+O registro também diz o que não prova: o CI no GitHub, que rodou depois do registro e falhou na etapa E2E, não foi investigado, a cobertura de código não foi medida, e Firefox, Safari, celular físico, desempenho e acessibilidade manual não foram verificados. O UAT (teste de aceitação) é uma reunião simulada; seus resultados vêm de execução real dos critérios.
 
 | Documento | O que contém | Itens |
 |---|---|---|
