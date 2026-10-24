@@ -2,7 +2,7 @@
 
 **Objetivo:** olhar para o projeto inteiro: o que fiz bem, o que faria diferente e o que aprendi.
 **Data:** 2026-10-22 · **Status:** concluído
-Relacionados: [Resultado da execução](../05-qualidade/02-resultado-da-ultima-execucao.md) · [Roadmap](roadmap.md) · [Perguntas de entrevista](../entrevista/)
+Relacionados: [Resultado da execução](../05-qualidade/02-resultado-da-ultima-execucao.md) · [Roadmap](roadmap.md)
 
 
 ## O que fiz bem

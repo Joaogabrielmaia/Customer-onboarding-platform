@@ -5,9 +5,9 @@
 Participantes: Camila Tavares (líder de implantação) e eu
 Relacionados: [Histórias e critérios](../02-definicao/04-historias-de-usuario.md) · [Resultado da execução](02-resultado-da-ultima-execucao.md) · [Limitações](03-limitacoes-conhecidas.md)
 
-> Reunião simulada com o Claude (Anthropic) no papel dos stakeholders, a partir do meu briefing. Pessoas e empresa fictícias.
->
-> **O que é real e o que é roteiro:** a conversa com a Camila foi simulada com o Claude. Os **resultados dos critérios e os problemas abaixo são reais**: eu executei cada critério no sistema (por teste automatizado ou pela exploração manual descrita) e os defeitos D3 e D4 foram de fato encontrados e corrigidos. Nenhum defeito foi inventado para dar drama ao UAT.
+> Reunião simulada; pessoas e empresa fictícias.
+
+Os resultados dos critérios e os defeitos D3 e D4 são reais: executei cada critério no sistema, por teste automatizado ou pela exploração manual descrita.
 
 ## Transcrição (trechos)
 
@@ -95,4 +95,4 @@ Legenda: ✅ passou · ⚠️ passou depois de correção · ➖ não verificado
 
 ## Decisão da líder (roteiro)
 
-Aceita para o piloto, com a ressalva de ver exportação de relatório na primeira evolução. Verificação manual de teclado e leitor de tela ficou como pendência registrada nas [limitações](03-limitacoes-conhecidas.md).
+Aceita para o piloto planejado (ainda não executado), com a ressalva de ver exportação de relatório na primeira evolução. Verificação manual de teclado e leitor de tela ficou como pendência registrada nas [limitações](03-limitacoes-conhecidas.md).

@@ -1,13 +1,13 @@
-# Reunião 6: retrospectiva e feedback do piloto
+# Reunião 6: retrospectiva simulada
 
-**Objetivo:** ouvir a equipe depois do piloto e sair com três melhorias priorizadas.
+**Objetivo:** ouvir a equipe depois de um piloto hipotético e sair com três melhorias priorizadas.
 **Data:** 2026-10-22 (documento) · **Status:** concluído
 Participantes: Ricardo Almeida (fundador), Camila Tavares (líder de implantação), Diego Ferreira (implantador-piloto) e eu
 Relacionados: [Plano de rollout](../06-treinamento-e-rollout/01-plano-de-rollout.md) · [Indicadores](indicadores.md) · [Roadmap](roadmap.md) · [Changelog](../../CHANGELOG.md)
 
-> Reunião simulada com o Claude (Anthropic) no papel dos stakeholders, a partir do meu briefing. Pessoas e empresa fictícias.
->
-> **Aviso importante:** não houve piloto real. O feedback abaixo foi **simulado com o Claude** no papel dos participantes, a partir do que o sistema de fato faz e dos limites que conheço. Ninguém mediu economia de tempo nem redução de atrasos, e não digo que mediu.
+> Reunião simulada; pessoas e empresa fictícias.
+
+Não houve piloto real: nenhuma economia de tempo nem redução de atrasos foi medida.
 
 ## Formato
 

@@ -39,5 +39,3 @@ Thumbs.db
 # cliente Prisma gerado
 src/generated/
 
-# configuração local do assistente de código
-CLAUDE.md

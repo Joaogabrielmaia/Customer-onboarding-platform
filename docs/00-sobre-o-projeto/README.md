@@ -5,9 +5,9 @@
 
 ## O cenário
 
-A Trilha foi pensada para a **Rota Fácil Software**, uma software house de cerca de 12 pessoas que vende um sistema de gestão para pequenas distribuidoras e conduz as implantações com planilhas, WhatsApp e e-mail. A empresa, as pessoas e os clientes são o cenário que modelei para desenvolver o projeto. Usei o Claude (Anthropic) como assistente de desenvolvimento e como ator das reuniões: ele interpretou fundador, líder, implantador, suporte e cliente a partir do meu briefing, e cada reunião em `docs/` leva essa marcação. Números de ganho aparecem só como hipótese ou meta, nunca como resultado medido.
+A Trilha foi pensada para a **Rota Fácil Software**, uma software house de cerca de 12 pessoas que vende um sistema de gestão para pequenas distribuidoras e conduz as implantações com planilhas, WhatsApp e e-mail. A empresa, as pessoas e os clientes são fictícios. As reuniões em `docs/` são simuladas e levam essa marcação. Números de ganho aparecem só como hipótese ou meta, nunca como resultado medido.
 
-O que é verificável no repositório: o código, os requisitos e as regras, os ADRs, os testes e o resultado real de cada execução, e os defeitos que encontrei pelo caminho.
+O que é verificável no repositório: o código, os requisitos e as regras, os ADRs, os testes e o resultado real de cada execução, e os defeitos encontrados pelo caminho.
 
 ## Ordem de leitura
 
@@ -30,9 +30,7 @@ flowchart LR
 | [`05-qualidade`](../05-qualidade/) | Estratégia de testes, resultado real, UAT, limitações |
 | [`06-treinamento-e-rollout`](../06-treinamento-e-rollout/) | Rollout, treinamento, comunicação |
 | [`07-pos-go-live`](../07-pos-go-live/) | Runbook, indicadores, retrospectiva, roadmap |
-| [`entrevista`](../entrevista/) | 3 perguntas e respostas por fase |
 | [`imagens`](../imagens/) | Prints gerados com Playwright |
-| [`vitrine`](../vitrine/) | Textos para currículo, LinkedIn e apresentação |
 
 ## Convenções
 

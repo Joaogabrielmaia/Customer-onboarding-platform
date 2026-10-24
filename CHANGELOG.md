@@ -13,7 +13,7 @@ Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e
 
 ## [1.1.0] - 2026-10-22
 
-Evolução pós-lançamento definida na [retrospectiva do piloto](docs/07-pos-go-live/reuniao-6-retrospectiva.md).
+Evolução pós-lançamento definida na [retrospectiva simulada](docs/07-pos-go-live/reuniao-6-retrospectiva.md).
 
 ### Adicionado
 - **Exportar o relatório da implantação em CSV** (botão "Exportar CSV" no detalhe da implantação): uma linha por tarefa, com responsável, prazo, prazo original, status, situação do prazo e dias de atraso. (RF-20)
