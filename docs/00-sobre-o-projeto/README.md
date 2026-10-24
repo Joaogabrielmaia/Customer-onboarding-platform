@@ -1,3 +1,17 @@
+# Episódio 0 — Sobre o projeto
+
+O cenário é a Rota Fácil Software, software house fictícia que conduz implantações com planilhas, WhatsApp e e-mail. Este episódio apresenta o cenário, a ordem de leitura das pastas e as convenções dos documentos.
+
+| Documento | O que contém | Itens |
+|---|---|---|
+| [Sobre o projeto](#sobre-o-projeto) | Cenário, ordem de leitura e convenções | 7 pastas de fase |
+| [Guia da série](../INDEX.md) | Episódios e trilhas de leitura de 2, 10 e 30 minutos | 8 episódios |
+| [Glossário](../GLOSSARIO.md) | Termos e siglas do projeto | — |
+
+← Início · [Índice](../INDEX.md) · [Episódio 1: Discovery](../01-discovery/README.md) →
+
+---
+
 # Sobre o projeto
 
 **Objetivo:** explicar o cenário em que a Trilha foi desenhada e indicar a ordem de leitura.
