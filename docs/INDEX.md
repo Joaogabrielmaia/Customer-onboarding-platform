@@ -50,5 +50,5 @@ A Trilha é um sistema de acompanhamento de implantação de clientes. O caso é
 ## Convenções
 
 - Todo documento tem cabeçalho com objetivo, data e status, e links para os relacionados.
-- Reuniões, entrevistas e validações são simuladas e levam essa marcação na primeira linha.
+- Reuniões e validações são simuladas e levam essa marcação na primeira linha.
 - Números de ganho aparecem só como hipótese ou meta. Resultados de teste citam data e versão do registro.

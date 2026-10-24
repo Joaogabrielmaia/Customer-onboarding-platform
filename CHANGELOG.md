@@ -9,7 +9,7 @@ Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e
 
 ### Corrigido
 - `.env.example` trazia `DIRECT_URL=""` e a migration falhava com "Connection url is empty" para quem copiasse o arquivo (D5). Agora a linha vem comentada e o `prisma.config.ts` usa `||`.
-- Documentação: README, vitrine, retrospectiva final e verificação em clone limpo.
+- Documentação: README, retrospectiva final e verificação em clone limpo.
 
 ## [1.1.0] - 2026-10-22
 
