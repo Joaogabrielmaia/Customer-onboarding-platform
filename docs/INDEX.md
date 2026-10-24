@@ -6,6 +6,10 @@ Relacionados: [README](../README.md) · [Glossário](GLOSSARIO.md) · [Galeria d
 
 A Trilha é um sistema de acompanhamento de implantação de clientes. O caso é fictício: a Rota Fácil Software, as pessoas e os dados foram inventados. O valor da série está em três pontos: separar atraso da equipe de espera do cliente, calcular prazos D+n a partir do kickoff e dar ao cliente um portal por link, com planos de rollout que declaram o próprio status. Siglas e termos estão no [glossário](GLOSSARIO.md).
 
+## Relatório do ciclo de vida
+
+Além dos episódios, o [ciclo de vida](ciclo-de-vida/README.md) reúne em nove documentos o discovery, o planejamento com Scrum, os requisitos, a arquitetura, o modelo de dados, a configuração, os testes, a implantação e a evolução, com [reuniões](ciclo-de-vida/reunioes/README.md), [sprints](ciclo-de-vida/sprints/README.md) e [diagramas](ciclo-de-vida/diagramas/README.md).
+
 ## Episódios
 
 | # | Episódio | Pergunta que responde | Pasta |
