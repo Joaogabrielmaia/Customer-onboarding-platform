@@ -1,0 +1,21 @@
+erDiagram
+    User ||--o{ Session : tem
+    User ||--o{ Deployment : implanta
+    User |o--o{ DeploymentTask : responsavel
+    User ||--o{ Comment : escreve
+    User |o--o{ AuditLog : executa
+    Client ||--o{ Deployment : possui
+    Template ||--o{ TemplateStage : contem
+    TemplateStage ||--o{ TemplateTask : contem
+    Template |o--o{ Deployment : origem
+    Deployment ||--o{ DeploymentStage : contem
+    Deployment ||--o{ DeploymentTask : contem
+    DeploymentStage ||--o{ DeploymentTask : agrupa
+    DeploymentTask ||--o{ Comment : recebe
+    Deployment ||--o{ AuditLog : registra
+    Deployment ||--o{ PortalLink : compartilha
+    Setting {
+        int id PK
+        int overdueToleranceDays
+        int portalLinkDays
+    }

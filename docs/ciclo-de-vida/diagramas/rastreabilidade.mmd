@@ -1,0 +1,7 @@
+flowchart LR
+    n[Necessidade<br/>R1-07: link que o cliente acompanha] --> rf[RF-14 e RF-15<br/>portal e link]
+    rf --> us[US-12 e US-13]
+    us --> rn[RN-13 e RN-14<br/>token, hash, o que o cliente vê]
+    rn --> impl[Implementação<br/>src/domain/portal-token.ts<br/>src/server/services/portal.ts]
+    impl --> t[Testes<br/>portal.test.ts, portal-token.test.ts<br/>templates-and-portal.spec.ts]
+    t --> res[Resultado<br/>CI verde em 2026-10-24]

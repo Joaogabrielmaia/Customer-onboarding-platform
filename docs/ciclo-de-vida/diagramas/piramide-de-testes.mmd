@@ -1,0 +1,6 @@
+flowchart TB
+    e2e["E2E com Playwright e axe<br/>34 testes em 7 arquivos<br/>fluxos críticos, celular e acessibilidade"]
+    integ["Integração com PostgreSQL real<br/>70 testes em 8 arquivos<br/>serviços, transações, autorização e portal"]
+    unit["Unitários com Vitest<br/>52 testes em 7 arquivos<br/>prazo, atraso, progresso, permissões, token, senha e CSV"]
+    e2e --- integ
+    integ --- unit

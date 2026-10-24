@@ -1,0 +1,9 @@
+flowchart LR
+    v10([v1.0.0<br/>MVP]) --> v11([v1.1.0<br/>Exportação em CSV])
+    v11 --> fix([Correção do D6<br/>CI verde])
+    fix -. proposta .-> v12([v1.2<br/>Avisos, menos cliques,<br/>limites de acesso])
+    v12 -. proposta .-> v2([v2<br/>Dependência entre tarefas,<br/>botão já enviei])
+    classDef feito fill:#e0f2e9,stroke:#2f6f4f
+    classDef plano fill:#fff,stroke:#777,stroke-dasharray:5 5
+    class v10,v11,fix feito
+    class v12,v2 plano

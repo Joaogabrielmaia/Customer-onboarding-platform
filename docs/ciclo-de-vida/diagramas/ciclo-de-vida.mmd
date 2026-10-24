@@ -1,0 +1,12 @@
+flowchart LR
+    A[A. Discovery] --> B[B. Requisitos]
+    B --> C[C. Planejamento Scrum]
+    C --> D[D. Arquitetura]
+    D --> E[E. Dados]
+    E --> F[F. Desenvolvimento e configuração]
+    F --> G[G. Testes e qualidade]
+    G --> H[H. Implantação e operação]
+    H --> I[I. Evolução]
+    G -. defeito encontrado .-> F
+    I -. mudança priorizada .-> C
+    H -. adoção e indicadores .-> I

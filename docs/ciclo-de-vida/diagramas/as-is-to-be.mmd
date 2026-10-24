@@ -1,0 +1,17 @@
+flowchart TB
+    subgraph ASIS[AS-IS: planilha e WhatsApp]
+        direction LR
+        a1[Venda fechada] --> a2[Implantador monta a planilha própria]
+        a2 --> a3[Combinados no WhatsApp]
+        a3 --> a4[Cliente liga perguntando]
+        a4 --> a5[Fundador descobre o atraso]
+    end
+    subgraph TOBE[TO-BE: Trilha]
+        direction LR
+        b1[Cliente e modelo escolhidos] --> b2[Tarefas copiadas com datas D+n]
+        b2 --> b3[Implantador atualiza status e comenta]
+        b3 --> b4[Auditoria na mesma transação]
+        b3 --> b5[Painel separa atraso da equipe e espera do cliente]
+        b3 --> b6[Portal por link mostra o andamento ao cliente]
+    end
+    ASIS --> TOBE

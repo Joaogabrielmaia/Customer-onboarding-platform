@@ -1,0 +1,9 @@
+flowchart LR
+    f0[Fase 0<br/>Preparação] --> f1[Fase 1<br/>Piloto com uma implantação nova]
+    f1 -->|critério de avanço atendido| f2[Fase 2<br/>Toda implantação nova na Trilha]
+    f1 -->|não atendido| f1b[Ajustar e repetir o piloto]
+    f1b --> f1
+    f2 --> f3[Fase 3<br/>Migrar as implantações em andamento]
+    f3 --> f4[Fase 4<br/>Planilhas somente leitura e arquivadas]
+    f1 -. gatilho de volta .-> rb[Plano de volta<br/>retomar a planilha]
+    f2 -. gatilho de volta .-> rb
