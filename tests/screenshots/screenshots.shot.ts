@@ -43,6 +43,18 @@ test("telas de desktop", async ({ page }) => {
 
   await page.goto("/clientes");
   await shot(page, "08-clientes.png");
+
+  await page.goto("/implantacoes");
+  await expect(page.getByRole("heading", { name: "Implantações", level: 1 })).toBeVisible();
+  await shot(page, "12-lista-implantacoes.png");
+
+  await page.goto("/usuarios");
+  await expect(page.getByRole("heading", { name: "Usuários", level: 1 })).toBeVisible();
+  await shot(page, "13-usuarios.png");
+
+  await page.goto("/configuracoes");
+  await expect(page.getByRole("heading", { name: "Configurações", level: 1 })).toBeVisible();
+  await shot(page, "14-configuracoes.png");
 });
 
 test("portal do cliente, no desktop e no celular", async ({ page, browser }) => {

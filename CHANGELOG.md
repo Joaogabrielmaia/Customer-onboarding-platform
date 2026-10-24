@@ -8,12 +8,14 @@ Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e
 - `npm run setup` para subir o banco local, aplicar as migrations e carregar o seed.
 
 ### Corrigido
+- Portal do cliente: o prazo de tarefa atrasada (`até dd/mm/aaaa (atrasada)`) não quebrava de linha e empurrava a página além da tela em celulares estreitos. O E2E falhou na primeira execução da CI no GitHub (12 px de rolagem em 360 px, fontes do Linux mais largas); o rótulo "(atrasada)" passou para a linha de baixo e o título pode encolher (D6).
+- Testes E2E: a porta passou a vir de `E2E_PORT` (padrão 3100), para não conflitar com outro processo na mesma máquina.
 - `.env.example` trazia `DIRECT_URL=""` e a migration falhava com "Connection url is empty" para quem copiasse o arquivo (D5). Agora a linha vem comentada e o `prisma.config.ts` usa `||`.
-- Documentação: README, vitrine, retrospectiva final e verificação em clone limpo.
+- Documentação: README, retrospectiva final e verificação em clone limpo.
 
 ## [1.1.0] - 2026-10-22
 
-Evolução pós-lançamento definida na [retrospectiva do piloto](docs/07-pos-go-live/reuniao-6-retrospectiva.md).
+Evolução pós-lançamento definida na [retrospectiva simulada](docs/07-pos-go-live/reuniao-6-retrospectiva.md).
 
 ### Adicionado
 - **Exportar o relatório da implantação em CSV** (botão "Exportar CSV" no detalhe da implantação): uma linha por tarefa, com responsável, prazo, prazo original, status, situação do prazo e dias de atraso. (RF-20)

@@ -13,7 +13,7 @@ Relacionados: [Changelog](../../CHANGELOG.md) · [Retrospectiva](reuniao-6-retro
 ## Descrição
 
 ### Contexto
-Na retrospectiva do piloto, a líder de implantação e o fundador pediram um relatório que pudessem abrir no Excel, em vez de tirar print (pedidos M4-07/UAT). Era a melhoria de maior impacto e menor esforço.
+Na retrospectiva simulada (sem piloto real), a líder de implantação e o fundador pediram um relatório que pudessem abrir no Excel, em vez de tirar print (pedidos M4-07/UAT). Era a melhoria de maior impacto e menor esforço.
 
 ### O que muda
 - Botão **Exportar CSV** no detalhe da implantação: uma linha por tarefa.
@@ -35,7 +35,7 @@ Na retrospectiva do piloto, a líder de implantação e o fundador pediram um re
 2. Manualmente: entrar como implantador, abrir uma implantação, clicar em **Exportar CSV** e abrir no Excel.
 
 ### Resultado das verificações (execução local)
-Lint e tipos sem erros; 52 unitários, 70 de integração e 34 E2E passando (156 no total). **CI do GitHub ainda não executado.**
+Lint e tipos sem erros; 52 unitários, 70 de integração e 34 E2E passando (156 no total). **CI do GitHub ainda não executado.** (Nota de 2026-10-24: a CI rodou depois; ver [execução na CI de 2026-10-24](../05-qualidade/05-execucao-ci-2026-10-24.md).)
 
 ### Riscos e o que não foi verificado
 - Não abri o arquivo em todas as versões do Excel; testei o conteúdo, o BOM e o download.

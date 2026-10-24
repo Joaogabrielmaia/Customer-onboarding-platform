@@ -5,7 +5,7 @@
 Participantes: Patrícia Nogueira (suporte/CS), Sérgio Batista (dono da Distribuidora Santa Rita Alimentos, cliente fictício) e eu
 Relacionados: [Reunião 2](05-reuniao-2-lideranca-e-implantador.md) · [Personas](03-stakeholders-e-personas.md) · [Problemas](08-problemas-priorizados.md)
 
-> Reunião simulada com o Claude (Anthropic) no papel dos stakeholders, a partir do meu briefing. Pessoas e empresa fictícias.
+> Reunião simulada; pessoas e empresa fictícias.
 
 ## Transcrição (trechos principais)
 

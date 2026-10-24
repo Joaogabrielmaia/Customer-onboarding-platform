@@ -64,6 +64,10 @@ test.describe("portal do cliente", () => {
     expect(body).not.toContain("Histórico");
     const overflow = await portal.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
     expect(overflow).toBeLessThanOrEqual(0);
+    // 300 px cobre fontes mais largas que as do ambiente local (a CI rodou com 12 px de rolagem em 360 px).
+    await portal.setViewportSize({ width: 300, height: 740 });
+    const narrowOverflow = await portal.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
+    expect(narrowOverflow).toBeLessThanOrEqual(0);
 
     await page.getByRole("button", { name: "Revogar link" }).click();
     await expect(page.getByText("Link revogado.")).toBeVisible();

@@ -4,6 +4,8 @@
 **Data:** 2026-10-22 · **Status:** execução local concluída na **v1.1.0**; **o CI no GitHub ainda não foi executado** (o repositório ainda não foi enviado)
 Relacionados: [Estratégia](01-estrategia-de-testes.md) · [Limitações](03-limitacoes-conhecidas.md)
 
+> Nota de 2026-10-24: o repositório já foi enviado ao GitHub e a CI rodou. A primeira execução (2026-10-23) falhou em um teste E2E do portal; a seguinte passou. Detalhes em [execução na CI de 2026-10-24](05-execucao-ci-2026-10-24.md). O texto acima é o registro original e não foi alterado.
+
 > Os números abaixo foram copiados da saída dos comandos, rodados por mim nesta máquina. Não há resultado de cobertura de código porque não a medi.
 
 ## Ambiente

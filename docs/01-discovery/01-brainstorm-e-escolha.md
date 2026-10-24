@@ -44,6 +44,6 @@ Escala de 1 a 5. Em **impacto** e **aderência**, quanto maior, melhor. Em **esf
 
 **Escolhi a ideia 1: plataforma de onboarding/implantação (Trilha).**
 
-- **Por que:** é a melhor combinação de impacto e aderência com risco baixo, e é onde a dor aparece em todas as pessoas que entrevistei no cenário (ver [problemas](08-problemas-priorizados.md)). Também é o tema que mais conversa com as vagas que busco (implantação, CS e automação).
+- **Por que:** é a melhor combinação de impacto e aderência com risco baixo, e é onde a dor aparece em todas as pessoas que entrevistei no cenário (ver [problemas](08-problemas-priorizados.md)).
 - **O que perdi:** não ataco chamados nem saúde do cliente. Se a implantação melhorar mas o suporte continuar caótico, o cliente ainda sente dor depois do go-live.
 - **Quando eu mudaria de ideia:** se o discovery mostrasse que o atraso vem de falta de suporte pós-venda e não da implantação em si, eu voltaria à ideia 2. O discovery (reuniões 1 a 3) serviu justamente para testar essa hipótese.

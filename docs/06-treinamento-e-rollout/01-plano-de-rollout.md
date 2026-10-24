@@ -43,7 +43,7 @@ flowchart LR
 
 ## O que eu observaria no piloto
 
-O que a equipe **faz** (preenche ou volta ao WhatsApp?), mais do que o que **diz**. Lista de perguntas para a [retrospectiva do piloto](../07-pos-go-live/): o que travou, o que sobrou de campo, o que faltou, o cliente abriu o link?
+O que a equipe **faz** (preenche ou volta ao WhatsApp?), mais do que o que **diz**. Lista de perguntas para a [retrospectiva simulada](../07-pos-go-live/reuniao-6-retrospectiva.md): o que travou, o que sobrou de campo, o que faltou, o cliente abriu o link?
 
 ## Riscos do rollout
 
