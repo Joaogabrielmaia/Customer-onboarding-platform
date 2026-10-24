@@ -38,9 +38,9 @@ Termos e siglas estão no [glossário](docs/GLOSSARIO.md). O [guia da série](do
   </tr>
 </table>
 
-![Sequência de capturas: login, painel, nova implantação com prévia dos prazos D+n, detalhe da implantação criada, link do cliente e portal aberto pelo link](docs/imagens/demo-implantacao.gif)
+![Gravação do fluxo: login, painel, nova implantação com prévia dos prazos D+n, detalhe da implantação criada, link do cliente e portal aberto pelo link](docs/imagens/demo-implantacao.gif)
 
-Sequência de sete capturas reais (cerca de 15 s): login, painel, nova implantação com a prévia dos prazos D+n, detalhe da implantação criada, geração do link do cliente e o portal aberto por esse link. Gravada com o app em build local e dados do seed.
+Gravação de cerca de 20 s do fluxo real: login, painel, nova implantação com a prévia dos prazos D+n, detalhe da implantação criada, geração do link do cliente e o portal aberto por esse link. Feita com o app em build local e dados do seed.
 
 Todas as telas, na ordem de uso, estão na [galeria](docs/imagens/README.md).
 
