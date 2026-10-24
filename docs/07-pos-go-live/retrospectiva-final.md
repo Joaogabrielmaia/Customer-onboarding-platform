@@ -20,7 +20,7 @@ Relacionados: [Resultado da execução](../05-qualidade/02-resultado-da-ultima-e
 - **Explorar o produto cedo, em tela pequena.** Os defeitos de rolagem horizontal e de ajuste sem mudança apareceram só no fim, na exploração do UAT. Uma passada exploratória a cada sprint teria achado antes.
 - **Teste manual de acessibilidade.** Rodei o axe, que é útil, mas não fiz teclado e leitor de tela de forma sistemática. Está registrado como pendência, e eu o incluiria na Definition of Done.
 - **Medir desempenho e cobertura.** Declarei metas (RNF-01) que não medi. Prefiro dizer "não medi" a inventar, mas o ideal seria medir.
-- **Rodar o CI no GitHub antes de escrever "CI" nos documentos.** Escrevi o workflow e testei os mesmos comandos localmente, mas o primeiro resultado real no GitHub ainda não existe.
+- **Rodar o CI no GitHub antes de escrever "CI" nos documentos.** Escrevi o workflow e testei os mesmos comandos localmente, mas o primeiro resultado real no GitHub ainda não existe. (Nota de 2026-10-24: a CI rodou depois e acusou um defeito no portal; ver [execução na CI de 2026-10-24](../05-qualidade/05-execucao-ci-2026-10-24.md).)
 - **Um teste de falha na transação de auditoria.** Provei que o registro existe junto com a mudança, não que tudo reverte se o registro falhar.
 
 ## O que aprendi

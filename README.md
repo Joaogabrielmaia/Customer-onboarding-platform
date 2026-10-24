@@ -6,7 +6,7 @@ Acompanhamento de implantação de clientes: prazos [D+n](docs/GLOSSARIO.md), pa
 
 - **Problema:** uma software house fictícia implanta o sistema nos clientes com planilhas e WhatsApp, e o atraso só aparece quando o cliente liga.
 - **Solução:** a Trilha cria a implantação a partir de um modelo, calcula os prazos e mostra o que está atrasado, de quem e há quanto tempo.
-- **Prova:** 156 testes (52 unitários, 70 de integração e 34 E2E, dos quais 6 de acessibilidade) e cinco defeitos registrados (D1 a D5), na execução de 2026-10-22: [resultado](docs/05-qualidade/02-resultado-da-ultima-execucao.md).
+- **Prova:** 156 testes (52 unitários, 70 de integração e 34 E2E, dos quais 6 de acessibilidade) e seis defeitos registrados (D1 a D6), no registro local de 2026-10-22 e na CI de 2026-10-24: [resultado local](docs/05-qualidade/02-resultado-da-ultima-execucao.md) · [CI](https://github.com/Joaogabrielmaia/Customer-onboarding-platform/actions/runs/40098547445).
 - **Comece por aqui:** [painel](docs/imagens/02-painel.png) · [change-log do protótipo](docs/04-prototipo/03-change-log.md) (pedidos aceitos e recusados) · [resultado da última execução](docs/05-qualidade/02-resultado-da-ultima-execucao.md).
 
 ## Ficha técnica
@@ -16,7 +16,7 @@ Acompanhamento de implantação de clientes: prazos [D+n](docs/GLOSSARIO.md), pa
 | Natureza | Caso fictício: a Rota Fácil Software, as pessoas e os dados são inventados |
 | Discovery | Reuniões simuladas, marcadas nas atas ([Episódio 1](docs/01-discovery/README.md)) |
 | Stack | Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS 4, Prisma 7, PostgreSQL, Zod |
-| Testes | 156 passando: Vitest (unitários e integração) e Playwright (E2E e axe). Registro de 2026-10-22, versão v1.1.0 (commit `a16b9bf`) |
+| Testes | 156 passando: Vitest (unitários e integração) e Playwright (E2E e axe). Registro local de 2026-10-22 (v1.1.0, commit `a16b9bf`) e execução na CI de 2026-10-24 (commit `366f1f5`) |
 | Execução | Local, com Node.js 24 e Docker; não hospedado |
 
 ## Duas entradas
@@ -109,7 +109,7 @@ Apoio: [guia da série](docs/INDEX.md) · [galeria de telas](docs/imagens/README
 
 ## Evidências
 
-Execução local de 2026-10-22, versão v1.1.0 (commit `a16b9bf`), com `npm run lint`, `npm run typecheck`, `npm test`, `npm run build` e `npx playwright test`. Detalhes, ambiente e histórico de falhas estão no [resultado da última execução](docs/05-qualidade/02-resultado-da-ultima-execucao.md).
+Execução local de 2026-10-22, versão v1.1.0 (commit `a16b9bf`), com `npm run lint`, `npm run typecheck`, `npm test`, `npm run build` e `npx playwright test`. Detalhes, ambiente e histórico de falhas estão no [resultado da última execução](docs/05-qualidade/02-resultado-da-ultima-execucao.md). Em 2026-10-24 os mesmos 156 testes passaram na CI do GitHub (commit `366f1f5`, [run](https://github.com/Joaogabrielmaia/Customer-onboarding-platform/actions/runs/40098547445)), depois da correção do D6, o único defeito que a primeira execução da CI revelou ([registro](docs/05-qualidade/05-execucao-ci-2026-10-24.md)).
 
 | Verificação | Resultado |
 |---|---|
@@ -119,14 +119,13 @@ Execução local de 2026-10-22, versão v1.1.0 (commit `a16b9bf`), com `npm run 
 | Testes E2E (Chromium, inclui 6 de acessibilidade com axe) | 34 passaram |
 | **Total** | **156 testes passando** |
 | Build | compilou |
-| Defeitos registrados | 5 (D1 a D5), corrigidos |
+| Defeitos registrados | 6 (D1 a D6), corrigidos |
 
 ## Do protótipo à produção
 
 O que falta para sair do estudo:
 
 - Não está hospedado: roda só localmente ([limitações](docs/05-qualidade/03-limitacoes-conhecidas.md)).
-- O CI (rotina automática de lint, tipos, testes e build) rodou uma vez no GitHub, em 2026-10-23, no commit `453f1e1`, e falhou na etapa de testes E2E; lint, tipos, testes unitários, de integração e build passaram ([execução](https://github.com/Joaogabrielmaia/Customer-onboarding-platform/actions/runs/39984884953)). A causa ainda não foi investigada.
 - A cobertura de código não foi medida ([limitações](docs/05-qualidade/03-limitacoes-conhecidas.md)).
 - Rollout, plano de volta e treinamento são planos, não executados ([rollout](docs/06-treinamento-e-rollout/01-plano-de-rollout.md)).
 - Os indicadores são hipóteses, sem resultado medido ([indicadores](docs/07-pos-go-live/indicadores.md)).
@@ -161,7 +160,7 @@ npm run screenshots                              # regenera docs/imagens
 ## Limites
 
 - Não está hospedado: a execução é local.
-- O CI falhou na etapa E2E na única execução no GitHub ([execução](https://github.com/Joaogabrielmaia/Customer-onboarding-platform/actions/runs/39984884953)); o registro de 156 testes vem de execuções locais.
+- A CI roda só Chromium em Linux; Firefox, Safari e celular físico não foram verificados ([limitações](docs/05-qualidade/03-limitacoes-conhecidas.md)).
 - A cobertura de código não foi medida.
 - O feedback do piloto é simulado: não houve piloto real nem resultado medido.
 

@@ -101,4 +101,4 @@ Legenda: **U** = unitário, **I** = integração dos serviços, **E** = E2E (arq
 | RNF-01 | – | – | **sem teste**: desempenho não medido | – |
 | RNF-09 | – | – | **sem teste**: LGPD só no desenho | – |
 | RNF-10 | – | – | revisão de código; sem teste | – |
-| RNF-11 | – | – | CI configurado, ainda não executado no GitHub | – |
+| RNF-11 | – | – | CI executado no GitHub: verde em 2026-10-24, depois de uma falha E2E em 2026-10-23 (D6) | – |

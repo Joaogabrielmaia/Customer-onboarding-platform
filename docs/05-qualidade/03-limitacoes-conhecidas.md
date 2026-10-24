@@ -31,5 +31,5 @@ Relacionados: [Resultado da execução](02-resultado-da-ultima-execucao.md) · [
 - **Acessibilidade:** só o axe automático. Não fiz teste manual completo de teclado nem com leitor de tela.
 - **Não testado automaticamente:** estado vazio do painel (US-09 CA5), preservação do histórico de usuário desativado na tela (US-03 CA3) e atomicidade da transação de auditoria sob falha (os testes provam que o registro existe junto com a mudança, não que tudo reverte se o registro falhar).
 - Sem teste de carga ou desempenho. A meta de 2 s (RNF-01) é uma hipótese não medida.
-- O CI (GitHub Actions) está configurado, mas **ainda não foi executado no GitHub**.
+- O CI (GitHub Actions) roda só Chromium em Linux. Primeira execução em 2026-10-23: falha em um teste E2E do portal (D6); execução de 2026-10-24: verde ([registro](05-execucao-ci-2026-10-24.md)).
 - O projeto **não está hospedado**: roda apenas localmente (Docker + `npm run dev`). Não há ambiente online, nem teste com usuários reais.

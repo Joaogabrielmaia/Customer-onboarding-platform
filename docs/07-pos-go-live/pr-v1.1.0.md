@@ -35,7 +35,7 @@ Na retrospectiva simulada (sem piloto real), a líder de implantação e o funda
 2. Manualmente: entrar como implantador, abrir uma implantação, clicar em **Exportar CSV** e abrir no Excel.
 
 ### Resultado das verificações (execução local)
-Lint e tipos sem erros; 52 unitários, 70 de integração e 34 E2E passando (156 no total). **CI do GitHub ainda não executado.**
+Lint e tipos sem erros; 52 unitários, 70 de integração e 34 E2E passando (156 no total). **CI do GitHub ainda não executado.** (Nota de 2026-10-24: a CI rodou depois; ver [execução na CI de 2026-10-24](../05-qualidade/05-execucao-ci-2026-10-24.md).)
 
 ### Riscos e o que não foi verificado
 - Não abri o arquivo em todas as versões do Excel; testei o conteúdo, o BOM e o download.
