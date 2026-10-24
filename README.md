@@ -17,7 +17,6 @@ Acompanhamento de implantação de clientes: prazos [D+n](docs/GLOSSARIO.md), pa
 | Discovery | Reuniões simuladas, marcadas nas atas ([Episódio 1](docs/01-discovery/README.md)) |
 | Stack | Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS 4, Prisma 7, PostgreSQL, Zod |
 | Testes | 156 passando: Vitest (unitários e integração) e Playwright (E2E e axe). Registro local de 2026-10-22 (v1.1.0, commit `a16b9bf`) e execução na CI de 2026-10-24 (commit `366f1f5`) |
-| Execução | Local, com Node.js 24 e Docker; não hospedado |
 
 ## Duas entradas
 
@@ -130,32 +129,6 @@ O que falta para sair do estudo:
 - Rollout, plano de volta e treinamento são planos, não executados ([rollout](docs/06-treinamento-e-rollout/01-plano-de-rollout.md)).
 - Os indicadores são hipóteses, sem resultado medido ([indicadores](docs/07-pos-go-live/indicadores.md)).
 - Não houve piloto real: a [retrospectiva](docs/07-pos-go-live/reuniao-6-retrospectiva.md) é simulada e o [roadmap](docs/07-pos-go-live/roadmap.md) não tem datas.
-
-## Rodar localmente
-
-Pré-requisitos: Node.js 24 e Docker.
-
-```bash
-npm install
-cp .env.example .env     # os valores padrão já servem para o ambiente local
-npm run setup            # sobe o PostgreSQL (Docker), aplica as migrations e carrega os dados de exemplo
-npm run dev              # http://localhost:3000
-```
-
-Contas de demonstração criadas pelo seed (dados fictícios, só para uso local):
-
-| Papel | E-mail | Senha |
-|---|---|---|
-| Administrador | `admin@rotafacil.example` | `Admin-Trilha-2026` |
-| Implantador | `implantador@rotafacil.example` | `Usuario-Trilha-2026` |
-
-O link do cliente é gerado dentro de uma implantação, no botão "Gerar link do cliente".
-
-```bash
-npm run lint && npm run typecheck && npm test   # unitários e integração (cria o banco trilha_test)
-npm run build && npx playwright install chromium && npx playwright test   # E2E (cria o banco trilha_e2e)
-npm run screenshots                              # regenera docs/imagens
-```
 
 ## Limites
 
