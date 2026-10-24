@@ -194,7 +194,7 @@ Evolução prevista, sem datas ([roadmap](docs/07-pos-go-live/roadmap.md)):
 
 - [Ciclo de vida: índice, linha do tempo e diagramas](docs/ciclo-de-vida/README.md) · [reuniões](docs/ciclo-de-vida/reunioes/README.md) · [sprints](docs/ciclo-de-vida/sprints/README.md) · [diagramas](docs/ciclo-de-vida/diagramas/README.md)
 - [Guia da série em episódios](docs/INDEX.md) · [galeria de telas](docs/imagens/README.md) · [glossário](docs/GLOSSARIO.md)
-- [CHANGELOG](CHANGELOG.md) · [CONTRIBUTING](CONTRIBUTING.md) · [runbook](docs/07-pos-go-live/runbook.md)
+- [CHANGELOG](CHANGELOG.md) · [runbook](docs/07-pos-go-live/runbook.md)
 
 ## Nota de contexto acadêmico
 
