@@ -4,7 +4,7 @@
 **Data:** 2026-10-22 · **Status:** concluído
 Relacionados: [Empresa](02-empresa-rota-facil.md) · [Reunião 1](04-reuniao-1-kickoff-fundador.md) · [Reunião 2](05-reuniao-2-lideranca-e-implantador.md) · [Reunião 3](06-reuniao-3-suporte-e-cliente.md)
 
-> Personas fictícias, escritas por mim para este caso de portfólio.
+> Personas fictícias, escritas para este estudo de caso.
 
 | Persona | Papel no sistema | Objetivo | Dor principal | Sucesso para ela/ele |
 |---|---|---|---|---|

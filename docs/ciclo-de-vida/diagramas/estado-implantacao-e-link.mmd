@@ -1,0 +1,11 @@
+stateDiagram-v2
+    state "Implantação" as impl {
+        [*] --> IN_PROGRESS
+        IN_PROGRESS --> COMPLETED: todas as tarefas concluídas ou não aplicáveis
+        COMPLETED --> IN_PROGRESS: tarefa reaberta
+    }
+    state "Link do cliente" as link {
+        [*] --> Ativo: gerado
+        Ativo --> Revogado: revogado ou substituído por outro
+        Ativo --> Expirado: passou a validade
+    }

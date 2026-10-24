@@ -1,0 +1,7 @@
+flowchart LR
+    adm([Administrador]) -->|navegador| t[Trilha]
+    imp([Implantador]) -->|navegador| t
+    cli([Cliente]) -->|link com token, só leitura| t
+    t -->|SQL via Prisma| db[(PostgreSQL)]
+    t -. fora do escopo .-> w[WhatsApp e e-mail]
+    t -. fora do escopo .-> e[CRM e ERP]

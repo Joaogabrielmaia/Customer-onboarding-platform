@@ -1,0 +1,18 @@
+sequenceDiagram
+    actor U as Implantador
+    participant A as Server Action
+    participant S as Serviço deployments
+    participant D as Domínio
+    participant B as PostgreSQL
+    U->>A: cliente, modelo, implantador, kickoff
+    A->>S: createDeployment(actor, dados)
+    S->>S: autoriza e valida com Zod
+    S->>B: lê cliente, modelo com etapas e implantador
+    S->>B: abre a transação
+    loop cada etapa e tarefa do modelo
+        S->>D: computeDueDate(kickoff, D+n)
+        S->>B: grava etapa e tarefas copiadas
+    end
+    S->>B: grava auditoria DEPLOYMENT_CREATED
+    S->>B: confirma a transação
+    S-->>U: implantação criada

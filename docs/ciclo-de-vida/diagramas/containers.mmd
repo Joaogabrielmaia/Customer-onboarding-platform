@@ -1,0 +1,18 @@
+flowchart TB
+    nav([Navegador])
+    subgraph app[Aplicação Next.js]
+        pag[Páginas e Server Actions<br/>src/app]
+        por[Portal por token<br/>src/app/p]
+        hc[Healthcheck<br/>src/app/api/health]
+        srv[Serviços<br/>src/server/services]
+        dom[Domínio puro<br/>src/domain]
+    end
+    db[(PostgreSQL<br/>13 tabelas, 1 migration)]
+    nav --> pag
+    nav --> por
+    nav --> hc
+    pag --> srv
+    por --> srv
+    srv --> dom
+    srv --> db
+    hc --> db

@@ -26,7 +26,18 @@ Relacionados: [Guia da série](INDEX.md) · [README](../README.md)
 | Teste unitário, de integração e E2E | Verificam, respectivamente, uma regra isolada, o serviço com o banco real e o fluxo completo no navegador. | [Estratégia de testes](05-qualidade/01-estrategia-de-testes.md) |
 | axe | Ferramenta automática que aponta problemas de acessibilidade em uma tela. | [Estratégia de testes](05-qualidade/01-estrategia-de-testes.md) |
 | UAT | Teste de aceitação: quem vai usar confere se cada critério combinado foi atendido. | [Reunião 5](05-qualidade/04-reuniao-5-uat.md) |
-| CI | Rotina automática no GitHub que roda lint, tipos, testes e build a cada envio. | [Workflow](../.github/workflows/ci.yml) · [Limites](../README.md#limites) |
+| CI | Rotina automática no GitHub que roda lint, tipos, testes e build a cada envio. | [Workflow](../.github/workflows/ci.yml) · [Limites](../README.md#limites-riscos-e-evolução-prevista) |
 | Rollout | Plano de como a equipe passaria a usar o sistema, em etapas e com critério para avançar. | [Plano de rollout](06-treinamento-e-rollout/01-plano-de-rollout.md) |
 | Plano de volta (rollback) | Caminho para retomar o processo anterior se a entrada em uso der errado. | [Checklist e plano de volta](06-treinamento-e-rollout/02-checklist-de-entrada-em-uso.md) |
 | Runbook | Roteiro de operação: como investigar problemas, fazer backup e reverter. | [Runbook](07-pos-go-live/runbook.md) |
+| Product Goal e Product Backlog | Objetivo do produto e lista priorizada do que será construído. | [Planejamento e Scrum](ciclo-de-vida/02-planejamento-e-scrum.md) |
+| Sprint | Bloco de trabalho com objetivo, escopo e critérios de conclusão. Neste projeto são cinco. | [Sprints](ciclo-de-vida/sprints/README.md) |
+| Release plan | Plano de quais versões saem com qual conteúdo. | [Planejamento e Scrum](ciclo-de-vida/02-planejamento-e-scrum.md#release-plan) |
+| RACI | Matriz que diz quem executa (R), responde (A), é consultado (C) e é informado (I) em cada atividade. | [Requisitos](ciclo-de-vida/03-requisitos-e-rastreabilidade.md#matriz-raci) |
+| Diagrama ER | Desenho das tabelas do banco e de como se relacionam. | [Modelo de dados](ciclo-de-vida/05-modelo-de-dados.md) |
+| Migration | Arquivo versionado que cria ou altera as tabelas do banco. | [Modelo de dados](ciclo-de-vida/05-modelo-de-dados.md#migrations) |
+| Transação | Conjunto de gravações que acontecem todas ou nenhuma; a auditoria usa a mesma da mudança. | [Arquitetura](ciclo-de-vida/04-arquitetura-e-adrs.md#fluxos-principais) |
+| Conventional Commits | Padrão de mensagem de commit (`feat`, `fix`, `docs`) que cita o ID do requisito. | [Desenvolvimento e configuração](ciclo-de-vida/06-desenvolvimento-e-configuracao.md) |
+| Versionamento semântico | Numeração MAIOR.MENOR.CORREÇÃO das versões, como v1.1.0. | [Desenvolvimento e configuração](ciclo-de-vida/06-desenvolvimento-e-configuracao.md) |
+| Análise de causa raiz | Investigação do motivo de um defeito, além do sintoma. | [Testes e qualidade](ciclo-de-vida/07-testes-e-qualidade.md#defeitos-e-análise-de-causa-raiz) |
+| Dívida técnica | Trabalho adiado que o código ou o processo ainda deve. | [Desenvolvimento e configuração](ciclo-de-vida/06-desenvolvimento-e-configuracao.md#dívida-técnica) |

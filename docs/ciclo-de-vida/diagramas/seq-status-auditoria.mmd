@@ -1,0 +1,18 @@
+sequenceDiagram
+    actor U as Implantador
+    participant S as Serviço deployments
+    participant D as Domínio
+    participant B as PostgreSQL
+    U->>S: updateTaskStatus(tarefa, novo status)
+    S->>S: autoriza (RN-12) e recusa obrigatória como não aplicável
+    S->>B: abre a transação
+    S->>B: atualiza a tarefa
+    S->>B: grava auditoria TASK_STATUS_CHANGED
+    S->>B: lê os status de todas as tarefas
+    S->>D: isDeploymentComplete(tarefas)
+    alt todas concluídas e implantação em andamento
+        S->>B: marca COMPLETED e grava DEPLOYMENT_COMPLETED
+    else havia concluída e agora há tarefa aberta
+        S->>B: volta a IN_PROGRESS e grava DEPLOYMENT_REOPENED
+    end
+    S->>B: confirma a transação

@@ -1,0 +1,18 @@
+sequenceDiagram
+    actor C as Cliente
+    participant P as Portal /p/token
+    participant S as Serviço portal
+    participant B as PostgreSQL
+    C->>P: abre o link
+    P->>S: getPortalView(token)
+    S->>S: calcula o SHA-256 do token
+    S->>B: busca o link pelo hash
+    alt inexistente, expirado ou revogado
+        S-->>P: null
+        P-->>C: mensagem única de link indisponível
+    else link usável
+        S->>B: lê a implantação e as tarefas
+        S->>S: filtra o que é visível ao cliente
+        S-->>P: progresso, o que depende do cliente, próximas etapas, concluídas
+        P-->>C: página de leitura
+    end

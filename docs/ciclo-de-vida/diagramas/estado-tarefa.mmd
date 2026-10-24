@@ -1,0 +1,13 @@
+stateDiagram-v2
+    [*] --> PENDING: tarefa copiada do modelo
+    PENDING --> IN_PROGRESS: fluxo usual
+    IN_PROGRESS --> WAITING_CLIENT: depende do cliente
+    WAITING_CLIENT --> IN_PROGRESS: cliente respondeu
+    IN_PROGRESS --> DONE: concluída
+    DONE --> IN_PROGRESS: reaberta
+    PENDING --> NOT_APPLICABLE: só se não obrigatória (RN-07)
+    note right of PENDING
+        O serviço aceita qualquer troca entre os
+        cinco status. A única recusa é marcar como
+        não aplicável uma tarefa obrigatória.
+    end note
