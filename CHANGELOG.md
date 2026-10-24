@@ -8,6 +8,8 @@ Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e
 - `npm run setup` para subir o banco local, aplicar as migrations e carregar o seed.
 
 ### Corrigido
+- Portal do cliente: o prazo de tarefa atrasada (`até dd/mm/aaaa (atrasada)`) não quebrava de linha e empurrava a página além da tela em celulares estreitos. O E2E falhou na primeira execução da CI no GitHub (12 px de rolagem em 360 px, fontes do Linux mais largas); o rótulo "(atrasada)" passou para a linha de baixo e o título pode encolher (D6).
+- Testes E2E: a porta passou a vir de `E2E_PORT` (padrão 3100), para não conflitar com outro processo na mesma máquina.
 - `.env.example` trazia `DIRECT_URL=""` e a migration falhava com "Connection url is empty" para quem copiasse o arquivo (D5). Agora a linha vem comentada e o `prisma.config.ts` usa `||`.
 - Documentação: README, retrospectiva final e verificação em clone limpo.
 

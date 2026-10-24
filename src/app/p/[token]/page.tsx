@@ -13,10 +13,10 @@ export const metadata: Metadata = {
 function TaskItem({ task }: { task: PortalTask }) {
   return (
     <li className="flex items-start justify-between gap-3 rounded-lg border border-slate-300 bg-white p-3">
-      <span className="text-slate-900">{task.title}</span>
-      <span className={`shrink-0 text-sm font-semibold ${task.late ? "text-red-800" : "text-slate-800"}`}>
+      <span className="min-w-0 text-slate-900">{task.title}</span>
+      <span className={`shrink-0 text-right text-sm font-semibold ${task.late ? "text-red-800" : "text-slate-800"}`}>
         {task.status === "DONE" ? "Concluída" : `até ${formatBR(task.dueDate)}`}
-        {task.late && " (atrasada)"}
+        {task.late && <span className="block">(atrasada)</span>}
       </span>
     </li>
   );
